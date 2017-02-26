@@ -6,8 +6,8 @@
         {path: 'features', component: app.ListComponent, data: {list: glt.exampleGenerators}},
         {path: 'random', component: app.ListComponent, data: {generator: glt.randomTree}},
         {path: 'palettes', component: app.ListComponent, data: {generator: glt.randomPalette}},
-        {path: 'samples', component: app.ListComponent, data: {list: glt.sampleTrees}},
-        {path: 'test', component: app.ListComponent, data: {list: glt.sampleTests, code: true}},
+        {path: 'samples', component: app.ListComponent, data: {list: glt.samplesDemo}},
+        {path: 'test', component: app.ListComponent, data: {list: glt.samplesTest, code: true}},
         {path: 'prototypes', component: app.PrototypesComponent},
         {path: 'extractor', component: app.ExtractorComponent}
     ];

@@ -1,4 +1,2 @@
-export * from './src/treeWithPlaceholder';
-export * from './src/recipes';
-export * from './src/trees';
-export * from './src/sampleTests';
+export {samplesDemo} from './src/samplesDemo';
+export {samplesTest} from './src/samplesTest';

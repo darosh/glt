@@ -1,4 +1,4 @@
-export const sampleTrees = [
+export const samplesDemo = [
     {
         title: 'Marble',
         data: {

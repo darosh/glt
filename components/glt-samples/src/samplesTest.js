@@ -1,4 +1,4 @@
-export const sampleTests = [
+export const samplesTest = [
     {
         title: 'Minimal',
         data: [
