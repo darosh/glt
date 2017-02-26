@@ -1,5 +1,4 @@
 import {deep} from '../utils/deep';
-import {compositionToTree} from './composition/compositionToTree';
 import {treeToSyntax} from './tree/treeToSyntax';
 import {syntaxToShader} from './syntax/syntaxToShader';
 import {expandPlaceholders} from './syntax/expandPlaceholders';
@@ -13,15 +12,9 @@ import {addIds} from './graph/addIds';
 
 export function compile(data, type = variableType.INLINE, multi = false) {
     let f = formatOf(data);
-    let recipe = f === dataFormat.COMPOSITION ? data : null;
     let graph = f === dataFormat.GRAPH ? data : null;
     let ids = graph ? addIds(graph) : null;
-    let tree = f === dataFormat.TREE
-        ? data
-        : f === dataFormat.GRAPH
-            ? {data: graphToTree(data)}
-            : compositionToTree(data);
-
+    let tree = f === dataFormat.TREE ? data : {data: graphToTree(data)};
     let syntax = treeToSyntax(deep(tree));
     let shader;
 
@@ -38,7 +31,6 @@ export function compile(data, type = variableType.INLINE, multi = false) {
     const ret = {
         graph: graph,
         ids: ids,
-        recipe: recipe,
         tree: tree,
         syntax: syntax,
         shader: shader,
