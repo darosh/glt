@@ -3,8 +3,6 @@ export {features, types, all, getSignature} from './features/index';
 export {Renderer} from './renderers/Renderer';
 
 export {compile} from './data/compile';
-export {formatOf, dataFormat} from './data/dataFormat';
-export {graphToTree} from './data/graph/graphToTree'
 
 export {formatShader} from './data/shader/formatShader';
 export {getShaderThree} from './data/shader/getShaderThree';
