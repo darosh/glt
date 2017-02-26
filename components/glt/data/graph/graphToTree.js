@@ -15,7 +15,7 @@ export function graphToTree(layers, transforms = []) {
     layers = expandBlend(layers);
 
     const layer = layers.pop();
-    const item = {name: layer[0]};
+    const item = {name: layer[0], id: layer.id};
 
     switch (list[layer[0]].type) {
         case types.transform:

@@ -25,9 +25,12 @@
                 this.service.renderer.update();
             },
             sourceChanged: function () {
-                var f = glt.formatOf(this.source);
-                this.graph = f === glt.dataFormat.GRAPH ? this.source : null;
-                this.tree = f === glt.dataFormat.TREE ? this.source : {data: glt.graphToTree(this.source)};
+                this.compiled = glt.compile(this.source, 1);
+                // var f = glt.formatOf(this.source);
+                // this.graph = f === glt.dataFormat.GRAPH ? this.source : null;
+                // this.tree = f === glt.dataFormat.TREE ? this.source : {data: glt.graphToTree(this.source)};
+                this.graph = this.compiled.graph;
+                this.tree = this.compiled.tree;
                 this.graphJson = CJSON(this.graph);
                 this.treeJson = CJSON(this.tree);
                 this.graphChanged();
