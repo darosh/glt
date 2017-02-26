@@ -1,4 +1,4 @@
-import {POS, POSITION, VALUE} from './names';
+import {POS, VALUE} from './names';
 
 export const X = {};
 export const Y = {};

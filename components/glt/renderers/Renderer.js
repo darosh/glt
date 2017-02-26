@@ -14,6 +14,7 @@ import {deep} from '../utils/deep';
 
 export class Renderer {
     constructor(canvas, context) {
+        this.onstep = null;
         this.camera = new Camera();
         this.camera.position.z = 1;
         this.scene = new Scene();

@@ -1,3 +1,4 @@
+//noinspection JSUnresolvedVariable
 import gltgs from '../../glsl/glsl.min.json';
 
 export function getLib(functions, additional, singleLine = true) {

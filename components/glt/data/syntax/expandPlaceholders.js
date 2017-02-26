@@ -13,12 +13,12 @@ export function expandPlaceholders(item, _top = null) {
         }
 
         if (input[PARAM.placeholder] && isObject(param)) {
-            expand(input, param, item, top, i);
+            expand(item, top, i);
         }
     });
 }
 
-function expand(input, param, item, top, index) {
+function expand(item, top, index) {
     const name = newFunctionName(top, item.name);
     let exInput = deep(item.proto.input).splice(index, 1)[0];
     let fname = newFunctionName(top, exInput[PARAM.name]);
