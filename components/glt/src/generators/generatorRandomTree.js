@@ -3,7 +3,7 @@ import {randomInt} from './randomInt'
 import {VALUE, POSITION, COLOR, POS} from '../features/names';
 import {randomParam} from './randomParams';
 
-export function randomTree(type = 'vec3', proto = null, level = 0, stop = 4, stopPos = 5, noblend = false) {
+export function generatorRandomTree(type = 'vec3', proto = null, level = 0, stop = 4, stopPos = 5, noblend = false) {
     if (type === 'bool' || type === 'int') {
         return randomParam(type, proto);
     }
@@ -37,12 +37,12 @@ export function randomTree(type = 'vec3', proto = null, level = 0, stop = 4, sto
     const ret = {
         name: pick.name,
         params: pick.input.map((input) => {
-            return randomTree(input[0], input, level + 1, stop, stopPos, pick.type === types.blend);
+            return generatorRandomTree(input[0], input, level + 1, stop, stopPos, pick.type === types.blend);
         })
     };
 
     if (!proto && (JSON.stringify(ret).indexOf(POS) < 0)) {
-        return randomTree();
+        return generatorRandomTree();
     } else {
         return !proto ? {data: ret} : ret;
     }

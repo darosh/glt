@@ -4,7 +4,7 @@
         {path: 'edit', component: app.EditComponent},
         {path: 'edit/:json', component: app.EditComponent},
         {path: 'features', component: app.ListComponent, data: {list: glt.generatorGenerators}},
-        {path: 'random', component: app.ListComponent, data: {generator: glt.randomTree}},
+        {path: 'random', component: app.ListComponent, data: {generator: glt.generatorRandomTree}},
         {path: 'palettes', component: app.ListComponent, data: {generator: glt.generatorRandomPalette}},
         {path: 'samples', component: app.ListComponent, data: {list: glt.samplesDemo}},
         {path: 'test', component: app.ListComponent, data: {list: glt.samplesTest, code: true}},
