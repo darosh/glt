@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>glt</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://unpkg.com/@angular/material/core/theming/prebuilt/indigo-pink.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <base href="./">
+    <style>
+        body {
+            font-family: Roboto, Helvetica Neue Light, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;
+            margin: 0
+        }
+
+        [md-button], [md-raised-button] {
+            text-transform: uppercase
+        }
+
+        html, body {
+            padding: 0;
+            margin: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        md-tab-body {
+            flex-direction: column;
+            display: flex !important;
+        }
+
+        .mat-tab-body-wrapper, .mat-tab-body-content {
+            flex: 1;
+            display: flex;
+        }
+
+        .mat-tab-body-content {
+            align-content: stretch;
+            flex-direction: column;
+        }
+
+        textarea, input, .mono {
+            font-family: "Roboto Mono", monospace !important;
+        }
+
+        .mono {
+            font-size: 12px;
+        }
+
+        .mat-slider-thumb-container, .mat-slider-thumb {
+            transition: none !important;
+        }
+
+        h1, h2 {
+            font-weight: 300;
+        }
+
+        router-outlet + ng-component {
+            flex: 1;
+        }
+
+        h2 {
+            padding-left: 16px;
+        }
+
+        textarea {
+            padding: 16px !important;
+        }
+
+        .pre {
+            white-space: pre;
+        }
+
+        .canvas-list {
+            padding: 8px;
+        }
+
+        .canvas-wrap {
+            margin: 8px;
+        }
+
+        .canvas-wrap canvas {
+            margin: 0;
+            display: block;
+            /*width: calc(100% + 48px);*/
+            /*margin: -24px -24px -24px -24px ;*/
+        }
+
+        .card-title {
+            font-size: 14px;
+            font-weight: 400;
+            padding: 8px;
+            z-index: 1000;
+            position: relative;
+        }
+
+        a.canvas-wrap {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .md-radio-group {
+            display: inline-flex;
+            padding: 10px;
+        }
+
+        .md-radio-button {
+            margin: 6px;
+        }
+
+        .padding {
+            padding: 16px;
+        }
+
+        md-toolbar {
+            z-index: 1000;
+        }
+
+        md-toolbar [md-icon-button] {
+            margin-left: 16px;
+        }
+
+        canvas {
+            display: block;
+        }
+    </style>
+
+    <script src="https://unpkg.com/core-js/client/shim.min.js"></script>
+
+    <script src="https://unpkg.com/zone.js@0.7.4?main=browser"></script>
+
+    <script src="https://unpkg.com/rxjs@5.0.1/bundles/Rx.js"></script>
+    <script src="https://unpkg.com/@angular/core/bundles/core.umd.js"></script>
+    <script src="https://unpkg.com/@angular/common/bundles/common.umd.js"></script>
+    <script src="https://unpkg.com/@angular/forms/bundles/forms.umd.js"></script>
+    <script src="https://unpkg.com/@angular/compiler/bundles/compiler.umd.min.js"></script>
+    <script src="https://unpkg.com/@angular/platform-browser/bundles/platform-browser.umd.js"></script>
+
+    <script src="https://unpkg.com/@angular/router/bundles/router.umd.js"></script>
+
+    <script src="https://unpkg.com/@angular/flex-layout/bundles/flex-layout.umd.js"></script>
+
+    <script src="https://unpkg.com/@angular/platform-browser-dynamic/bundles/platform-browser-dynamic.umd.js"></script>
+    <script src="https://unpkg.com/@angular/http/bundles/http.umd.js"></script>
+    <script src="https://unpkg.com/@angular/material/bundles/material.umd.js"></script>
+    <script src="https://unpkg.com/hammerjs/hammer.min.js"></script>
+
+    <script src="../../node_modules/three/build/three.min.js"></script>
+    <script src="../glt/glt.js"></script>
+    <script src="../glt-samples/glt-samples.js"></script>
+    <script src="../glt-extractor/glt-extractor.js"></script>
+    <script src="../cjson/cjson.js"></script>
+
+    <script src='./app/services/app.service.js'></script>
+    <script src='./app/pipes/keys.pipe.js'></script>
+    <script src='./app/pipes/cjson.pipe.js'></script>
+    <script src='./app/app.component.js'></script>
+    <script src='./app/directives/render.directive.js'></script>
+    <script src='./app/list/list.js'></script>
+    <script src='./app/prototypes/prototypes.js'></script>
+    <script src='./app/extractor/extractor.js'></script>
+    <script src='./app/edit/edit.js'></script>
+    <script src='./app/app.module.js'></script>
+
+    <script src='./main.js'></script>
+</head>
+<body app></body>
+</html>

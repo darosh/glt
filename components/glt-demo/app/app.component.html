@@ -1,0 +1,36 @@
+<div fxLayout="column" fxFlexFill fxFlex>
+    <md-menu #appMenu="mdMenu">
+        <a fxHide.gt-xs md-menu-item routerLink="/" routerLinkActive="active">Edit</a>
+        <a fxHide.gt-xs md-menu-item routerLink="/random" routerLinkActive="active">Random</a>
+        <a fxHide.gt-xs md-menu-item routerLink="/palettes" routerLinkActive="active">Palettes</a>
+        <a fxHide.gt-xs md-menu-item routerLink="/features" routerLinkActive="active">Features</a>
+        <a fxHide.gt-xs md-menu-item routerLink="/samples" routerLinkActive="active">Samples</a>
+        <a md-menu-item routerLink="/prototypes" routerLinkActive="active">Prototypes</a>
+        <a md-menu-item routerLink="/extractor" routerLinkActive="active">Extractor</a>
+        <a md-menu-item routerLink="/test" routerLinkActive="active">Test</a>
+        <a md-menu-item routerLink="/about" routerLinkActive="active">About</a>
+    </md-menu>
+    <md-toolbar class="mat-elevation-z2">
+        <span>glt</span>
+        <span fxFlex></span>
+        <a md-icon-button fxHide fxShow.gt-xs md-button routerLink="/" routerLinkActive="active">
+            <md-icon>edit</md-icon>
+        </a>
+        <a md-icon-button fxHide fxShow.gt-xs md-button routerLink="/random" routerLinkActive="active">
+            <md-icon>casino</md-icon>
+        </a>
+        <a md-icon-button fxHide fxShow.gt-xs md-button routerLink="/palettes" routerLinkActive="active">
+            <md-icon>palette</md-icon>
+        </a>
+        <a md-icon-button fxHide fxShow.gt-xs md-button routerLink="/features" routerLinkActive="active">
+            <md-icon>collections</md-icon>
+        </a>
+        <a md-icon-button fxHide fxShow.gt-xs md-button routerLink="/samples" routerLinkActive="active">
+            <md-icon>collections_bookmarked</md-icon>
+        </a>
+        <button md-icon-button [mdMenuTriggerFor]="appMenu">
+            <md-icon>more_vert</md-icon>
+        </button>
+    </md-toolbar>
+    <router-outlet></router-outlet>
+</div>

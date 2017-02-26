@@ -1,0 +1,10 @@
+<div fxFlexFill fxFlex fxLayout="row" fxLayoutAlign="start start" fxLayoutWrap class="canvas-list">
+    <a [routerLink]="['/edit/', toJson(item)]" *ngFor="let item of recipes"
+         fxLayout="column"
+         fxLayoutAlign="center center"
+         class="canvas-wrap mat-elevation-z2">
+        <div fxFlexFill><div class="card-title mat-elevation-z1" *ngIf="item.title">{{item.title}}</div></div>
+        <div [render]="item" [class.padding]="code"></div>
+        <div *ngIf="code" class="pre mono padding" style="padding-top: 0">{{item | cjson:1:28}}</div>
+    </a>
+</div>
