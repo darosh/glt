@@ -88,7 +88,7 @@ function uniform(top, p, type, tree) {
     top.names[name]++;
     const index = top.names[name];
     name = name + ((index > 1) ? +index : '');
-    top.uniforms[name] = {value: p, proto: type};
+    top.uniforms[name] = {value: p, proto: type, id: tree.id, index: tree.proto.input.indexOf(type)};
     return name;
 }
 
