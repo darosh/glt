@@ -83,7 +83,6 @@ export const samplesDemo = [
             ['Translate', [1, 1]],
             ['Scale', [66, .57]],
             ['Gain', .19],
-            // ['CosPalette', [0.5, 0.5, 0.5], [0.7, 0.8, 0.2], [0.23, 0.17, 0.28], [0.71, 0.69, 0.33]]
             ['CosPalette', [0.5, 0.5, 0.5], [0.38, 0.52, 0.59], [0.36, 0.33, 0.27], [0.56, 0.57, 0.69]]
         ]
     },
@@ -96,111 +95,33 @@ export const samplesDemo = [
     },
     {
         title: 'Abstract #3',
-        data: {
-            name: 'Overlay',
-            params: [
-                {
-                    name: 'Tint',
-                    params: [
-                        {
-                            name: 'Subtract',
-                            params: [
-                                {
-                                    name: 'WorleyF1',
-                                    params: [
-                                        {
-                                            name: 'Scale',
-                                            params: [
-                                                {
-                                                    name: 'Rotate',
-                                                    params: [
-                                                        'pos',
-                                                        36.21
-                                                    ]
-                                                },
-                                                [
-                                                    -2.09,
-                                                    -37.81
-                                                ]
-                                            ]
-                                        },
-                                        0.52,
-                                        1
-                                    ]
-                                },
-                                {
-                                    name: 'SinY',
-                                    params: [
-                                        {
-                                            name: 'Scale',
-                                            params: [
-                                                'pos',
-                                                [
-                                                    -126.41,
-                                                    37.04
-                                                ]
-                                            ]
-                                        }
-                                    ]
-                                },
-                                0.72
-                            ]
-                        },
-                        [
-                            0.77,
-                            0.33,
-                            0.05
+        data: [
+            ['Overlay', {
+                data: [
+                    ['Subtract', {
+                        data: [
+                            ['WorleyF1', 0.52, 1],
+                            ['Scale', [-2.09, -37.81]],
+                            ['Rotate', 36.21]
                         ]
-                    ]
-                },
-                {
-                    name: 'Bias',
-                    params: [
-                        {
-                            name: 'Tint',
-                            params: [
-                                {
-                                    name: 'RidgedMultiFractal',
-                                    params: [
-                                        {
-                                            name: 'Rotate',
-                                            params: [
-                                                {
-                                                    name: 'Tile',
-                                                    params: [
-                                                        'pos',
-                                                        [
-                                                            125.95,
-                                                            49.88
-                                                        ],
-                                                        0,
-                                                        0
-                                                    ]
-                                                },
-                                                24.62
-                                            ]
-                                        },
-                                        3.58,
-                                        0.70,
-                                        1.24,
-                                        4.96,
-                                        -1.97,
-                                        2.25
-                                    ]
-                                },
-                                [
-                                    0.79,
-                                    0.92,
-                                    0.76
-                                ]
-                            ]
-                        },
-                        0.90
-                    ]
-                },
-                0.90
-            ]
-        }
+                    }, {
+                        data: [
+                            ['SinY'],
+                            ['Scale', [-126.41, 37.04]]
+                        ]
+                    }, 0.72],
+                    ['Tint', [0.77, 0.33, 0.05]]
+                ]
+            }, {
+                data: [
+                    ['RidgedMultiFractal', 3.58, 0.70, 1.24, 4.96, -1.97, 2.25],
+                    ['Tint', [0.79, 0.92, 0.76]],
+                    ['Bias', 0.90],
+                    ['Rotate', 24.62],
+                    ['Tile', [125.95, 49.88], 0, 0]
+                ]
+            }, .9]
+        ]
     },
     {
         title: 'Waves',
