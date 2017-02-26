@@ -196,41 +196,10 @@ export const samplesDemo = [
     },
     {
         title: 'Abstract #2',
-        data: {
-            name: 'CosPalette',
-            params: [
-                {
-                    name: 'FBm',
-                    params: [
-                        'pos',
-                        0.48,
-                        5.37,
-                        3.12,
-                        6.51
-                    ]
-                },
-                [
-                    0.97,
-                    0.03,
-                    0.58
-                ],
-                [
-                    0.70,
-                    0.85,
-                    0.28
-                ],
-                [
-                    0.40,
-                    0.90,
-                    0.65
-                ],
-                [
-                    0.15,
-                    0.84,
-                    0.56
-                ]
-            ]
-        }
+        data: [
+            ['FBm', 0.48, 5.37, 3.12, 6.51],
+            ['CosPalette', [0.97, 0.03, 0.58], [0.70, 0.85, 0.28], [0.40, 0.90, 0.65], [0.15, 0.84, 0.56]]
+        ]
     },
     {
         title: 'Abstract #3',
@@ -342,95 +311,44 @@ export const samplesDemo = [
     },
     {
         title: 'Waves',
-        data: {
-            name: 'CosPalette',
-            params: [{
-                name: 'Normalize',
-                params: [{
-                    name: 'SimplexNoise',
-                    params: [{
-                        name: 'Scale',
-                        params: [{
-                            name: 'Distort',
-                            params: [{
-                                name: 'Scale',
-                                params: ['pos', [0.5, 0.8]]
-                            }, 0.04, {
-                                name: 'SimplexNoise',
-                                params: ['pos']
-                            }]
-                        }, [1, 8]]
-                    }]
-                }]
-            },
-                [0.5, 0.5, 0.5], [0.5, 0.5, 0.5], [2.0, 1.0, 0.0], [0.5, 0.20, 0.25]
-            ]
-        }
+        data: [
+            ['SimplexNoise'],
+            ['Scale', [1, 8]],
+            ['Normalize'],
+            ['Distort', 0.04, {
+                data: [
+                    ['SimplexNoise']
+                ]
+            }],
+            ['Scale', [0.5, 0.8]],
+            ['CosPalette', [0.5, 0.5, 0.5], [0.5, 0.5, 0.5], [2.0, 1.0, 0.0], [0.5, 0.20, 0.25]]
+        ]
     },
     {
         title: 'Electricity',
-        data: {
-            name: 'Tint',
-            params: [
-                {
-                    name: 'RidgedMultiFractal',
-                    params: [
-                        {
-                            name: 'Rotate',
-                            params: [
-                                'pos',
-                                0
-                            ]
-                        },
-                        0.73,
-                        2.37,
-                        1.76,
-                        5.84,
-                        1.20,
-                        1.73
-                    ]
-                },
-                [
-                    0.08,
-                    0.64,
-                    0.92
-                ]
-            ]
-        }
+        data: [
+            ['RidgedMultiFractal', 0.73, 2.37, 1.76, 5.84, 1.20, 1.73],
+            ['Tint', [0.08, 0.64, 0.92]]
+        ]
     },
     {
         title: 'Ink',
-        data: {
-            name: 'RidgedMultiFractal',
-            params: [
+        data: [
+            ['RidgedMultiFractal',
                 {
-                    name: 'Rotate',
-                    params: [
-                        {
-                            name: 'Scale',
-                            params: [
-                                'pos',
-                                [1.1, 1.1]
-                            ]
-                        },
-                        235
+                    data: [
+                        ['Y'],
+                        ['Abs']
                     ]
-                },
-                {
-                    name: 'Abs',
-                    params: [{
-                        name: 'Y',
-                        params: [
-                            'pos'
-                        ]
-                    }]
                 },
                 1.84,
                 0.6,
                 5.98,
                 1.05,
                 2.55
-            ]
-        }
+            ],
+            ['Rotate', 235],
+            ['Scale', [1.1, 1.1]]
+        ]
     }
 ];
