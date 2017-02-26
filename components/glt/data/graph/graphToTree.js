@@ -89,6 +89,7 @@ function getTransform(layers) {
 
         return {
             name: layer[0],
+            id: layer.id,
             params: [getTransform(layers), ...getParams(layer)]
         };
     }
