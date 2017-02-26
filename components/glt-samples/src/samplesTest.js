@@ -356,5 +356,17 @@ export const samplesTest = [
             ['Gain', 0.1],
             ['Scale', [2, 2]]
         ]
+    },
+    {
+        title: 'HSV',
+        data: [
+            [
+                'HSV',
+                {data: [['SimplexNoise'], ['Normalize'], ['Scale', [0.1, 0.1]]]},
+                {data: [['WorleyF1'], ['Invert'], ['AddValue', -.32], ['Gain', .02]]},
+                {data: [['WorleyF1'], ['Invert'], ['AddValue', -.24], ['Gain', .02]]}
+            ],
+            ['Scale', [2.5, 2.5]]
+        ]
     }
 ];
