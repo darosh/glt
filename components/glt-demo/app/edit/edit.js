@@ -11,7 +11,7 @@
                 this.route = route;
                 this.indexFn = (i) => i;
                 this.service.renderer.size(512);
-                this.tree = this.route.params.value.json ? JSON.parse(this.route.params.value.json) : glt.sampleTrees[0];
+                this.tree = this.route.params.value.json ? JSON.parse(this.route.params.value.json) : glt.samplesDemo[0];
                 this.treeJson = CJSON(this.tree);
                 this.view = {data: 'tree', shader: 'all', type: 'three', vars: 2, multi: false};
             }],

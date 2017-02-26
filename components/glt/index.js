@@ -2,7 +2,7 @@ export {blend} from './src/features/blend';
 
 export {features, types, all, getSignature} from './src/features/index';
 
-export {Renderer} from './src/renderer/Renderer';
+export {Renderer} from './src/renderers/Renderer';
 
 export {compile} from './src/data/compile';
 
@@ -15,10 +15,10 @@ export {getUniforms} from './src/data/shader/getUniforms';
 export {getLib} from './src/data/shader/getLib';
 export {getDefines} from './src/data/shader/getDefines';
 
-export {randomRecipe} from './src/generator/randomRecipe';
-export {randomPalette} from './src/generator/randomPalette';
-export {randomTree} from './src/generator/randomTree';
-export {exampleGenerators} from './src/generator/exampleGenerators';
+export {randomRecipe} from './src/generators/randomRecipe';
+export {generatorRandomPalette} from './src/generators/generatorRandomPalette';
+export {randomTree} from './src/generators/randomTree';
+export {generatorGenerators} from './src/generators/generatorGenerators';
 
 export {deep} from './src/utils/deep';
 export {toJson} from './src/utils/toJson';

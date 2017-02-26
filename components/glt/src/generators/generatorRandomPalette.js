@@ -1,7 +1,7 @@
 import {CosPalette} from '../features/colorize'
 import {randomParam} from './randomParams';
 
-export function randomPalette() {
+export function generatorRandomPalette() {
     return {
         data: [
             ['X'],

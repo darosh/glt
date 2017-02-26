@@ -53,6 +53,7 @@ function expand(input, param, item, top, index) {
 function newFunctionName(top, _name) {
     top.functions = top.functions || {};
     let name = _name;
+    //noinspection CommaExpressionJS
     while (name += '_', top.functions[name]) {
     }
     return name;

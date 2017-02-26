@@ -1,7 +1,7 @@
 import {features} from '../features/index';
 import {PARAM, VALUE} from '../features/names';
 
-export function exampleGenerators() {
+export function generatorGenerators() {
     const ret = [];
     const keys = Object.keys(features.generator);
 
