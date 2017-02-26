@@ -1,6 +1,8 @@
+//noinspection JSUnresolvedVariable
 import {default as chai} from 'chai';
+import {describe} from 'mocha';
+
 import {graphToTree} from '../components/glt/data/graph/graphToTree';
-import {default as str} from 'json-stringify-pretty-compact';
 
 chai.should();
 
@@ -37,8 +39,6 @@ describe('graphToTree', () => {
                 ['Rotate', 55]
             ]
         };
-        console.log(str(i));
-        const tree = graphToTree(i);
-        console.log(str(tree));
+        graphToTree(i);
     });
 });

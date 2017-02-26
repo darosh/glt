@@ -1,4 +1,7 @@
+//noinspection JSUnresolvedVariable
 import {default as chai} from 'chai';
+import {describe} from 'mocha';
+
 import {treeToSyntax} from '../components/glt/data/tree/treeToSyntax';
 
 chai.should();
