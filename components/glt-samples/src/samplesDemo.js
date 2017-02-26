@@ -1,70 +1,25 @@
 export const samplesDemo = [
     {
         title: 'Marble',
-        data: {
-            name: 'CosPalette',
-            params: [
-                {
-                    name: 'Gain',
-                    params: [{
-                        name: 'SinXY',
-                        params: [
-                            {
-                                name: 'Warp',
-                                params: [
-                                    {
-                                        name: 'Translate',
-                                        params: [{
-                                            name: 'Scale',
-                                            params: ['pos', [66, .57]]
-                                        }, [1, 1]]
-                                    },
-                                    8,
-                                    2.2,
-                                    {
-                                        name: 'MultiFractal',
-                                        params: [{
-                                            name: 'Scale',
-                                            params: ['pos', [-2.4, 1.7]]
-                                        }, 1.6, 2, 3, 5.28, 0.8]
-                                    },
-                                    {
-                                        name: 'MultiFractal',
-                                        params: [{
-                                            name: 'Translate',
-                                            params: [{
-                                                name: 'Scale',
-                                                params: ['pos', [-2.4, 1.7]]
-                                            }, [10, -.4]]
-                                        }, 1.8, 2, 2.7, 60.8]
-                                    }
-                                ]
-                            }
-                        ]
-                    }, .19]
-                },
-                [
-                    0.5,
-                    0.5,
-                    0.5
-                ],
-                [
-                    0.38,
-                    0.52,
-                    0.59
-                ],
-                [
-                    0.36,
-                    0.33,
-                    0.27
-                ],
-                [
-                    0.56,
-                    0.57,
-                    0.69
+        data: [
+            ['SinXY'],
+            ['Gain', .19],
+            ['Warp', 8, 2.2, {
+                data: [
+                    ['MultiFractal', 1.6, 2, 3, 5.28, 0.8],
+                    ['Scale', [-2.4, 1.7]]
                 ]
-            ]
-        }
+            }, {
+                data: [
+                    ['MultiFractal', 1.8, 2, 2.7, 60.8],
+                    ['Translate', [10, -.4]],
+                    ['Scale', [-2.4, 1.7]]
+                ]
+            }],
+            ['Translate', [1, 1]],
+            ['Scale', [66, .57]],
+            ['CosPalette', [0.5, 0.5, 0.5], [0.38, 0.52, 0.59], [0.36, 0.33, 0.27], [0.56, 0.57, 0.69]]
+        ]
     },
     {
         title: 'Tiles #1',
