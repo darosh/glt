@@ -60,10 +60,13 @@
                 <md-radio-button class="md-radio-button" value="syntax">Syntax</md-radio-button>
             </md-radio-group>
             <textarea *ngIf="view.data === 'graph'" fxFlex mdInput [(ngModel)]="graphJson"
-                      (change)="graphChanged()" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
+                      (change)="graphChanged()"
+                      autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
             <textarea *ngIf="view.data === 'tree'" fxFlex mdInput [(ngModel)]="treeJson"
-                      (change)="treeChanged()" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
-            <textarea *ngIf="view.data === 'syntax'" fxFlex mdInput [(ngModel)]="syntaxJson" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
+                      (change)="treeChanged()"
+                      autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
+            <textarea *ngIf="view.data === 'syntax'" fxFlex mdInput [(ngModel)]="syntaxJson"
+                      autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
         </md-tab>
         <md-tab label="Shader">
             <div fxLayout="row">
@@ -88,18 +91,22 @@
                     </md-checkbox>
                 </div>
             </div>
-            <textarea *ngIf="view.shader === 'color'" fxFlex mdInput [(ngModel)]="display.color" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
+            <textarea *ngIf="view.shader === 'color'" fxFlex mdInput [(ngModel)]="display.color" autocomplete="off"
+                      autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
             <textarea *ngIf="view.shader === 'functions'" fxFlex mdInput [(ngModel)]="display.functions"
-                      class="pre" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
+                      class="pre" autocomplete="off" autocorrect="off" autocapitalize="off"
+                      spellcheck="false"></textarea>
             <textarea *ngIf="view.shader === 'variables'" fxFlex mdInput [(ngModel)]="display.variables"
-                      class="pre" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
-            <textarea *ngIf="view.shader === 'all'" fxFlex mdInput [(ngModel)]="display.all" class="pre" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
+                      class="pre" autocomplete="off" autocorrect="off" autocapitalize="off"
+                      spellcheck="false"></textarea>
+            <textarea *ngIf="view.shader === 'all'" fxFlex mdInput [(ngModel)]="display.all" class="pre"
+                      autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
         </md-tab>
     </md-tab-group>
     <div fxLayout="column">
         <div class="mat-elevation-z2" id="canvas"></div>
         <div style="padding: 10px">
-            <button md-button (click)="randomize()">Randomize</button>
+            <!--<button md-button (click)="randomize()">Randomize</button>-->
             <button md-button (click)="service.renderer.start()">Start</button>
             <button md-button (click)="service.renderer.stop()">Stop</button>
             <button md-button (click)="service.renderer.reset()">Reset</button>

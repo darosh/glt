@@ -3,6 +3,9 @@ export {features, types, all, getSignature} from './src/features/index';
 export {Renderer} from './src/renderers/Renderer';
 
 export {compile} from './src/data/compile';
+export {formatOf, dataFormat} from './src/data/dataFormat';
+export {graphToTree} from './src/data/graph/graphToTree'
+
 export {formatShader} from './src/data/shader/formatShader';
 export {getShaderThree} from './src/data/shader/getShaderThree';
 export {getShaderGlslSandbox} from './src/data/shader/getShaderGlslSandbox';

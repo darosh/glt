@@ -11,19 +11,31 @@
                 this.route = route;
                 this.indexFn = (i) => i;
                 this.service.renderer.size(512);
-                this.tree = this.route.params.value.json ? JSON.parse(this.route.params.value.json) : glt.samplesDemo[0];
-                this.treeJson = CJSON(this.tree);
-                this.view = {data: 'tree', shader: 'all', type: 'three', vars: 2, multi: false};
+                this.view = {data: 'graph', shader: 'all', type: 'three', vars: 2, multi: false};
+
+                this.source = this.route.params.value.json
+                    ? JSON.parse(this.route.params.value.json)
+                    : glt.samplesDemo[0];
             }],
             ngOnInit: function () {
                 glt.select('#canvas').appendChild(this.service.canvas);
-                this.treeChanged();
+                this.sourceChanged();
             },
             change: function () {
                 this.service.renderer.update();
             },
+            sourceChanged: function () {
+                var f = glt.formatOf(this.source);
+                this.graph = f === glt.dataFormat.GRAPH ? this.source : null;
+                this.tree = f === glt.dataFormat.TREE ? this.source : {data: glt.graphToTree(this.source)};
+                this.graphJson = CJSON(this.graph);
+                this.treeJson = CJSON(this.tree);
+                this.graphChanged();
+            },
+            graphChanged: function () {
+                this.treeChanged();
+            },
             treeChanged: function () {
-                this.tree = JSON.parse(this.treeJson);
                 this.compiled = glt.compile(this.tree, 1);
                 this.syntaxJson = CJSON(this.compiled.syntax);
                 this.service.renderer.render(this.compiled.shader, this.compiled.code, this.compiled.uniforms);
