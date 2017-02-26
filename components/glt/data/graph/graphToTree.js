@@ -48,6 +48,7 @@ function expandBlend(layers) {
             let n = isNumber(l[1]);
             if (isString(l[1]) || (n && isString(l[2]))) {
                 const g = l.slice(1 + n);
+                g.id = l.id;
                 const u = l[1];
                 l.splice(1 + n);
                 l[1] = {data: layers.slice(0, i)};
