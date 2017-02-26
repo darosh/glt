@@ -1,5 +1,5 @@
 import {default as chai} from 'chai';
-import {graphToTree} from '../components/glt/src/data/composition/layersToTree';
+import {graphToTree} from '../components/glt/data/graph/graphToTree';
 import {default as str} from 'json-stringify-pretty-compact';
 
 chai.should();

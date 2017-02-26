@@ -1,5 +1,5 @@
 import {default as chai} from 'chai';
-import {treeToSyntax} from '../components/glt/src/data/tree/treeToSyntax';
+import {treeToSyntax} from '../components/glt/data/tree/treeToSyntax';
 
 chai.should();
 
