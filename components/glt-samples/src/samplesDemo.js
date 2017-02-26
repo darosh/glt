@@ -23,176 +23,69 @@ export const samplesDemo = [
     },
     {
         title: 'Tiles #1',
-        data: {
-            name: 'CosPalette',
-            params: [
-                {
-                    name: 'Gain',
-                    params: [{
-                        name: 'SinXY',
-                        params: [
-                            {
-                                name: 'Warp',
-                                params: [
-                                    {
-                                        name: 'Translate',
-                                        params: [{
-                                            name: 'Scale',
-                                            params: ['pos', [16, 16]]
-                                        }, [1, 1]]
-                                    },
-                                    1,
-                                    1,
-                                    {
-                                        name: 'MultiFractal',
-                                        params: [{
-                                            name: 'Scale',
-                                            params: ['pos', [6, 4]]
-                                        }]
-                                    },
-                                    {
-                                        name: 'MultiFractal',
-                                        params: [{
-                                            name: 'Translate',
-                                            params: [{
-                                                name: 'Scale',
-                                                params: ['pos', [6, 4]]
-                                            }, [24, 24]]
-                                        }]
-                                    }
-                                ]
-                            }
-                        ]
-                    }]
-                },
-                [
-                    0.5,
-                    0.5,
-                    0.5
-                ],
-                [
-                    0.7,
-                    0.8,
-                    0.2
-                ],
-                [
-                    0.23,
-                    0.17,
-                    0.28
-                ],
-                [
-                    0.71,
-                    0.69,
-                    0.33
+        data: [
+            ['SinXY'],
+            ['Gain'],
+            ['Warp', 1, 1, {
+                data: [
+                    ['MultiFractal'],
+                    ['Scale', [6, 4]]
                 ]
-            ]
-        }
+            }, {
+                data: [
+                    ['MultiFractal'],
+                    ['Scale', [6, 4]],
+                    ['Translate', [24, 24]],
+                ]
+            }],
+            ['Translate', [1, 1]],
+            ['Scale', [16, 16]],
+            ['CosPalette', [0.5, 0.5, 0.5], [0.7, 0.8, 0.2], [0.23, 0.17, 0.28], [0.71, 0.69, 0.33]]
+        ]
     },
     {
         title: 'Tiles #2',
-        data: {
-            name: 'Gain',
-            params: [{
-                name: 'SinXY',
-                params: [
-                    {
-                        name: 'Warp',
-                        params: [
-                            {
-                                name: 'Scale',
-                                params: ['pos', [24, 24]]
-                            },
-                            1,
-                            1,
-                            {
-                                name: 'MultiFractal',
-                                params: [{
-                                    name: 'Scale',
-                                    params: ['pos', [6, 4]]
-                                }]
-                            },
-                            {
-                                name: 'MultiFractal',
-                                params: [{
-                                    name: 'Translate',
-                                    params: [{
-                                        name: 'Scale',
-                                        params: ['pos', [6, 4]]
-                                    }, [24, 24]]
-                                }]
-                            }
-                        ]
-                    }
+        data: [
+            ['SinXY'],
+            ['Gain'],
+            ['Warp', 1, 1, {
+                data: [
+                    ['MultiFractal'],
+                    ['Scale', [6, 4]]
                 ]
-            }]
-        }
+            }, {
+                data: [
+                    ['MultiFractal'],
+                    ['Scale', [6, 4]],
+                    ['Translate', [24, 24]],
+                ]
+            }],
+            ['Translate', [1.5, 1.5]],
+            ['Scale', [24, 24]],
+        ]
     },
     {
         title: 'Abstract #1',
-        data: {
-            name: 'CosPalette',
-            params: [
-                {
-                    name: 'Gain',
-                    params: [{
-                        name: 'SinXY',
-                        params: [
-                            {
-                                name: 'Warp',
-                                params: [
-                                    {
-                                        name: 'Translate',
-                                        params: [{
-                                            name: 'Scale',
-                                            params: ['pos', [66, .57]]
-                                        }, [1, 1]]
-                                    },
-                                    2.2,
-                                    1,
-                                    {
-                                        name: 'MultiFractal',
-                                        params: [{
-                                            name: 'Scale',
-                                            params: ['pos', [10, -4.2]]
-                                        }]
-                                    },
-                                    {
-                                        name: 'MultiFractal',
-                                        params: [{
-                                            name: 'Translate',
-                                            params: [{
-                                                name: 'Scale',
-                                                params: ['pos', [-2.4, 1.7]]
-                                            }, [24, 24]]
-                                        }]
-                                    }
-                                ]
-                            }
-                        ]
-                    }, .19]
-                },
-                [
-                    0.5,
-                    0.5,
-                    0.5
-                ],
-                [
-                    0.38,
-                    0.52,
-                    0.59
-                ],
-                [
-                    0.36,
-                    0.33,
-                    0.27
-                ],
-                [
-                    0.56,
-                    0.57,
-                    0.69
+        data: [
+            ['SinXY'],
+            ['Warp', 2.2, 1, {
+                data: [
+                    ['MultiFractal'],
+                    ['Scale', [10, -4.2]]
                 ]
-            ]
-        }
+            }, {
+                data: [
+                    ['MultiFractal'],
+                    ['Translate', [24, 24]],
+                    ['Scale', [-2.4, 1.7]]
+                ]
+            }],
+            ['Translate', [1, 1]],
+            ['Scale', [66, .57]],
+            ['Gain', .19],
+            // ['CosPalette', [0.5, 0.5, 0.5], [0.7, 0.8, 0.2], [0.23, 0.17, 0.28], [0.71, 0.69, 0.33]]
+            ['CosPalette', [0.5, 0.5, 0.5], [0.38, 0.52, 0.59], [0.36, 0.33, 0.27], [0.56, 0.57, 0.69]]
+        ]
     },
     {
         title: 'Abstract #2',
