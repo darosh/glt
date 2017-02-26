@@ -1,4 +1,4 @@
-import gltg from '../../../glsl/glsl.min.json';
+import gltg from '../../glsl/glsl.min.json';
 import {PARAM} from '../../features/names';
 import {syntaxToShader} from './syntaxToShader';
 import {detectRequired} from './detectRequired';

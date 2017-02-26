@@ -1,24 +1,24 @@
-export {features, types, all, getSignature} from './src/features/index';
+export {features, types, all, getSignature} from './features/index';
 
-export {Renderer} from './src/renderers/Renderer';
+export {Renderer} from './renderers/Renderer';
 
-export {compile} from './src/data/compile';
-export {formatOf, dataFormat} from './src/data/dataFormat';
-export {graphToTree} from './src/data/graph/graphToTree'
+export {compile} from './data/compile';
+export {formatOf, dataFormat} from './data/dataFormat';
+export {graphToTree} from './data/graph/graphToTree'
 
-export {formatShader} from './src/data/shader/formatShader';
-export {getShaderThree} from './src/data/shader/getShaderThree';
-export {getShaderGlslSandbox} from './src/data/shader/getShaderGlslSandbox';
-export {getShaderShadertoy} from './src/data/shader/getShaderShadertoy';
+export {formatShader} from './data/shader/formatShader';
+export {getShaderThree} from './data/shader/getShaderThree';
+export {getShaderGlslSandbox} from './data/shader/getShaderGlslSandbox';
+export {getShaderShadertoy} from './data/shader/getShaderShadertoy';
 
-export {getLib} from './src/data/shader/getLib';
-export {getUniforms} from './src/data/shader/getUniforms';
-export {getDefines} from './src/data/shader/getDefines';
+export {getLib} from './data/shader/getLib';
+export {getUniforms} from './data/shader/getUniforms';
+export {getDefines} from './data/shader/getDefines';
 
-export {generatorRandomPalette} from './src/generators/generatorRandomPalette';
-export {generatorRandomTree} from './src/generators/generatorRandomTree';
-export {generatorGenerators} from './src/generators/generatorGenerators';
+export {generatorRandomPalette} from './generators/generatorRandomPalette';
+export {generatorRandomTree} from './generators/generatorRandomTree';
+export {generatorGenerators} from './generators/generatorGenerators';
 
-export {deep} from './src/utils/deep';
-export {toJson} from './src/utils/toJson';
-export {select} from './src/utils/select';
+export {deep} from './utils/deep';
+export {toJson} from './utils/toJson';
+export {select} from './utils/select';

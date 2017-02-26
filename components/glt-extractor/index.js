@@ -1,5 +1,5 @@
 import gltg from '../glt/glsl/glsl.min.glsl';
-import {glsls} from '../glt/src/features/index';
+import {glsls} from '../glt/features/index';
 
 export const GLSL = gltg;
 

@@ -1,4 +1,4 @@
-import gltgs from '../../../glsl/glsl.min.json';
+import gltgs from '../../glsl/glsl.min.json';
 
 export function getLib(functions, additional, singleLine = true) {
     const gltg = additional ? {...gltgs, ...additional} : gltgs;
