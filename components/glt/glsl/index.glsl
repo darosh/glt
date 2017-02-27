@@ -74,8 +74,8 @@
 #pragma glslify: Clamp = require(./modify/clamp)
 #pragma glslify: Sin = require(./modify/sin)
 #pragma glslify: Cos = require(./modify/cos)
-#pragma glslify: AddValue = require(./modify/add)
-#pragma glslify: MultiplyValue = require(./modify/multiply)
+#pragma glslify: Add = require(./modify/add)
+#pragma glslify: Multiply = require(./modify/multiply)
 #pragma glslify: SmoothStep = require(./modify/smoothstep)
 
 // SECTION: Colorize

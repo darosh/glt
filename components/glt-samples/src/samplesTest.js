@@ -220,7 +220,7 @@ export const samplesTest = [
         data: [
             ['SinXY'],
             ['Denormalize'],
-            ['MultiplyValue', 24],
+            ['Multiply', 24],
             ['Sin'],
             ['Normalize'],
             ['Scale', [10, 10]]
@@ -363,8 +363,8 @@ export const samplesTest = [
             [
                 'HSV',
                 {data: [['SimplexNoise'], ['Normalize'], ['Scale', [0.1, 0.1]]]},
-                {data: [['WorleyF1'], ['Invert'], ['AddValue', -.32], ['Gain', .02]]},
-                {data: [['WorleyF1'], ['Invert'], ['AddValue', -.24], ['Gain', .02]]}
+                {data: [['WorleyF1'], ['Invert'], ['Add', -.32], ['Gain', .02]]},
+                {data: [['WorleyF1'], ['Invert'], ['Add', -.24], ['Gain', .02]]}
             ],
             ['Scale', [2.5, 2.5]]
         ]

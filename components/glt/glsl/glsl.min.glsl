@@ -736,16 +736,16 @@ float Cos(float val) {
 vec3 Cos(vec3 val) {
  return cos(val);
 }
-float AddValue(float val, float value) {
+float Add(float val, float value) {
  return val + value;
 }
-vec3 AddValue(vec3 val, float value) {
+vec3 Add(vec3 val, float value) {
  return val + value;
 }
-float MultiplyValue(float val, float value) {
+float Multiply(float val, float value) {
  return val * value;
 }
-vec3 MultiplyValue(vec3 val, float value) {
+vec3 Multiply(vec3 val, float value) {
  return val * value;
 }
 float SmoothStep(float val, float edge0, float edge1) {

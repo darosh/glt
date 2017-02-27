@@ -5,7 +5,7 @@ export const Abs = {};
 export const Cos = {};
 export const Sin = {};
 
-export const AddValue = {
+export const Add = {
     params: [['float', 'value', 0.5, [-2,2]]]
 };
 
@@ -19,7 +19,7 @@ export const Max = {
     params: [['float', 'value', 0.5, [-2,2]]]
 };
 
-export const MultiplyValue = {
+export const Multiply = {
     params: [['float', 'value', 0.5, [-2,2]]]
 };
 

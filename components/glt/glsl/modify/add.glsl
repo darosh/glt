@@ -1,9 +1,9 @@
-float AddValue(float val, float value) {
+float Add(float val, float value) {
     return val + value;
 }
 
-vec3 AddValue(vec3 val, float value) {
+vec3 Add(vec3 val, float value) {
     return val + value;
 }
 
-#pragma glslify: export(AddValue)
+#pragma glslify: export(Add)
