@@ -7,8 +7,8 @@
             <div class="card-title mat-elevation-z1" *ngIf="item.title">{{item.title}}</div>
         </div>
         <div [render]="item" [renderSize]="service.thumbnailSize" [class.mat-elevation-z1]="code"></div>
-        <div fxFlexFill *ngIf="code" class="pre mono">
-            <div class="padding">{{item | cjson:1:(service.thumbnailSize[0]/6)}}</div>
+        <div *ngIf="code" class="pre mono" style="width: 100%">
+            <div class="padding" style="padding-top: 0; padding-bottom: 0; margin: -16px 0">{{item | cjson:1:(service.thumbnailSize[0]/6)}}</div>
         </div>
     </a>
 </div>
