@@ -33,6 +33,7 @@
                     app.KeysPipe,
                     app.CJsonPipe
                 ],
+                providers: [app.AppService],
                 bootstrap: [app.AppComponent]
             })
             .Class({

@@ -2,8 +2,7 @@
     app.EditComponent = ng.core
         .Component({
             templateUrl: './app/edit/edit.html',
-            imports: [ng.router.ActivatedRoute],
-            providers: [app.AppService]
+            imports: [ng.router.ActivatedRoute]
         })
         .Class({
             constructor: [app.AppService, ng.router.ActivatedRoute, function (service, route) {

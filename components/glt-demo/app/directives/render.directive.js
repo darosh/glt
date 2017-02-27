@@ -2,8 +2,7 @@
     app.RenderDirective = ng.core
         .Directive({
             selector: '[render]',
-            inputs: ['render'],
-            providers: [app.AppService]
+            inputs: ['render']
         })
         .Class({
             constructor: [app.AppService, ng.core.ElementRef, function (service, el) {
