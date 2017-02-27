@@ -12,7 +12,7 @@
                         <md-slider style="width: 240px"
                                    thumbLabel
                                    type="range"
-                                   (change)="change($event)"
+                                   (change)="change($event, item.value)"
                                    [(ngModel)]="item.value.value"
                                    #ctrl="ngModel"
                                    [min]="item.value.proto[3][0]"
@@ -33,7 +33,7 @@
                             <md-slider style="width: 240px"
                                        thumbLabel
                                        type="range"
-                                       (change)="change($event)"
+                                       (change)="change($event, item.value)"
                                        [(ngModel)]="item.value.value[i]"
                                        #ctrl="ngModel"
                                        [min]="item.value.proto[3][0]"

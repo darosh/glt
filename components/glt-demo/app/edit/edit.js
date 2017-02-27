@@ -21,7 +21,9 @@
                 glt.select('#canvas').appendChild(this.service.canvas);
                 this.sourceChanged();
             },
-            change: function () {
+            change: function (e, v) {
+                glt.valueToGraph(this.compiled.ids, v);
+                this.graphJson = CJSON(this.graph);
                 this.service.renderer.update();
             },
             sourceChanged: function () {
@@ -39,7 +41,7 @@
                 this.treeChanged();
             },
             treeChanged: function () {
-                this.compiled = glt.compile(this.tree, 1);
+                // this.compiled = glt.compile(this.tree, 1);
                 this.syntaxJson = CJSON(this.compiled.syntax);
                 this.service.renderer.render(this.compiled.shader, this.compiled.code, this.compiled.uniforms);
 

@@ -157,5 +157,19 @@ export const samplesDemo = [
             ['Rotate', 235],
             ['Scale', [1.1, 1.1]]
         ]
+    },
+    {
+        title: 'Palette #1',
+        data: [
+            ['X'],
+            ['Normalize'],
+            [
+                'CosPalette',
+                [0.84, 0.8, 0.66],
+                [0.13, 0.24, 0.25],
+                [0.44, 0.5, 0.59],
+                [0.8, 0.13, 0.23]
+            ]
+        ]
     }
 ];
