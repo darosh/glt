@@ -16,25 +16,14 @@
                         : glt.deep(route.routeConfig.data.list);
                 }
 
-                function add(that) {
-                    if (!that.destroyed && (list ? list.length : that.recipes.length < that.service.randomItems)) {
-
-                        if (list) {
-                            that.recipes.push(list.shift());
-                        } else {
-                            that.recipes.push(route.routeConfig.data.generator());
-                        }
-                        setTimeout(function () {
-                            add(that);
-                        }, 25)
+                while (list ? list.length : this.recipes.length < this.service.randomItems) {
+                    if (list) {
+                        this.recipes.push(list.shift());
+                    } else {
+                        this.recipes.push(route.routeConfig.data.generator());
                     }
                 }
-
-                add(this);
             }],
-            toJson: (o) => glt.toJson(o, 0),
-            ngOnDestroy: () => {
-                this.destroyed = true;
-            }
+            toJson: (o) => glt.toJson(o, 0)
         });
 })(window.app || (window.app = {}));

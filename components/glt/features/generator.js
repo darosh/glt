@@ -115,7 +115,7 @@ export const RidgedMultiFractal = {
     scale: 1,
     examples: [
         [0.25, 1, 1, 1, 1.01, 1],
-        [0.25, 3, 1, 9, 1.01, 1]
+        [0.25, 3, 1, 6, 1.01, 1]
     ]
 };
 

@@ -19,6 +19,22 @@
                 this.previewQuality = this.previewQualities[1];
 
                 this.randomItems = 78;
+
+                var queue = this.queue = [];
+                var pending = 0;
+                var next = this.next = (fn) => {
+                    if (fn) {
+                        queue.push(fn);
+                    }
+
+                    if (queue.length && !pending) {
+                        pending++;
+                        (queue.shift())(() => {
+                            pending--;
+                            next();
+                        });
+                    }
+                };
             }]
         });
 
