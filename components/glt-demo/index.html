@@ -116,8 +116,12 @@
             z-index: 1000;
         }
 
-        md-toolbar [md-icon-button] {
+        md-toolbar [md-icon-button]:not(:first-child) {
             margin-left: 16px;
+        }
+
+        md-toolbar [md-icon-button]:first-child {
+            margin-right: 16px;
         }
 
         canvas {
@@ -151,12 +155,14 @@
     <script src="../glt-samples/glt-samples.js"></script>
     <script src="../glt-extractor/glt-extractor.js"></script>
     <script src="../cjson/cjson.js"></script>
+    <script src="https://unpkg.com/screenfull@3.0.2/dist/screenfull.js"></script>
 
     <script src='./app/services/app.service.js'></script>
     <script src='./app/pipes/keys.pipe.js'></script>
     <script src='./app/pipes/cjson.pipe.js'></script>
     <script src='./app/app.component.js'></script>
     <script src='./app/directives/render.directive.js'></script>
+    <script src='./app/directives/screenfull.directive.js'></script>
     <script src='./app/list/list.js'></script>
     <script src='./app/prototypes/prototypes.js'></script>
     <script src='./app/extractor/extractor.js'></script>

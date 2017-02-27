@@ -11,6 +11,9 @@
         <a md-menu-item href="https://github.com/darosh/glt" target="_blank">About</a>
     </md-menu>
     <md-toolbar class="mat-elevation-z2">
+        <button md-icon-button (click)="sidenav.toggle()">
+            <md-icon>menu</md-icon>
+        </button>
         <span>glt</span>
         <span fxFlex></span>
         <a md-icon-button fxHide fxShow.gt-xs md-button routerLink="/" routerLinkActive="active"
@@ -37,5 +40,11 @@
             <md-icon>more_vert</md-icon>
         </button>
     </md-toolbar>
-    <router-outlet></router-outlet>
+    <md-sidenav-container fxFlexFill fxFlex>
+        <md-sidenav #sidenav mode="over" opened="false" style="width: 200px; padding: 16px">
+            <button md-button toggleFullscreen>Fullscreen</button>
+            <p>TODO: Preview + render size + precision settings</p>
+        </md-sidenav>
+        <router-outlet></router-outlet>
+    </md-sidenav-container>
 </div>

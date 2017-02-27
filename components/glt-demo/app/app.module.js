@@ -24,6 +24,7 @@
                 ],
                 declarations: [
                     app.RenderDirective,
+                    app.ScreenFullDirective,
                     app.ListComponent,
                     app.ExtractorComponent,
                     app.PrototypesComponent,
