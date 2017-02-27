@@ -37,7 +37,7 @@ export const samplesTest = [
             ['Normalize'],
             ['Scale', [4, 4]],
             ['Tint', [1, 0, 0]],
-            ['Add', 'PerlinNoise'],
+            ['BlendAdd', 'PerlinNoise'],
             ['Normalize'],
             ['Scale', [12, 12]],
             ['Tint', [0, 1, 0]]
@@ -50,7 +50,7 @@ export const samplesTest = [
             ['Normalize'],
             ['Scale', [4, 4]],
             ['Tint', [1, 0, 0]],
-            ['Add', 1, 'PerlinNoise'],
+            ['BlendAdd', 1, 'PerlinNoise'],
             ['Normalize'],
             ['Scale', [12, 12]],
             ['Tint', [0, 1, 0]]
@@ -63,7 +63,7 @@ export const samplesTest = [
             ['Normalize'],
             ['Scale', [4, 4]],
             ['Tint', [1, 0, 0]],
-            ['Add', 0.75, 'PerlinNoise'],
+            ['BlendAdd', 0.75, 'PerlinNoise'],
             ['Normalize'],
             ['Scale', [12, 12]],
             ['Tint', [0, 1, 0]]
@@ -76,7 +76,7 @@ export const samplesTest = [
             ['Normalize'],
             ['Scale', [4, 4]],
             ['Tint', [1, 0, 0]],
-            ['Add', 0.5, 'PerlinNoise'],
+            ['BlendAdd', 0.5, 'PerlinNoise'],
             ['Normalize'],
             ['Scale', [12, 12]],
             ['Tint', [0, 1, 0]]
@@ -89,7 +89,7 @@ export const samplesTest = [
             ['Normalize'],
             ['Scale', [4, 4]],
             ['Tint', [1, 0, 0]],
-            ['Add', 0.25, 'PerlinNoise'],
+            ['BlendAdd', 0.25, 'PerlinNoise'],
             ['Normalize'],
             ['Scale', [12, 12]],
             ['Tint', [0, 1, 0]]

@@ -96,7 +96,7 @@ export const samplesDemo = [
     {
         title: 'Abstract #3',
         data: [
-            ['Subtract', {
+            ['BlendSubtract', {
                 data: [
                     ['WorleyF1', 0.52, 1],
                     ['Scale', [-2.09, -37.81]],
@@ -109,7 +109,7 @@ export const samplesDemo = [
                 ]
             }, 0.72],
             ['Tint', [0.77, 0.33, 0.05]],
-            ['Overlay', .9, 'RidgedMultiFractal', 3.58, 0.70, 1.24, 4.96, -1.97, 2.25],
+            ['BlendOverlay', .9, 'RidgedMultiFractal', 3.58, 0.70, 1.24, 4.96, -1.97, 2.25],
             ['Tint', [0.79, 0.92, 0.76]],
             ['Bias', 0.90],
             ['Rotate', 24.62],
