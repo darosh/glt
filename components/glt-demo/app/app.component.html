@@ -45,9 +45,15 @@
             <md-list>
                 <h3 md-subheader>Application</h3>
                 <md-list-item>
-                    <md-slide-toggle toggleFullscreen [checked]="checked">Fullscreen</md-slide-toggle>
+                    <md-slide-toggle toggleFullscreen>Fullscreen</md-slide-toggle>
                 </md-list-item>
                 <h3 md-subheader>Thumbnails</h3>
+                <md-list-item>
+                    <md-slide-toggle [(ngModel)]="service.show.code">Show code</md-slide-toggle>
+                </md-list-item>
+                <md-list-item>
+                    <md-slide-toggle [(ngModel)]="service.show.time">Show time</md-slide-toggle>
+                </md-list-item>
                 <md-list-item class="select">
                     <md-select placeholder="Thumbnail size" [(ngModel)]="service.thumbnailSize">
                         <md-option *ngFor="let item of service.thumbnailSizes" [value]="item">
