@@ -334,6 +334,24 @@ export const samplesTest = [
         ]
     },
     {
+        title: 'Pixelate',
+        data: [
+            ['SinXY'],
+            ['CosPalette'],
+            ['Scale', [16, 16]],
+            ['Pixelate', 32]
+        ]
+    },
+    {
+        title: 'Pixelate more',
+        data: [
+            ['SinXY'],
+            ['CosPalette'],
+            ['Scale', [16, 16]],
+            ['Pixelate', 16]
+        ]
+    },
+    {
         title: 'RGB',
         data: [
             ['RGB', {data: [['SimplexNoise'], ['Normalize']]}, {data: [['SimplexNoise'], ['Normalize'], ['Translate', [.2, .2]]]}, {data: [['SimplexNoise'], ['Normalize'], ['Translate', [-.2, .2]]]}],
