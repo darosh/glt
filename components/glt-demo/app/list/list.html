@@ -4,7 +4,7 @@
          fxLayoutAlign="center center"
          class="canvas-wrap mat-elevation-z2">
         <div fxFlexFill><div class="card-title mat-elevation-z1" *ngIf="item.title">{{item.title}}</div></div>
-        <div [render]="item" [class.padding]="code"></div>
+        <div [render]="item" [renderSize]="service.thumbnailSize" [class.padding]="code"></div>
         <div *ngIf="code" class="pre mono padding" style="padding-top: 0">{{item | cjson:1:28}}</div>
     </a>
 </div>

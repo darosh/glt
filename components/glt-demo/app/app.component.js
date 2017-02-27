@@ -2,11 +2,11 @@
     app.AppComponent = ng.core
         .Component({
             selector: '[app]',
-            templateUrl: './app/app.component.html',
-            providers: []
+            templateUrl: './app/app.component.html'
         })
         .Class({
-            constructor: [function () {
+            constructor: [app.AppService, function (service) {
+                this.service = service;
             }],
         });
 

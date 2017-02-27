@@ -5,7 +5,8 @@
             imports: [ng.router.ActivatedRoute]
         })
         .Class({
-            constructor: [ng.router.ActivatedRoute, function (route) {
+            constructor: [app.AppService, ng.router.ActivatedRoute, function (service, route) {
+                this.service = service;
                 this.recipes = [];
                 this.code = route.routeConfig.data.code;
 
@@ -16,7 +17,7 @@
                 }
 
                 function add(that) {
-                    if (!that.destroyed && (list ? list.length : that.recipes.length < 64)) {
+                    if (!that.destroyed && (list ? list.length : that.recipes.length < that.service.randomItems)) {
 
                         if (list) {
                             that.recipes.push(list.shift());

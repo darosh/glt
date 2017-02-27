@@ -41,9 +41,57 @@
         </button>
     </md-toolbar>
     <md-sidenav-container fxFlexFill fxFlex>
-        <md-sidenav #sidenav mode="over" opened="false" style="width: 200px; padding: 16px">
-            <button md-button toggleFullscreen>Fullscreen</button>
-            <p>TODO: Preview + render size + precision settings</p>
+        <md-sidenav #sidenav mode="over" opened="false">
+            <md-list>
+                <h3 md-subheader>Application</h3>
+                <md-list-item>
+                    <md-slide-toggle toggleFullscreen [checked]="checked">Fullscreen</md-slide-toggle>
+                </md-list-item>
+                <h3 md-subheader>Thumbnails</h3>
+                <md-list-item class="select">
+                    <md-select placeholder="Thumbnail size" [(ngModel)]="service.thumbnailSize">
+                        <md-option *ngFor="let item of service.thumbnailSizes" [value]="item">
+                            {{item[0]}} &times; {{item[1]}}
+                        </md-option>
+                    </md-select>
+                </md-list-item>
+                <md-list-item class="select">
+                    <md-select placeholder="Thumbnail quality" [(ngModel)]="service.previewQuality">
+                        <md-option *ngFor="let item of service.previewQualities" [value]="item">
+                            {{item}}
+                        </md-option>
+                    </md-select>
+                </md-list-item>
+            </md-list>
+
+            <!--<div>-->
+            <!--<md-select placeholder="Thumbnail size" [(ngModel)]="service.previewSize">-->
+            <!--<md-option *ngFor="let item of service.previewSizes" [value]="item">-->
+            <!--{{item[0]}} &times; {{item[1]}}-->
+            <!--</md-option>-->
+            <!--</md-select>-->
+            <!--</div>-->
+            <!--<div>-->
+            <!--<md-select placeholder="Thumbnail quality" [(ngModel)]="service.previewQuality">-->
+            <!--<md-option *ngFor="let item of service.previewQualities" [value]="item">-->
+            <!--{{item}}-->
+            <!--</md-option>-->
+            <!--</md-select>-->
+            <!--</div>-->
+            <!--<div>-->
+            <!--<md-select placeholder="Render size" [(ngModel)]="service.previewSize">-->
+            <!--<md-option *ngFor="let item of service.previewSizes" [value]="item">-->
+            <!--{{item[0]}} &times; {{item[1]}}-->
+            <!--</md-option>-->
+            <!--</md-select>-->
+            <!--</div>-->
+            <!--<div>-->
+            <!--<md-select placeholder="Render quality" [(ngModel)]="service.previewQuality">-->
+            <!--<md-option *ngFor="let item of service.previewQualities" [value]="item">-->
+            <!--{{item}}-->
+            <!--</md-option>-->
+            <!--</md-select>-->
+            <!--</div>-->
         </md-sidenav>
         <router-outlet></router-outlet>
     </md-sidenav-container>
