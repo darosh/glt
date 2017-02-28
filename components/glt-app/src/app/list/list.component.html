@@ -15,8 +15,7 @@
          fxLayout="column">
       <div *ngIf="config.show.time"
            fxFlexAlign="end"
-           style="margin-right: 4px"
-           class="mono">
+           class="mono time">
         <span *ngIf="times[i].value < 0">&mdash;</span>
         <span *ngIf="times[i].value >= 0">{{times[i].value | number}}</span> ms
       </div>
@@ -25,5 +24,4 @@
       <div class="padding pre mono">{{item | cjson:1:(config.thumbnailSize[0]/8)}}</div>
     </div>
   </a>
-  <div style="width:100%; height: 8px"></div>
 </div>
