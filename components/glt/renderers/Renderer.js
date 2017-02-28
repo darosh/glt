@@ -11,6 +11,7 @@ import {getUniforms} from '../data/shader/getUniforms';
 import {getShaderThree} from '../data/shader/getShaderThree';
 import {each} from '../utils/each';
 import {deep} from '../utils/deep';
+import {isArray} from '../utils/isArray';
 
 export class Renderer {
     constructor(canvas, context) {
@@ -25,19 +26,20 @@ export class Renderer {
     }
 
     size(value) {
-        this.renderer.setSize(value, value);
+        this.renderer.setSize(isArray(value) ? value[0] : value, isArray(value) ? value[1] : value);
         return this;
     }
 
     shader(vertex, fragment, uniforms) {
         this.uniforms = uniforms;
         this.original = deep(uniforms);
-
+        const size = this.renderer.getSize();
         this.mesh.material = new ShaderMaterial({
-            uniforms: uniforms,
+            uniforms: {...uniforms, ...{resolution: {value: [size.width, size.height, 1]}}},
             vertexShader: vertex,
             fragmentShader: fragment
         });
+
         return this;
     }
 
