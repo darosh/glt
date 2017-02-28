@@ -3,7 +3,7 @@
      *ngFor="let item of recipes; let i = index;"
      fxLayout="column"
      fxLayoutAlign="center center"
-     style="background-color: #fff"
+     [ngClass]="{titled: item.title, subtitled: config.show.time || config.show.code}"
      class="canvas-wrap mat-elevation-z2">
     <div fxFlexFill>
       <div class="card-title" *ngIf="item.title">{{item.title}}</div>

@@ -9,4 +9,20 @@
 a.canvas-wrap {
   text-decoration: none;
   color: #000;
+  background-color: #fff;
+  border-radius: 2px;
+}
+
+a.canvas-wrap >>> canvas{
+  border-radius: 2px;
+}
+
+a.canvas-wrap.titled >>> canvas{
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+a.canvas-wrap.subtitled >>> canvas{
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 }
