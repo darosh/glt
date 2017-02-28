@@ -27,7 +27,7 @@ export const Xor = {
 export const Value = {
     glsl: 'float',
     position: false,
-    params: [['float', 'value', 1, [-1, 1]]]
+    params: [['float', 'value', 0.5, [-1, 1]]]
 };
 
 export const SimplexNoise = {
