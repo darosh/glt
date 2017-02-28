@@ -1,0 +1,56 @@
+<div fxLayout="column" fxFlexFill fxFlex>
+  <md-menu #appMenu="mdMenu">
+    <a fxHide.gt-xs md-menu-item routerLink="/" routerLinkActive="active">Edit</a>
+    <!--<a fxHide.gt-xs md-menu-item routerLink="/random" routerLinkActive="active">Random</a>-->
+    <a fxHide.gt-xs md-menu-item routerLink="/palettes" routerLinkActive="active">Palettes</a>
+    <a fxHide.gt-xs md-menu-item routerLink="/features" routerLinkActive="active">Features</a>
+    <a fxHide.gt-xs md-menu-item routerLink="/samples" routerLinkActive="active">Samples</a>
+    <a md-menu-item routerLink="/prototypes" routerLinkActive="active">Prototypes</a>
+    <a md-menu-item routerLink="/extractor" routerLinkActive="active">Extractor</a>
+    <a md-menu-item routerLink="/test" routerLinkActive="active">Test</a>
+    <a md-menu-item href="https://github.com/darosh/glt" target="_blank">About</a>
+  </md-menu>
+  <md-toolbar class="mat-elevation-z2">
+    <button md-icon-button (click)="sidenav.toggle()">
+      <md-icon>menu</md-icon>
+    </button>
+    <span>glt</span>
+    <span fxFlex></span>
+    <a md-icon-button fxHide fxShow.gt-xs md-button routerLink="/" routerLinkActive="active"
+       mdTooltip="Edit">
+      <md-icon>edit</md-icon>
+    </a>
+    <!--<a md-icon-button fxHide fxShow.gt-xs md-button routerLink="/random" routerLinkActive="active"-->
+    <!--mdTooltip="Random">-->
+    <!--<md-icon>casino</md-icon>-->
+    <!--</a>-->
+    <a md-icon-button fxHide fxShow.gt-xs md-button routerLink="/palettes" routerLinkActive="active"
+       mdTooltip="Palettes">
+      <md-icon>palette</md-icon>
+    </a>
+    <a md-icon-button fxHide fxShow.gt-xs md-button routerLink="/features" routerLinkActive="active"
+       mdTooltip="Features">
+      <md-icon>collections</md-icon>
+    </a>
+    <a md-icon-button fxHide fxShow.gt-xs md-button routerLink="/samples" routerLinkActive="active"
+       mdTooltip="Samples">
+      <md-icon>collections_bookmarked</md-icon>
+    </a>
+    <button md-icon-button [mdMenuTriggerFor]="appMenu">
+      <md-icon>more_vert</md-icon>
+    </button>
+  </md-toolbar>
+  <md-sidenav-container fxFlexFill fxFlex>
+    <md-sidenav #sidenav [mode]="width >= 960 ? 'side' : 'over'" opened="false" class="mat-elevation-z4">
+      <app-menu></app-menu>
+    </md-sidenav>
+    <!--<md-sidenav #overnav mode="over" opened="false" class="mat-elevation-z4">-->
+      <!--<app-menu></app-menu>-->
+    <!--</md-sidenav>-->
+    <router-outlet></router-outlet>
+  </md-sidenav-container>
+</div>
+
+<!--<button md-fab color="primary" style="position: fixed; right: 16px; bottom: 16px;">-->
+<!--<md-icon>casino</md-icon>-->
+<!--</button>-->

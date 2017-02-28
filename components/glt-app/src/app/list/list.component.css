@@ -1,0 +1,12 @@
+.canvas-list {
+  padding: 8px;
+}
+
+.canvas-wrap {
+  margin: 8px;
+}
+
+a.canvas-wrap {
+  text-decoration: none;
+  color: #000;
+}
