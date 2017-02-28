@@ -187,6 +187,20 @@ export const samplesDemo = [
         ]
     },
     {
+        title: 'Palette #3',
+        data: [
+            ['X'],
+            ['Normalize'],
+            [
+                'CosPalette',
+                [0.44, 0.21, 0.74],
+                [0.17, 0.34, 0.71],
+                [0.53, 0.72, 0.22],
+                [0.7, 0.58, 0.71]
+            ]
+        ]
+    },
+    {
         "title": "Worley + twirl",
         "data": [
             ["WorleyF1", 1, 0.59],
