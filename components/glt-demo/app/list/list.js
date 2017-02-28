@@ -8,6 +8,7 @@
             constructor: [app.AppService, ng.router.ActivatedRoute, function (service, route) {
                 this.service = service;
                 this.recipes = [];
+                this.times = [];
                 this.code = route.routeConfig.data.code;
 
                 if (route.routeConfig.data.list) {
@@ -17,6 +18,7 @@
                 }
 
                 while (list ? list.length : this.recipes.length < this.service.randomItems) {
+                    this.times.push({value: -1});
                     if (list) {
                         this.recipes.push(list.shift());
                     } else {

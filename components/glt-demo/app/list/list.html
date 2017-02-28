@@ -1,6 +1,6 @@
 <div fxFlexFill fxFlex fxLayout="row" fxLayoutAlign="start start" fxLayoutWrap class="canvas-list">
     <a [routerLink]="['/edit/', toJson(item)]"
-       *ngFor="let item of recipes"
+       *ngFor="let item of recipes; let i = index;"
        fxLayout="column"
        fxLayoutAlign="center center"
        style="background-color: #fff"
@@ -8,8 +8,17 @@
         <div fxFlexFill>
             <div class="card-title" *ngIf="item.title">{{item.title}}</div>
         </div>
-        <div [render]="item" [renderSize]="service.thumbnailSize" [class.mat-elevation-z1]="code"></div>
-        <div *ngIf="service.show.code" style="width: 100%">
+        <div [render]="item"
+             [renderSize]="service.thumbnailSize"
+             [renderTime]="times[i]"
+             [class.mat-elevation-z1]="code"
+             fxLayout="column">
+            <div *ngIf="service.show.time && times[i].value >= 0"
+                 fxFlexAlign="end"
+                 style="margin-right: 4px"
+                 class="mono">{{times[i].value | number}} ms</div>
+        </div>
+        <div *ngIf="service.show.code" fxFlexAlign="stretch">
             <div class="padding pre mono">{{item | cjson:1:(service.thumbnailSize[0]/6)}}</div>
         </div>
     </a>
