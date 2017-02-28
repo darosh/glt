@@ -1,0 +1,15 @@
+.overflow-y {
+  overflow-y: auto;
+}
+
+h4 {
+  margin: 0;
+}
+
+input[type="number"] {
+  width: 73px;
+}
+
+md-slider {
+  width: 240px;
+}
