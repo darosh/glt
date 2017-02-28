@@ -6,4 +6,6 @@
 
 __Early stage! Work in progress!__
 
-Demo: [darosh.github.io/glt/components/glt-demo/](https://darosh.github.io/glt/components/glt-demo/)
+Demo (old, ES5): [darosh.github.io/glt/components/glt-demo/](https://darosh.github.io/glt/components/glt-demo/)
+
+Demo (new, ng-cli): [darosh.github.io/glt/components/glt-app/dist/](https://darosh.github.io/glt/components/glt-app/dist/)
