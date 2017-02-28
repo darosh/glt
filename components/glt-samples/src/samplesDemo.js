@@ -201,13 +201,13 @@ export const samplesDemo = [
         ]
     },
     {
-        "title": "Worley + twirl",
-        "data": [
-            ["WorleyF1", 1, 0.59],
-            ["Invert"],
-            ["Twirl", 3, 2.29, [0, 0]],
+        title: 'Worley + twirl',
+        data: [
+            ['WorleyF1', 1, 0.59],
+            ['Invert'],
+            ['Twirl', 3, 2.29, [0, 0]],
             [
-                "CosPalette",
+                'CosPalette',
                 [0.13, 0.69, 0.74],
                 [0.08, 0.49, 0.71],
                 [0.13, 0.73, 0.62],
