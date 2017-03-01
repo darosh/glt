@@ -13,6 +13,7 @@ export class RenderDirective {
   render;
   renderSize;
   renderTime;
+  renderPartials;
 
   el;
   service;
@@ -29,15 +30,19 @@ export class RenderDirective {
   ngOnInit() {
     this.compiled = glt.compile(this.render);
     this.frontend = window.document.createElement('canvas');
-    let size = this.renderSize ? this.renderSize : [128, 128];
+    let size = this.getSize();
+
     this.frontend.width = size[0];
     this.frontend.height = size[1];
+
     let fc = this.el.nativeElement.firstChild;
+
     if (fc) {
       this.el.nativeElement.insertBefore(this.frontend, fc);
     } else {
       this.el.nativeElement.appendChild(this.frontend);
     }
+
     this.update();
   }
 
@@ -52,15 +57,23 @@ export class RenderDirective {
   }
 
   paint() {
-    let size = this.renderSize ? this.renderSize : [128, 128];
+    let size = this.getSize();
     let start = Date.now();
-    this.service.renderer.size(size).render(this.compiled.shader, this.compiled.code);
+    this.service.renderer
+      .size(size)
+      .render(
+        this.renderPartials ? this.compiled.partials : this.compiled.shader,
+        this.compiled.code
+      );
     this.renderTime.value = Date.now() - start;
     this.frontend.width = size[0];
     this.frontend.height = size[1];
-    this.frontend.getContext('2d').drawImage(this.service.canvas,
-      0, 0, size[0], size[1],
-      0, 0, size[0], size[1]);
+    this.frontend.getContext('2d')
+      .drawImage(
+        this.service.canvas,
+        0, 0, size[0], size[1],
+        0, 0, size[0], size[1]
+      );
   }
 
   update() {
@@ -79,5 +92,15 @@ export class RenderDirective {
         done();
       });
     });
+  }
+
+  getSize() {
+    let size = this.renderSize ? [this.renderSize[0], this.renderSize[1]] : [128, 128];
+
+    if (this.renderPartials) {
+      size[1] = this.compiled.partials.length * size[0];
+    }
+
+    return size;
   }
 }
