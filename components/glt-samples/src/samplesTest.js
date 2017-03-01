@@ -288,7 +288,7 @@ export const samplesTest = [
         ]
     },
     {
-        title: 'Distort X by posterized Y',
+        title: 'Distort',
         data: [
             ['SinX'],
             ['Distort', 8, {
