@@ -19,9 +19,9 @@ describe('graphToTree', () => {
         graphToTree(i);
     });
     it('should convert to tree', () => {
-        const i = {
+        const graph = {
             data: [
-                ['Screen', {
+                ['BlendScreen', {
                     data: [
                         ['PerlinNoise'],
                         ['Abs'],
@@ -39,6 +39,6 @@ describe('graphToTree', () => {
                 ['Rotate', 55]
             ]
         };
-        graphToTree(i);
+        graphToTree(graph);
     });
 });
