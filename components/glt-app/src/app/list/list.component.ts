@@ -4,6 +4,8 @@ import {ActivatedRoute} from "@angular/router";
 
 import {glt} from '../../vendor';
 
+declare const window;
+
 @Component({
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.css']
@@ -41,5 +43,16 @@ export class ListComponent implements OnInit {
 
   toJson(value) {
     return JSON.stringify(value)
+  }
+
+  spacers(w) {
+    const n = Math.ceil(Math.max(window.screen.width, window.screen.height) / w);
+    const ret = [];
+
+    for (let i = 0; i < n; i++) {
+      ret.push(i);
+    }
+
+    return ret;
   }
 }

@@ -1,4 +1,4 @@
-<div fxFlexFill fxFlex fxLayout="row" fxLayoutAlign="start start" fxLayoutWrap class="canvas-list">
+<div fxFlexFill fxFlex fxLayout="row" fxLayoutAlign="space-around start" fxLayoutWrap class="canvas-list">
   <a [routerLink]="['/edit/', toJson(item)]"
      *ngFor="let item of recipes; let i = index;"
      fxLayout="column"
@@ -25,4 +25,5 @@
       <div class="padding pre mono">{{item | cjson:1:(config.thumbnailSize[0]/8)}}</div>
     </div>
   </a>
+  <div *ngFor="let spacer of spacers(config.thumbnailSize[0] + 16)" style="height: 0px;" [ngStyle]="{width: (config.thumbnailSize[0] + 16) + 'px'}"></div>
 </div>

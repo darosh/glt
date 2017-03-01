@@ -6,8 +6,11 @@
   margin: 8px;
 }
 
-.canvas-wrap:last-child {
-  margin-bottom: 16px;
+.canvas-list:after {
+  content: "";
+  display: flex;
+  flex: 1;
+  height: 8px;
 }
 
 a.canvas-wrap {
@@ -17,16 +20,16 @@ a.canvas-wrap {
   border-radius: 2px;
 }
 
-a.canvas-wrap >>> canvas{
+a.canvas-wrap >>> canvas {
   border-radius: 2px;
 }
 
-a.canvas-wrap.titled >>> canvas{
+a.canvas-wrap.titled >>> canvas {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
 
-a.canvas-wrap.subtitled >>> canvas{
+a.canvas-wrap.subtitled >>> canvas {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
