@@ -9,7 +9,7 @@ __Early stage! Work in progress!__
 ## Demo
 
 - old [darosh.github.io/glt/components/glt-demo/](https://darosh.github.io/glt/components/glt-demo/)
-- new [darosh.github.io/glt/components/glt-app/dist/](https://darosh.github.io/glt/components/glt-app/dist/)
+- new [darosh.github.io/glt/components/glt-app/dist/](https://darosh.github.io/glt/components/glt-app/dist/index.html)
 
 ## Components
 
