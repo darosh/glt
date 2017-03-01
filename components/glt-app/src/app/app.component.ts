@@ -16,7 +16,7 @@ export class AppComponent {
 
   constructor(config: ConfigService, resize: ResizeService) {
     this.config = config;
-    resize.window.subscribe((val) => {
+    resize.subject.subscribe((val) => {
       if (val) {
         this.width = val.innerWidth;
       }
