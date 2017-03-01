@@ -79,7 +79,7 @@ export { Camera } from 'three/src/cameras/Camera.js';
 // export { AnimationObjectGroup } from 'three/src/animation/AnimationObjectGroup.js';
 // export { AnimationMixer } from 'three/src/animation/AnimationMixer.js';
 // export { AnimationClip } from 'three/src/animation/AnimationClip.js';
-export { Uniform } from 'three/src/core/Uniform.js';
+// export { Uniform } from 'three/src/core/Uniform.js';
 // export { InstancedBufferGeometry } from 'three/src/core/InstancedBufferGeometry.js';
 // export { BufferGeometry } from 'three/src/core/BufferGeometry.js';
 // export { GeometryIdCount, Geometry } from 'three/src/core/Geometry.js';
