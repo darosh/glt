@@ -6,6 +6,40 @@
 
 __Early stage! Work in progress!__
 
-Demo (old, ES5): [darosh.github.io/glt/components/glt-demo/](https://darosh.github.io/glt/components/glt-demo/)
+## Demo
 
-Demo (new, ng-cli): [darosh.github.io/glt/components/glt-app/dist/](https://darosh.github.io/glt/components/glt-app/dist/)
+- old [darosh.github.io/glt/components/glt-demo/](https://darosh.github.io/glt/components/glt-demo/)
+- new [darosh.github.io/glt/components/glt-app/dist/](https://darosh.github.io/glt/components/glt-app/dist/)
+
+## Components
+
+### glt
+
+- [x] compile graph JSON format to shader
+- [x] shader format [Three.js](https://threejs.org/)
+- [x] shader format [GLSL Sandbox](http://glslsandbox.com/)
+- [x] shader format [Shadertoy](https://shadertoy.com/)
+- [x] Three.js based renderer
+
+### glt-demo
+
+- [ ] obsolete, replaced with glt-app, to be deleted
+
+### glt-app
+
+- [x] angular-cli based single page application
+- [x] reusing single rendering context
+
+### glt-extractor
+
+- [x] build utility parsing GLSL functions to JSON with dependencies
+
+### glt-minify
+
+- [x] reducing whitespaces in GLSL
+- [x] based on glsl-parser and glsl-deparser
+
+### glt-samples
+
+- [x] testing samples in graph JSON format
+- [x] demo samples in graph JSON format
