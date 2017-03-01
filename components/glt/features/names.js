@@ -2,6 +2,7 @@ export const POSITION = 'POSITION';
 export const VALUE = 'VALUE';
 export const COLOR = 'COLOR';
 
+export const COORD = 'coord';
 export const POS = 'pos';
 
 export const PARAM = {
@@ -13,6 +14,6 @@ export const PARAM = {
     input: 5
 };
 
-export const FLOAT = 'FLOAT';
-export const VEC2 = 'VEC2';
-export const VEC3 = 'VEC3';
+export const FLOAT = 'float';
+export const VEC2 = 'vec2';
+export const VEC3 = 'vec3';

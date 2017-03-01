@@ -9,6 +9,7 @@ import {variableType} from './variableType';
 import {formatOf, dataFormat} from './dataFormat';
 import {graphToTree} from './graph/graphToTree';
 import {addIds} from './graph/addIds';
+import {syntaxToPartialShaders} from './syntax/syntaxToPartialShaders';
 
 export function compile(data, type = variableType.INLINE, multi = false) {
     let f = formatOf(data);
@@ -18,11 +19,14 @@ export function compile(data, type = variableType.INLINE, multi = false) {
     let syntax = treeToSyntax(deep(tree));
     let shader;
 
+    expandPlaceholders(syntax.data);
+
+    let partials = syntaxToPartialShaders(tree);
+
     if (type > variableType.INLINE) {
         syntax.data.uniforms = {};
     }
 
-    expandPlaceholders(syntax.data);
     detectRequired(syntax.data);
     functionsToLib(syntax.data, syntax.data);
 
@@ -34,6 +38,7 @@ export function compile(data, type = variableType.INLINE, multi = false) {
         tree: tree,
         syntax: syntax,
         shader: shader,
+        partials: partials,
         uniforms: syntax.data.uniforms,
         required: syntax.data.required,
         functions: syntax.data.functions,
