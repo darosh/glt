@@ -47,7 +47,7 @@ import {ResizeService} from "./services/resize.service";
       {path: 'edit/:json', component: EditComponent},
       {path: 'features', component: ListComponent, data: {list: 'generatorGenerators'}},
       {path: 'random', component: ListComponent, data: {generator: 'generatorRandomTree'}},
-      {path: 'palettes', component: ListComponent, data: {generator: 'generatorRandomPalette'}},
+      {path: 'palettes', component: ListComponent, data: {generator: 'generatorRandomPalette', refresh: true}},
       {path: 'samples', component: ListComponent, data: {list: 'samplesDemo'}},
       {path: 'test', component: ListComponent, data: {list: 'samplesTest'}},
       {path: 'prototypes', component: PrototypesComponent},

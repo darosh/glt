@@ -13,3 +13,7 @@ md-toolbar [md-icon-button]:first-child {
 :host >>> textarea {
   padding: 16px;
 }
+
+.mat-fab.mat-primary {
+  background-color: #f5f5f5;
+}
