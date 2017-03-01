@@ -11,6 +11,7 @@
     <div [render]="item"
          [renderSize]="config.thumbnailSize"
          [renderTime]="times[i]"
+         [renderPartials]="config.show.partials"
          [class.mat-elevation-z1]="code"
          fxLayout="column">
       <div *ngIf="config.show.time"

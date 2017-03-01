@@ -9,7 +9,8 @@ export class ConfigService {
   thumbnailQuality = this.thumbnailQualities[1];
   show = {
     code: false,
-    time: false
+    time: false,
+    partials: false
   };
 
   constructor() {

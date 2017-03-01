@@ -3,9 +3,11 @@ import {RenderService} from "../services/render.service";
 
 import {glt} from '../../vendor';
 
+declare const window;
+
 @Directive({
   selector: '[render]',
-  inputs: ['render', 'renderSize', 'renderTime']
+  inputs: ['render', 'renderSize', 'renderTime', 'renderPartials']
 })
 export class RenderDirective {
   render;
@@ -26,7 +28,7 @@ export class RenderDirective {
 
   ngOnInit() {
     this.compiled = glt.compile(this.render);
-    this.frontend = document.createElement('canvas');
+    this.frontend = window.document.createElement('canvas');
     let size = this.renderSize ? this.renderSize : [128, 128];
     this.frontend.width = size[0];
     this.frontend.height = size[1];
@@ -68,7 +70,7 @@ export class RenderDirective {
         return done();
       }
 
-      requestAnimationFrame(() => {
+      window.requestAnimationFrame(() => {
         if (that.destroyed) {
           return done();
         }

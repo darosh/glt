@@ -10,6 +10,9 @@
   <md-list-item>
     <md-slide-toggle [(ngModel)]="config.show.code">Show code</md-slide-toggle>
   </md-list-item>
+  <md-list-item>
+    <md-slide-toggle [(ngModel)]="config.show.partials">Show partials</md-slide-toggle>
+  </md-list-item>
   <md-list-item class="select">
     <md-select placeholder="Thumbnail size" [(ngModel)]="config.thumbnailSize">
       <md-option *ngFor="let item of config.thumbnailSizes" [value]="item">

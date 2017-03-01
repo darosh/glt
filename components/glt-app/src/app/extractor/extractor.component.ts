@@ -15,7 +15,7 @@ export class ExtractorComponent implements OnInit {
   constructor() {
     this.source = glt.GLSL;
     this.extracted = glt.toJson(glt.getFragments());
-    var libs = ['SinX', 'SinXY', 'WorleyF1', 'pnoise'];
+    const libs = ['SinX', 'SinXY', 'WorleyF1', 'pnoise'];
     this.input = glt.toJson(libs);
     this.output = glt.getLib(libs);
   }
