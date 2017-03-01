@@ -1,5 +1,7 @@
 import {Injectable} from '@angular/core';
 
+import {glt} from '../../vendor';
+
 @Injectable()
 export class ConfigService {
   randomItems = 78;
@@ -12,7 +14,6 @@ export class ConfigService {
     time: false,
     partials: false
   };
-
-  constructor() {
-  }
+  source = glt.samplesDemo[0];
+  original = glt.samplesDemo[0];
 }

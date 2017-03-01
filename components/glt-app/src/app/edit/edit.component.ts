@@ -35,9 +35,15 @@ export class EditComponent implements OnInit {
     this.render.renderer.size(512);
     this.view = {data: 'graph', shader: 'all', type: 'three', vars: 2, multi: false};
 
-    this.source = this.route.params.value.json
-      ? JSON.parse(this.route.params.value.json)
-      : glt.samplesDemo[0];
+    if (this.route.params.value.json) {
+      this.config.original = JSON.parse(this.route.params.value.json);
+      this.config.source = glt.deep(this.config.original);
+    }
+  }
+
+  reset() {
+    this.config.source = glt.deep(this.config.original);
+    this.sourceChanged();
   }
 
   ngOnInit() {
@@ -49,10 +55,11 @@ export class EditComponent implements OnInit {
     glt.valueToGraph(this.compiled.ids, v);
     this.graphJson = CJSON(this.graph);
     this.render.renderer.update();
+    this.config.source = this.graph;
   }
 
   sourceChanged() {
-    this.compiled = glt.compile(this.source, 1);
+    this.compiled = glt.compile(this.config.source, 1);
     this.graph = this.compiled.graph;
     this.tree = this.compiled.tree;
     this.graphJson = CJSON(this.graph);
