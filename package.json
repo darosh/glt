@@ -58,6 +58,8 @@
     "js:glt-samples": "rollup -n glt -c components/glt-samples/rollup.config.js",
     "js:glt-samples:watch": "rollup -w -n glt -c components/glt-samples/rollup.config.js",
     "js:glt:watch": "rollup -w -n glt -c components/glt/rollup.config.js",
+    "ng:buld": "cd components/glt-app && ng build --prod --aot",
+    "ng:serve": "cd components/glt-app && ng serve && start http://localhost:4200/",
     "test": "mocha --compilers js:babel-core/register",
     "umd:cjson": "umd CJSON -c node_modules/json-stringify-pretty-compact/index.js | uglifyjs > components/cjson/cjson.js"
   }

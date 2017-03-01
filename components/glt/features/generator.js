@@ -114,8 +114,8 @@ export const RidgedMultiFractal = {
     params: [['float', 'H', 0.25, [0, 8]], ['float', 'lacunarity', 2, [0, 8]], ['float', 'frequency', 2, [0, 8]], ['float', 'octaves', 6, [1, 12]], ['float', 'offset', .9, [-2, 2]], ['float', 'gain', 1.5, [-8, 8]]],
     scale: 1,
     examples: [
-        [0.25, 1, 1, 1, 1.01, 1],
-        [0.25, 3, 1, 6, 1.01, 1]
+        [0.25, 4, 2, 2, 1, 6],
+        [0.25, 3, 1, 6, 1, 1]
     ]
 };
 

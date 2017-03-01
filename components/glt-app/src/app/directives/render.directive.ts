@@ -7,13 +7,14 @@ declare const window;
 
 @Directive({
   selector: '[render]',
-  inputs: ['render', 'renderSize', 'renderTime', 'renderPartials']
+  inputs: ['render', 'renderSize', 'renderTime', 'renderPartials', 'renderQuality']
 })
 export class RenderDirective {
   render;
   renderSize;
   renderTime;
   renderPartials;
+  renderQuality;
 
   el;
   service;
@@ -57,22 +58,23 @@ export class RenderDirective {
   }
 
   paint() {
-    let size = this.getSize();
+    let sizeA = this.getSize(this.renderQuality);
+    let sizeB = this.getSize();
     let start = Date.now();
     this.service.renderer
-      .size(size)
+      .size(sizeA)
       .render(
         this.renderPartials ? this.compiled.partials : this.compiled.shader,
         this.compiled.code
       );
     this.renderTime.value = Date.now() - start;
-    this.frontend.width = size[0];
-    this.frontend.height = size[1];
+    this.frontend.width = sizeB[0];
+    this.frontend.height = sizeB[1];
     this.frontend.getContext('2d')
       .drawImage(
         this.service.canvas,
-        0, 0, size[0], size[1],
-        0, 0, size[0], size[1]
+        0, 0, sizeA[0], sizeA[1],
+        0, 0, sizeB[0], sizeB[1]
       );
   }
 
@@ -94,13 +96,13 @@ export class RenderDirective {
     });
   }
 
-  getSize() {
+  getSize(quality = 1) {
     let size = this.renderSize ? [this.renderSize[0], this.renderSize[1]] : [128, 128];
 
     if (this.renderPartials) {
       size[1] = this.compiled.partials.length * size[0];
     }
 
-    return size;
+    return [size[0] / quality, size[1] / quality];
   }
 }

@@ -19,7 +19,7 @@
             <md-input-container>
               <input mdInput
                      type="number"
-                     (change)="change($event)"
+                     (change)="change($event, item.value)"
                      [(ngModel)]="item.value.value">
             </md-input-container>
             <md-checkbox type="checkbox"
@@ -38,7 +38,7 @@
               <md-input-container>
                 <input mdInput
                        type="number"
-                       (change)="change($event)"
+                       (change)="change($event, item.value)"
                        [(ngModel)]="item.value.value[i]">
               </md-input-container>
               <md-checkbox type="checkbox"
