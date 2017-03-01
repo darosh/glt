@@ -159,6 +159,21 @@ export const samplesDemo = [
         ]
     },
     {
+        title: 'Worley + twirl',
+        data: [
+            ['WorleyF1', 1, 0.59],
+            ['Invert'],
+            ['Twirl', 3, 2.29, [0, 0]],
+            [
+                'CosPalette',
+                [0.13, 0.69, 0.74],
+                [0.08, 0.49, 0.71],
+                [0.13, 0.73, 0.62],
+                [0.76, 0.12, 0.21]
+            ]
+        ]
+    },
+    {
         title: 'Palette #1',
         data: [
             ['X'],
@@ -201,17 +216,16 @@ export const samplesDemo = [
         ]
     },
     {
-        title: 'Worley + twirl',
+        title: 'Palette #4',
         data: [
-            ['WorleyF1', 1, 0.59],
-            ['Invert'],
-            ['Twirl', 3, 2.29, [0, 0]],
+            ['X'],
+            ['Normalize'],
             [
                 'CosPalette',
-                [0.13, 0.69, 0.74],
-                [0.08, 0.49, 0.71],
-                [0.13, 0.73, 0.62],
-                [0.76, 0.12, 0.21]
+                [0.73, 0.62, 0.13],
+                [0.42, 0.2, 0.34],
+                [0.59, 0.85, 0.56],
+                [0.58, 0.63, 0.73]
             ]
         ]
     }
