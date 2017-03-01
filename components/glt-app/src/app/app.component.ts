@@ -10,6 +10,7 @@ import {ResizeService} from "./services/resize.service";
 export class AppComponent {
   config;
   width = window.innerWidth;
+  opened = this.width >= 960;
 
   constructor(config: ConfigService, resize: ResizeService) {
     this.config = config;

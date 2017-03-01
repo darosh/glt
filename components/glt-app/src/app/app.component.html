@@ -41,7 +41,7 @@
     </button>
   </md-toolbar>
   <md-sidenav-container fxFlexFill fxFlex>
-    <md-sidenav #sidenav [mode]="width >= 960 ? 'side' : 'over'" opened="false" class="mat-elevation-z4">
+    <md-sidenav #sidenav [mode]="width >= 960 ? 'side' : 'over'" [opened]="opened" class="mat-elevation-z4">
       <app-menu></app-menu>
     </md-sidenav>
     <!--<md-sidenav #overnav mode="over" opened="false" class="mat-elevation-z4">-->
