@@ -23,6 +23,7 @@
         "styles.css"
       ],
       "scripts": [
+        "../../three/three.js",
         "../../glt/glt.js",
         "../../glt-samples/glt-samples.js",
         "../../glt-extractor/glt-extractor.js",
