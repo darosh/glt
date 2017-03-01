@@ -26,5 +26,5 @@
       <div class="padding pre mono">{{item | cjson:1:(config.thumbnailSize[0]/8)}}</div>
     </div>
   </a>
-  <div *ngFor="let spacer of spacers(config.thumbnailSize[0] + 16)" style="height: 0px;" [ngStyle]="{width: (config.thumbnailSize[0] + 16) + 'px'}"></div>
+  <div *ngFor="let spacer of spacers(config.thumbnailSize[0] + 16)" [style.width.px]="config.thumbnailSize[0] + 16"></div>
 </div>
