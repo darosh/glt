@@ -8,8 +8,7 @@ __Early stage! Work in progress!__
 
 ## Demo
 
-- old [darosh.github.io/glt/components/glt-demo/](https://darosh.github.io/glt/components/glt-demo/)
-- new [darosh.github.io/glt/components/glt-app/dist/](https://darosh.github.io/glt/components/glt-app/dist/index.html)
+[darosh.github.io/glt/components/glt-app/dist/](https://darosh.github.io/glt/components/glt-app/dist/index.html)
 
 ## Components
 
@@ -20,10 +19,6 @@ __Early stage! Work in progress!__
 - [x] shader format [GLSL Sandbox](http://glslsandbox.com/)
 - [x] shader format [Shadertoy](https://shadertoy.com/)
 - [x] Three.js based renderer
-
-### glt-demo
-
-- [ ] obsolete, replaced with glt-app, to be deleted
 
 ### glt-app
 
