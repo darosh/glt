@@ -1,4 +1,4 @@
-<md-list>
+<md-list *ngIf="menu === 'thumbnails'">
   <!--<h3 md-subheader>Application</h3>-->
   <!--<md-list-item>-->
     <!--<button md-button fullScreen>Fullscreen</button>-->
@@ -28,6 +28,25 @@
     </md-select>
   </md-list-item>
 </md-list>
+
+<md-list *ngIf="menu === 'edit'">
+  <h3 md-subheader>Edit</h3>
+  <md-list-item class="select">
+    <md-select placeholder="Edit size" [(ngModel)]="config.editSize">
+      <md-option *ngFor="let item of config.editSizes" [value]="item">
+        {{item[0]}} &times; {{item[1]}}
+      </md-option>
+    </md-select>
+  </md-list-item>
+  <md-list-item class="select">
+    <md-select placeholder="Edit quality" [(ngModel)]="config.editQuality">
+      <md-option *ngFor="let item of config.editQualities" [value]="item">
+        {{item}}
+      </md-option>
+    </md-select>
+  </md-list-item>
+</md-list>
+
 
 <!--<div>-->
 <!--<md-select placeholder="Thumbnail size" [(ngModel)]="service.previewSize">-->

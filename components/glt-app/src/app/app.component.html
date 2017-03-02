@@ -41,12 +41,14 @@
     </button>
   </md-toolbar>
   <md-sidenav-container fxFlexFill fxFlex>
-    <md-sidenav #sidenav [mode]="width >= 960 ? 'side' : 'over'" [opened]="data.menu && opened" class="mat-elevation-z4">
-      <app-menu></app-menu>
+    <md-sidenav #sidenav [mode]="width >= 960 ? 'side' : 'over'" [opened]="data.menu && opened"
+                class="mat-elevation-z4">
+      <app-menu [menu]="data.menu"></app-menu>
     </md-sidenav>
     <router-outlet></router-outlet>
   </md-sidenav-container>
 </div>
-<button *ngIf="config.fab" (click)="config.fab()" color="primary" md-fab style="position: absolute; right: 16px; bottom: 16px;">
-<md-icon>refresh</md-icon>
+<button *ngIf="config.fab" (click)="config.fab()" color="primary" md-fab
+        style="position: absolute; right: 16px; bottom: 16px;">
+  <md-icon>refresh</md-icon>
 </button>
