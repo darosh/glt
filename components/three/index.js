@@ -1,7 +1,7 @@
 import 'three/src/polyfills.js';
 
 // export { WebGLRenderTargetCube } from 'three/src/renderers/WebGLRenderTargetCube.js';
-// export { WebGLRenderTarget } from 'three/src/renderers/WebGLRenderTarget.js';
+export { WebGLRenderTarget } from 'three/src/renderers/WebGLRenderTarget.js';
 export { WebGLRenderer } from 'three/src/renderers/WebGLRenderer.js';
 // export { WebGL2Renderer } from 'three/src/renderers/WebGL2Renderer.js';
 // export { ShaderLib } from 'three/src/renderers/shaders/ShaderLib.js';

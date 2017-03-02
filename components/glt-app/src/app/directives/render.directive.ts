@@ -8,7 +8,7 @@ declare const window;
 
 @Directive({
   selector: '[render]',
-  inputs: ['render', 'renderSize', 'renderTime', 'renderPartials', 'renderQuality', 'renderMode', 'renderUpdate', 'renderFull', 'renderDirect']
+  inputs: ['render', 'renderSize', 'renderTime', 'renderPartials', 'renderQuality', 'renderMode', 'renderUpdate', 'renderFull', 'renderDirect', 'renderOffScreen']
 })
 export class RenderDirective implements OnInit {
   render;
@@ -20,6 +20,7 @@ export class RenderDirective implements OnInit {
   renderUpdate;
   renderFull;
   renderDirect;
+  renderOffScreen;
   full;
 
   el;
@@ -98,7 +99,8 @@ export class RenderDirective implements OnInit {
       .render(
         this.renderPartials ? this.compiled.partials : this.compiled.shader,
         this.compiled.code,
-        this.renderMode ? this.compiled.uniforms : null
+        this.renderMode ? this.compiled.uniforms : null,
+        this.renderOffScreen
       );
     this.renderTime.value = Date.now() - start;
 
@@ -135,12 +137,25 @@ export class RenderDirective implements OnInit {
       this.frontend.height = sizeB[1];
 
       if (this.frontend !== this.service.canvas) {
-        this.frontend.getContext('2d')
-          .drawImage(
-            this.service.canvas,
-            0, 0, sizeA[0], sizeA[1],
-            0, 0, sizeB[0], sizeB[1]
-          );
+
+        if (this.renderOffScreen) {
+          window.createImageBitmap(new window.ImageData(new Uint8ClampedArray(this.service.renderer.pixels().buffer), sizeA[0], sizeA[1]),
+            0, 0, sizeA[0], sizeA[1]).then((id) => {
+            this.frontend.getContext('2d')
+              .drawImage(
+                id,
+                0, 0, sizeA[0], sizeA[1],
+                0, 0, sizeB[0], sizeB[1]
+              );
+          });
+        } else {
+          this.frontend.getContext('2d')
+            .drawImage(
+              this.service.canvas,
+              0, 0, sizeA[0], sizeA[1],
+              0, 0, sizeB[0], sizeB[1]
+            );
+        }
       }
     }
   }

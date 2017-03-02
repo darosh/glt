@@ -34,7 +34,6 @@ export class AppComponent {
     this.router.events
       .filter(event => event instanceof NavigationEnd)
       .subscribe(event => {
-        console.log(1);
         let currentRoute = this.route.root;
         while (currentRoute.children[0] !== undefined) {
           currentRoute = currentRoute.children[0];

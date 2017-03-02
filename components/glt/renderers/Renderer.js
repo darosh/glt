@@ -4,7 +4,8 @@ import {
     Mesh,
     PlaneGeometry,
     Camera,
-    WebGLRenderer
+    WebGLRenderer,
+    WebGLRenderTarget
 } from 'three/src/Three';
 
 import {getUniforms} from '../data/shader/getUniforms';
@@ -43,11 +44,34 @@ export class Renderer {
         return this;
     }
 
-    render(shader, libs, uniforms = {}) {
+    render(shader, libs, uniforms = {}, offScreen = false) {
         const s = getShaderThree(shader, libs, getUniforms(uniforms));
         this.shader(s.vertexShader, s.fragmentShader, uniforms);
-        this.renderer.render(this.scene, this.camera);
+
+        if (offScreen) {
+            const size = this.renderer.getSize();
+
+            if (!this.target || (this.target && ((this.target.width !== size.width) || (this.target.width !== size.height )))) {
+                this.target = new WebGLRenderTarget(size.width, size.height);
+            }
+
+            this.renderer.render(this.scene, this.camera, this.target);
+        } else {
+            this.renderer.render(this.scene, this.camera);
+        }
+
         return this;
+    }
+
+    pixels() {
+        const size = this.renderer.getSize();
+
+        if (!this.buffer || (this.buffer.length !== (size.width * size.height * 4))) {
+            this.buffer = new Uint8Array(size.width * size.height * 4);
+        }
+
+        this.renderer.readRenderTargetPixels(this.target, 0, 0, size.width, size.height, this.buffer);
+        return this.buffer;
     }
 
     update() {
