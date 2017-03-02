@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {ConfigService} from '../services/config.service';
-import {RenderService} from '../services/render.service';
 
 import {glt, CJSON} from '../../vendor';
 declare const window;
@@ -14,13 +13,11 @@ declare const window;
 export class EditComponent {
   indexFn = (i) => i;
   config;
-  render;
 
   route;
   view = {data: 'graph', shader: 'all', type: 'three', vars: 2, multi: false};
   display = {};
 
-  source;
   syntax;
   syntaxJson;
   graph;
@@ -33,9 +30,8 @@ export class EditComponent {
   time = {value: -1};
   compiled: any = {};
 
-  constructor(config: ConfigService, render: RenderService, route: ActivatedRoute) {
+  constructor(config: ConfigService, route: ActivatedRoute) {
     this.config = config;
-    this.render = render;
     this.route = route;
 
     if (this.route.params.value.json) {
@@ -59,14 +55,11 @@ export class EditComponent {
   change(v) {
     glt.valueToGraph(this.compiled.ids, v);
     this.graphJson = CJSON(this.graph);
-    // this.render.renderer.update();
     this.config.source = this.graph;
     this.updateCounter++;
   }
 
   sourceChanged() {
-    // this.compiled = glt.compile(this.config.source, 1);
-    // this.graph = this.compiled.graph;
     this.tree = this.compiled.tree;
     this.graphJson = CJSON(this.graph);
     this.treeJson = CJSON(this.tree);
@@ -79,7 +72,6 @@ export class EditComponent {
 
   treeChanged() {
     this.syntaxJson = CJSON(this.compiled.syntax);
-    // this.render.renderer.render(this.compiled.shader, this.compiled.code, this.compiled.uniforms);
 
     for (let key in this.compiled.uniforms) {
       this.compiled.uniforms[key].animate = this.compiled.uniforms[key].value.length ? [] : true;
@@ -106,8 +98,6 @@ export class EditComponent {
     if (this.running) {
       glt.step(this.compiled.uniforms);
       this.updateCounter++;
-      // this.step();
-      // this.update();
       window.requestAnimationFrame(() => this.loop());
     }
   }
