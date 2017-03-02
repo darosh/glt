@@ -16,9 +16,8 @@ export class EditComponent implements OnInit {
   render;
 
   route;
-  view;
-  compiled;
-  display;
+  view = {data: 'graph', shader: 'all', type: 'three', vars: 2, multi: false};
+  display = {};
 
   source;
   syntax;
@@ -27,29 +26,36 @@ export class EditComponent implements OnInit {
   graphJson;
   tree;
   treeJson;
+  updateCounter = 0;
 
   time = {value: -1};
+  compiled: any = {};
 
   constructor(config: ConfigService, render: RenderService, route: ActivatedRoute) {
     this.config = config;
     this.render = render;
     this.route = route;
     // this.render.renderer.size(512);
-    this.view = {data: 'graph', shader: 'all', type: 'three', vars: 2, multi: false};
 
     if (this.route.params.value.json) {
       this.config.original = JSON.parse(this.route.params.value.json);
       this.config.source = glt.deep(this.config.original);
     }
-  }
 
-  reset() {
-    this.config.source = glt.deep(this.config.original);
-    this.sourceChanged();
+    this.graph = this.config.source;
   }
 
   ngOnInit() {
     // glt.select('#canvas').appendChild(this.render.canvas);
+  }
+
+  onCompiled(compiled) {
+    Object.assign(this.compiled, compiled);
+    this.sourceChanged();
+  }
+
+  reset() {
+    this.config.source = glt.deep(this.config.original);
     this.sourceChanged();
   }
 
@@ -58,11 +64,12 @@ export class EditComponent implements OnInit {
     this.graphJson = CJSON(this.graph);
     // this.render.renderer.update();
     this.config.source = this.graph;
+    this.updateCounter++;
   }
 
   sourceChanged() {
-    this.compiled = glt.compile(this.config.source, 1);
-    this.graph = this.compiled.graph;
+    // this.compiled = glt.compile(this.config.source, 1);
+    // this.graph = this.compiled.graph;
     this.tree = this.compiled.tree;
     this.graphJson = CJSON(this.graph);
     this.treeJson = CJSON(this.tree);
@@ -75,7 +82,7 @@ export class EditComponent implements OnInit {
 
   treeChanged() {
     this.syntaxJson = CJSON(this.compiled.syntax);
-    this.render.renderer.render(this.compiled.shader, this.compiled.code, this.compiled.uniforms);
+    // this.render.renderer.render(this.compiled.shader, this.compiled.code, this.compiled.uniforms);
 
     for (let key in this.compiled.uniforms) {
       this.compiled.uniforms[key].animate = this.compiled.uniforms[key].value.length ? [] : true;
@@ -90,7 +97,7 @@ export class EditComponent implements OnInit {
       glsl: glt.getShaderGlslSandbox,
       toy: glt.getShaderShadertoy,
     };
-    this.display = glt.formatShader(this.tree, parseInt(this.view.vars), this.view.multi, this.compiled.uniforms, shaders[this.view.type]);
+    this.display = glt.formatShader(this.tree, parseInt(this.view.vars.toString()), this.view.multi, this.compiled.uniforms, shaders[this.view.type]);
   }
 
   randomize() {

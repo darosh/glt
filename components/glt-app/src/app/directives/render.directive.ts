@@ -1,4 +1,4 @@
-import {Directive, ElementRef, OnInit} from '@angular/core';
+import {Directive, ElementRef, OnInit, EventEmitter, Output} from '@angular/core';
 import {RenderService} from '../services/render.service';
 
 import {glt} from '../../vendor';
@@ -7,15 +7,16 @@ declare const window;
 
 @Directive({
   selector: '[render]',
-  inputs: ['render', 'renderSize', 'renderTime', 'renderPartials', 'renderQuality', 'renderCompiled']
+  inputs: ['render', 'renderSize', 'renderTime', 'renderPartials', 'renderQuality', 'renderMode', 'renderUpdate']
 })
 export class RenderDirective implements OnInit {
   render;
   renderSize;
   renderTime;
-  renderPartials;
-  renderQuality;
-  renderCompiled;
+  renderPartials = false;
+  renderQuality = 1;
+  renderMode = 0;
+  renderUpdate;
 
   el;
   service;
@@ -24,31 +25,24 @@ export class RenderDirective implements OnInit {
   frontend;
   destroyed;
 
+  @Output('renderCompiled') renderCompiled = new EventEmitter();
+
   constructor(service: RenderService, el: ElementRef) {
     this.el = el;
     this.service = service;
   }
 
   ngOnInit() {
-    this.compiled = glt.compile(this.render);
-
-    if (this.renderCompiled) {
-      this.renderCompiled.value = this.renderCompiled;
-    }
-
+    this.compiled = glt.compile(this.render, this.renderMode);
+    this.renderCompiled.emit(this.compiled);
     this.frontend = window.document.createElement('canvas');
+
     let size = this.getSize();
 
     this.frontend.width = size[0];
     this.frontend.height = size[1];
 
-    let fc = this.el.nativeElement.firstChild;
-
-    if (fc) {
-      this.el.nativeElement.insertBefore(this.frontend, fc);
-    } else {
-      this.el.nativeElement.appendChild(this.frontend);
-    }
+    this.el.nativeElement.appendChild(this.frontend);
 
     this.update();
   }
@@ -71,7 +65,8 @@ export class RenderDirective implements OnInit {
       .size(sizeA)
       .render(
         this.renderPartials ? this.compiled.partials : this.compiled.shader,
-        this.compiled.code
+        this.compiled.code,
+        this.renderMode ? this.compiled.uniforms : null
       );
     this.renderTime.value = Date.now() - start;
     this.frontend.width = sizeB[0];
