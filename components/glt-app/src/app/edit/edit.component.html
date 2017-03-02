@@ -108,16 +108,25 @@
          renderMode="1"
          (renderCompiled)="onCompiled($event)"
          class="mat-elevation-z2"
-         style="background-color: #888"
+         style="background-color: #888; z-index: 1000"
          [style.width.px]="config.editSize[0]"
          [style.height.px]="config.editSize[1]"
          #renderMain></div>
-    <div class="padding">
-      <!--<button md-button (click)="randomize()">Randomize</button>-->
-      <button md-button (click)="start()">Start</button>
-      <button md-button (click)="stop()">Stop</button>
-      <button md-button (click)="reset()">Reset</button>
-      <button md-button (click)="renderMain.click($event)">Fullscreen</button>
-    </div>
+    <md-toolbar class="mat-elevation-z1">
+      <button md-icon-button (click)="start()">
+        <md-icon [textContent]="running ? 'pause' : 'play_arrow'"></md-icon>
+      </button>
+      <button md-icon-button (click)="reset()">
+        <md-icon>undo</md-icon>
+      </button>
+      <button md-icon-button (click)="renderMain.click($event)">
+        <md-icon>fullscreen</md-icon>
+      </button>
+      <span fxFlex></span>
+      <div class="mono padding">
+        <span *ngIf="time.value < 0">&mdash;</span>
+        <span *ngIf="time.value >= 0">{{time.value | number}}</span> ms
+      </div>
+    </md-toolbar>
   </div>
 </div>

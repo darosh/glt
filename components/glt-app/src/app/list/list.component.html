@@ -15,12 +15,12 @@
          [renderPartials]="config.show.partials"
          [class.mat-elevation-z1]="code"
          fxLayout="column">
-      <div *ngIf="config.show.time"
-           fxFlexAlign="end"
-           class="mono time">
-        <span *ngIf="times[i].value < 0">&mdash;</span>
-        <span *ngIf="times[i].value >= 0">{{times[i].value | number}}</span> ms
-      </div>
+    </div>
+    <div *ngIf="config.show.time"
+         fxFlexAlign="end"
+         class="mono time">
+      <span *ngIf="times[i].value < 0">&mdash;</span>
+      <span *ngIf="times[i].value >= 0">{{times[i].value | number}}</span> ms
     </div>
     <div *ngIf="config.show.code" fxFlexAlign="stretch">
       <div class="padding pre mono">{{item | cjson:1:(config.thumbnailSize[0]/8)}}</div>

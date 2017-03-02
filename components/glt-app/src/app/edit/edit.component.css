@@ -13,3 +13,7 @@ input[type="number"] {
 md-slider {
   width: 240px;
 }
+
+md-toolbar [md-icon-button] {
+  margin-right: 16px;
+}

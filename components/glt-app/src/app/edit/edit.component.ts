@@ -42,6 +42,10 @@ export class EditComponent {
     this.graph = this.config.source;
   }
 
+  ngOnDestroy() {
+    this.stop();
+  }
+
   onCompiled(compiled) {
     Object.assign(this.compiled, compiled);
     this.sourceChanged();
@@ -106,6 +110,8 @@ export class EditComponent {
     if (!this.running) {
       this.running = true;
       this.loop();
+    } else {
+      this.stop();
     }
   }
 
