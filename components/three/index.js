@@ -17,7 +17,7 @@ export { Scene } from 'three/src/scenes/Scene.js';
 // export { SkinnedMesh } from 'three/src/objects/SkinnedMesh.js';
 // export { Skeleton } from 'three/src/objects/Skeleton.js';
 // export { Bone } from 'three/src/objects/Bone.js';
-// export { Mesh } from 'three/src/objects/Mesh.js';
+export { Mesh } from 'three/src/objects/Mesh.js';
 // export { LineSegments } from 'three/src/objects/LineSegments.js';
 // export { Line } from 'three/src/objects/Line.js';
 // export { Points } from 'three/src/objects/Points.js';
