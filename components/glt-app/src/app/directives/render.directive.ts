@@ -62,8 +62,7 @@ export class RenderDirective implements OnInit {
       });
     }
 
-    this.compiled = glt.compile(this.render, this.renderMode);
-    this.renderCompiled.emit(this.compiled);
+    this.compile();
     let size = this.getSize();
     this.frontend.width = size[0];
     this.frontend.height = size[1];
@@ -71,8 +70,17 @@ export class RenderDirective implements OnInit {
     this.update();
   }
 
-  ngOnChanges() {
+  compile() {
+    this.compiled = glt.compile(this.render, this.renderMode);
+    this.renderCompiled.emit(this.compiled);
+  }
+
+  ngOnChanges(e) {
     if (this.frontend) {
+      if (e.render) {
+        this.compile();
+      }
+
       this.update();
     }
   }
@@ -95,6 +103,7 @@ export class RenderDirective implements OnInit {
     this.renderTime.value = Date.now() - start;
 
     if (this.renderFull && full) {
+      window.document.body.style.display = 'none';
       this.frontend.style.visibility = 'hidden';
 
       if (!this.full) {
@@ -104,21 +113,23 @@ export class RenderDirective implements OnInit {
       }
 
       setTimeout(() => {
-        this.frontend.width = sizeB[0];
-        this.frontend.height = sizeB[1];
-        setTimeout(() => {
-          if (this.frontend !== this.service.canvas) {
-            this.frontend.getContext('2d')
-              .drawImage(
-                this.service.canvas,
-                0, 0, sizeA[0], sizeA[1],
-                0, 0, sizeB[0], sizeB[1]
-              );
-          }
-          this.frontend.style.visibility = null;
-        }, 0);
+        window.requestAnimationFrame(() => {
+          this.frontend.width = sizeB[0];
+          this.frontend.height = sizeB[1];
+          window.requestAnimationFrame(() => {
+            if (this.frontend !== this.service.canvas) {
+              this.frontend.getContext('2d')
+                .drawImage(
+                  this.service.canvas,
+                  0, 0, sizeA[0], sizeA[1],
+                  0, 0, sizeB[0], sizeB[1]
+                );
+            }
+            this.frontend.style.visibility = null;
+            window.document.body.style.display = null;
+          });
+        });
       }, 0);
-
     } else {
       this.frontend.width = sizeB[0];
       this.frontend.height = sizeB[1];

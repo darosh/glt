@@ -108,6 +108,9 @@
          renderMode="1"
          (renderCompiled)="onCompiled($event)"
          class="mat-elevation-z2"
+         style="background-color: #888"
+         [style.width.px]="config.editSize[0]"
+         [style.height.px]="config.editSize[1]"
          #renderMain></div>
     <div class="padding">
       <!--<button md-button (click)="randomize()">Randomize</button>-->
