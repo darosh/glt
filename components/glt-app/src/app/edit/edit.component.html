@@ -103,15 +103,17 @@
          [renderSize]="config.editSize"
          [renderTime]="time"
          [renderUpdate]="updateCounter"
+         renderFull="true"
          renderMode="1"
          (renderCompiled)="onCompiled($event)"
-         class="mat-elevation-z2"></div>
+         class="mat-elevation-z2"
+         #renderMain></div>
     <div class="padding">
       <!--<button md-button (click)="randomize()">Randomize</button>-->
       <button md-button (click)="render.renderer.start()">Start</button>
       <button md-button (click)="render.renderer.stop()">Stop</button>
       <button md-button (click)="reset()">Reset</button>
-      <!--<button md-button [fullScreen]="canvas">Fullscreen</button>-->
+      <button md-button (click)="renderMain.click($event)">Fullscreen</button>
     </div>
   </div>
 </div>

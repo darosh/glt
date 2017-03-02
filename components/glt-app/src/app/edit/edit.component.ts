@@ -30,6 +30,7 @@ export class EditComponent implements OnInit {
 
   time = {value: -1};
   compiled: any = {};
+  full: boolean = false;
 
   constructor(config: ConfigService, render: RenderService, route: ActivatedRoute) {
     this.config = config;

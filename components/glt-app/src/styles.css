@@ -1,5 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
-
 @import "https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono";
 @import "https://fonts.googleapis.com/icon?family=Material+Icons";
 
@@ -97,3 +96,9 @@ h1, h2 {
   z-index: 1000;
   position: relative;
 }
+
+/*canvas:fullscreen, canvas:-webkit-full-screen, canvas:-moz-full-screen {*/
+  /*background-color: rgba(255, 255, 255, 1);*/
+  /*width: 100% !important;*/
+  /*height: 100% !important;*/
+/*}*/

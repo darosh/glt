@@ -21,6 +21,7 @@ import {ConfigService} from './services/config.service';
 import {RenderService} from './services/render.service';
 import {FullScreenDirective} from './directives/full-screen.directive';
 import {ResizeService} from './services/resize.service';
+import {FullService} from './services/full.service';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,7 @@ import {ResizeService} from './services/resize.service';
       {path: 'extractor', component: ExtractorComponent}
     ], {useHash: true})
   ],
-  providers: [ConfigService, RenderService, ResizeService],
+  providers: [ConfigService, RenderService, ResizeService, FullService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
