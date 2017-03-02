@@ -43,14 +43,14 @@ import {FullService} from './services/full.service';
     MaterialModule,
     FlexLayoutModule,
     RouterModule.forRoot([
-      {path: '', component: EditComponent},
-      {path: 'edit', component: EditComponent},
-      {path: 'edit/:json', component: EditComponent},
-      {path: 'features', component: ListComponent, data: {list: 'generatorGenerators'}},
-      {path: 'random', component: ListComponent, data: {generator: 'generatorRandomTree'}},
-      {path: 'palettes', component: ListComponent, data: {generator: 'generatorRandomPalette', refresh: true}},
-      {path: 'samples', component: ListComponent, data: {list: 'samplesDemo'}},
-      {path: 'test', component: ListComponent, data: {list: 'samplesTest'}},
+      {path: '', redirectTo: '/edit', pathMatch: 'full'},
+      {path: 'edit', component: EditComponent, data: {menu: 'edit'}},
+      {path: 'edit/:json', component: EditComponent, data: {menu: 'edit'}},
+      {path: 'features', component: ListComponent, data: {menu: 'thumbnails', list: 'generatorGenerators'}},
+      {path: 'random', component: ListComponent, data: {menu: 'thumbnails', generator: 'generatorRandomTree'}},
+      {path: 'palettes', component: ListComponent, data: {menu: 'thumbnails', generator: 'generatorRandomPalette', refresh: true}},
+      {path: 'samples', component: ListComponent, data: {menu: 'thumbnails', list: 'samplesDemo'}},
+      {path: 'test', component: ListComponent, data: {menu: 'thumbnails', list: 'samplesTest'}},
       {path: 'prototypes', component: PrototypesComponent},
       {path: 'extractor', component: ExtractorComponent}
     ], {useHash: true})
