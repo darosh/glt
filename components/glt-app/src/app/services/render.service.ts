@@ -12,6 +12,7 @@ export class RenderService {
   pending = 0;
 
   constructor() {
+    this.canvas.setAttribute('id', 'WEBGL_RENDERER');
   }
 
   next(fn = null) {

@@ -4,6 +4,7 @@ export {Renderer} from './renderers/Renderer';
 
 export {compile} from './data/compile';
 export {valueToGraph} from './data/graph/valueToGraph';
+export {step} from './data/step';
 
 export {formatShader} from './data/shader/formatShader';
 export {getShaderThree} from './data/shader/getShaderThree';

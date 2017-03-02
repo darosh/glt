@@ -10,7 +10,7 @@
           <div *ngIf="!item.value.value.length">
             <md-slider thumbLabel
                        type="range"
-                       (change)="change($event, item.value)"
+                       (change)="change(item.value)"
                        [(ngModel)]="item.value.value"
                        #ctrl="ngModel"
                        [min]="item.value.proto[3][0]"
@@ -19,7 +19,7 @@
             <md-input-container>
               <input mdInput
                      type="number"
-                     (change)="change($event, item.value)"
+                     (change)="change(item.value)"
                      [(ngModel)]="item.value.value">
             </md-input-container>
             <md-checkbox type="checkbox"
@@ -29,7 +29,7 @@
             <div *ngFor="let sub of item.value.value; trackBy:indexFn; let i = index">
               <md-slider thumbLabel
                          type="range"
-                         (change)="change($event, item.value)"
+                         (change)="change(item.value)"
                          [(ngModel)]="item.value.value[i]"
                          #ctrl="ngModel"
                          [min]="item.value.proto[3][0]"
@@ -38,7 +38,7 @@
               <md-input-container>
                 <input mdInput
                        type="number"
-                       (change)="change($event, item.value)"
+                       (change)="change(item.value)"
                        [(ngModel)]="item.value.value[i]">
               </md-input-container>
               <md-checkbox type="checkbox"
@@ -104,14 +104,15 @@
          [renderTime]="time"
          [renderUpdate]="updateCounter"
          renderFull="true"
+         renderDirect="true"
          renderMode="1"
          (renderCompiled)="onCompiled($event)"
          class="mat-elevation-z2"
          #renderMain></div>
     <div class="padding">
       <!--<button md-button (click)="randomize()">Randomize</button>-->
-      <button md-button (click)="render.renderer.start()">Start</button>
-      <button md-button (click)="render.renderer.stop()">Stop</button>
+      <button md-button (click)="start()">Start</button>
+      <button md-button (click)="stop()">Stop</button>
       <button md-button (click)="reset()">Reset</button>
       <button md-button (click)="renderMain.click($event)">Fullscreen</button>
     </div>

@@ -1,16 +1,17 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {ConfigService} from '../services/config.service';
 import {RenderService} from '../services/render.service';
 
 import {glt, CJSON} from '../../vendor';
+declare const window;
 
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.css']
 })
-export class EditComponent implements OnInit {
+export class EditComponent {
   indexFn = (i) => i;
   config;
   render;
@@ -26,17 +27,16 @@ export class EditComponent implements OnInit {
   graphJson;
   tree;
   treeJson;
+  running = false;
   updateCounter = 0;
 
   time = {value: -1};
   compiled: any = {};
-  full: boolean = false;
 
   constructor(config: ConfigService, render: RenderService, route: ActivatedRoute) {
     this.config = config;
     this.render = render;
     this.route = route;
-    // this.render.renderer.size(512);
 
     if (this.route.params.value.json) {
       this.config.original = JSON.parse(this.route.params.value.json);
@@ -46,10 +46,6 @@ export class EditComponent implements OnInit {
     this.graph = this.config.source;
   }
 
-  ngOnInit() {
-    // glt.select('#canvas').appendChild(this.render.canvas);
-  }
-
   onCompiled(compiled) {
     Object.assign(this.compiled, compiled);
     this.sourceChanged();
@@ -57,10 +53,10 @@ export class EditComponent implements OnInit {
 
   reset() {
     this.config.source = glt.deep(this.config.original);
-    this.sourceChanged();
+    this.graph = this.config.source;
   }
 
-  change(e, v) {
+  change(v) {
     glt.valueToGraph(this.compiled.ids, v);
     this.graphJson = CJSON(this.graph);
     // this.render.renderer.update();
@@ -104,5 +100,26 @@ export class EditComponent implements OnInit {
   randomize() {
     this.treeJson = CJSON(glt.randomTree2());
     this.treeChanged();
+  }
+
+  loop() {
+    if (this.running) {
+      glt.step(this.compiled.uniforms);
+      this.updateCounter++;
+      // this.step();
+      // this.update();
+      window.requestAnimationFrame(() => this.loop());
+    }
+  }
+
+  start() {
+    if (!this.running) {
+      this.running = true;
+      this.loop();
+    }
+  }
+
+  stop() {
+    this.running = false;
   }
 }

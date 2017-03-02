@@ -52,29 +52,6 @@ export class Renderer {
 
     update() {
         this.renderer.render(this.scene, this.camera);
-
-        if (this.onstep) {
-            this.onstep();
-        }
-    }
-
-    loop() {
-        if (this.running) {
-            this.step();
-            this.update();
-            requestAnimationFrame(() => this.loop());
-        }
-    }
-
-    start() {
-        if (!this.running) {
-            this.running = true;
-            this.loop();
-        }
-    }
-
-    stop() {
-        this.running = false;
     }
 
     reset() {
@@ -82,37 +59,6 @@ export class Renderer {
             this.uniforms[k].value = deep(v.value);
         });
 
-        if (!this.running) {
-            this.update();
-        }
-    }
-
-    step(direction = 1) {
-        let K = 0.01;
-
-        each(this.uniforms, function (k, v) {
-            if (!v.value.length) {
-                v.value += v.K || K;
-                if (v.value > v.proto[3][1]) {
-                    v.K = -K;
-                    v.value = v.proto[3][1];
-                } else if (v.value < v.proto[3][0]) {
-                    v.K = K;
-                    v.value = v.proto[3][0];
-                }
-            } else {
-                v.value.forEach(function (d, i) {
-                    v.K = v.K || [];
-                    v.value[i] += v.K[i] || K;
-                    if (v.value[i] > v.proto[3][1]) {
-                        v.K[i] = -K;
-                        v.value[i] = v.proto[3][1];
-                    } else if (v.value[i] < v.proto[3][0]) {
-                        v.K[i] = K;
-                        v.value[i] = v.proto[3][0];
-                    }
-                });
-            }
-        });
+        this.update();
     }
 }
