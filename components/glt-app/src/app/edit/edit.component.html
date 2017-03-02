@@ -2,7 +2,7 @@
   <md-input-container fxHide>
     <textarea mdInput></textarea>
   </md-input-container>
-  <md-tab-group fxFlex fxLayout="column" dynamicHeight>
+  <md-tab-group fxFlex fxLayout="column" dynamicHeight class="mat-elevation-z2" style="z-index: 2000; background-color: #fafafa">
     <md-tab label="Uniforms" fxFlex>
       <div fxFlex fxLayoutWrap fxLayout="row" fxLayoutAlign="start start" class="overflow-y padding">
         <div *ngFor="let item of compiled.uniforms | keys" fxFlex="375px" class="padding">
