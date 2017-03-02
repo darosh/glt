@@ -6,13 +6,10 @@ import {ConfigService} from '../services/config.service';
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css']
 })
-export class MenuComponent implements OnInit {
+export class MenuComponent {
   config;
 
   constructor(config: ConfigService) {
     this.config = config;
-  }
-
-  ngOnInit() {
   }
 }

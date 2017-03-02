@@ -1,4 +1,4 @@
-import { RenderDirective } from './render.directive';
+import {RenderDirective} from './render.directive';
 
 describe('RenderDirective', () => {
   it('should create an instance', () => {

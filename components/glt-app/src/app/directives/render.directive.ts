@@ -1,5 +1,5 @@
-import {Directive, ElementRef} from '@angular/core';
-import {RenderService} from "../services/render.service";
+import {Directive, ElementRef, OnInit} from '@angular/core';
+import {RenderService} from '../services/render.service';
 
 import {glt} from '../../vendor';
 
@@ -7,14 +7,15 @@ declare const window;
 
 @Directive({
   selector: '[render]',
-  inputs: ['render', 'renderSize', 'renderTime', 'renderPartials', 'renderQuality']
+  inputs: ['render', 'renderSize', 'renderTime', 'renderPartials', 'renderQuality', 'renderCompiled']
 })
-export class RenderDirective {
+export class RenderDirective implements OnInit {
   render;
   renderSize;
   renderTime;
   renderPartials;
   renderQuality;
+  renderCompiled;
 
   el;
   service;
@@ -30,6 +31,11 @@ export class RenderDirective {
 
   ngOnInit() {
     this.compiled = glt.compile(this.render);
+
+    if (this.renderCompiled) {
+      this.renderCompiled.value = this.renderCompiled;
+    }
+
     this.frontend = window.document.createElement('canvas');
     let size = this.getSize();
 

@@ -1,4 +1,4 @@
-import { FullScreenDirective } from './full-screen.directive';
+import {FullScreenDirective} from './full-screen.directive';
 
 describe('FullScreenDirective', () => {
   it('should create an instance', () => {

@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {ConfigService} from './services/config.service';
-import {ResizeService} from "./services/resize.service";
+import {ResizeService} from './services/resize.service';
 
 declare const window;
 

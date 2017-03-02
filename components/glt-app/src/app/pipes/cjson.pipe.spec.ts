@@ -1,4 +1,4 @@
-import { CjsonPipe } from './cjson.pipe';
+import {CjsonPipe} from './cjson.pipe';
 
 describe('CjsonPipe', () => {
   it('create an instance', () => {

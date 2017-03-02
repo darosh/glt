@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {ConfigService} from "../services/config.service";
-import {ActivatedRoute} from "@angular/router";
+import {Component} from '@angular/core';
+import {ConfigService} from '../services/config.service';
+import {ActivatedRoute} from '@angular/router';
 
 import {glt} from '../../vendor';
 
@@ -10,7 +10,7 @@ declare const window;
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.css']
 })
-export class ListComponent implements OnInit {
+export class ListComponent {
   config: any;
   recipes: any = [];
   times: any = [];
@@ -46,9 +46,6 @@ export class ListComponent implements OnInit {
       this.recipes[i] = this.generator();
       this.times[i].value = -1;
     });
-  }
-
-  ngOnInit() {
   }
 
   ngOnDestroy() {

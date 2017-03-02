@@ -6,7 +6,7 @@ import {RouterModule} from '@angular/router';
 
 import 'hammerjs';
 import {MaterialModule} from '@angular/material';
-import {FlexLayoutModule} from "@angular/flex-layout";
+import {FlexLayoutModule} from '@angular/flex-layout';
 
 import {AppComponent} from './app.component';
 import {KeysPipe} from './pipes/keys.pipe';
@@ -20,7 +20,7 @@ import {ExtractorComponent} from './extractor/extractor.component';
 import {ConfigService} from './services/config.service';
 import {RenderService} from './services/render.service';
 import {FullScreenDirective} from './directives/full-screen.directive';
-import {ResizeService} from "./services/resize.service";
+import {ResizeService} from './services/resize.service';
 
 @NgModule({
   declarations: [

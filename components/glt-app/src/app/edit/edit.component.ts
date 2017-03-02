@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
-import {ConfigService} from "../services/config.service";
-import {RenderService} from "../services/render.service";
+import {ActivatedRoute} from '@angular/router';
+import {ConfigService} from '../services/config.service';
+import {RenderService} from '../services/render.service';
 
 import {glt, CJSON} from '../../vendor';
 
@@ -28,11 +28,13 @@ export class EditComponent implements OnInit {
   tree;
   treeJson;
 
+  time = {value: -1};
+
   constructor(config: ConfigService, render: RenderService, route: ActivatedRoute) {
     this.config = config;
     this.render = render;
     this.route = route;
-    this.render.renderer.size(512);
+    // this.render.renderer.size(512);
     this.view = {data: 'graph', shader: 'all', type: 'three', vars: 2, multi: false};
 
     if (this.route.params.value.json) {
@@ -47,14 +49,14 @@ export class EditComponent implements OnInit {
   }
 
   ngOnInit() {
-    glt.select('#canvas').appendChild(this.render.canvas);
+    // glt.select('#canvas').appendChild(this.render.canvas);
     this.sourceChanged();
   }
 
   change(e, v) {
     glt.valueToGraph(this.compiled.ids, v);
     this.graphJson = CJSON(this.graph);
-    this.render.renderer.update();
+    // this.render.renderer.update();
     this.config.source = this.graph;
   }
 

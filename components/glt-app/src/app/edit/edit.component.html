@@ -99,13 +99,16 @@
     </md-tab>
   </md-tab-group>
   <div fxLayout="column">
-    <div class="mat-elevation-z2" id="canvas"></div>
+    <div [render]="graph"
+         [renderSize]="config.editSize"
+         [renderTime]="time"
+         class="mat-elevation-z2" #canvas></div>
     <div class="padding">
       <!--<button md-button (click)="randomize()">Randomize</button>-->
       <button md-button (click)="render.renderer.start()">Start</button>
       <button md-button (click)="render.renderer.stop()">Stop</button>
       <button md-button (click)="reset()">Reset</button>
-      <button md-button>Fullscreen</button>
+      <button md-button [fullScreen]="canvas">Fullscreen</button>
     </div>
   </div>
 </div>

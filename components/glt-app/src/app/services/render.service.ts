@@ -2,9 +2,11 @@ import {Injectable} from '@angular/core';
 
 import {glt} from '../../vendor';
 
+declare const window;
+
 @Injectable()
 export class RenderService {
-  canvas = document.createElement('canvas');
+  canvas = window.document.createElement('canvas');
   renderer = new glt.Renderer(this.canvas).size(128);
   queue = [];
   pending = 0;

@@ -12,6 +12,7 @@ export class ExtractorComponent implements OnInit {
   extracted;
   input;
   output;
+
   constructor() {
     this.source = glt.GLSL;
     this.extracted = glt.toJson(glt.getFragments());
