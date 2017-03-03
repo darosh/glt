@@ -14,9 +14,10 @@ import {each} from '../utils/each';
 import {deep} from '../utils/deep';
 import {isArray} from '../utils/isArray';
 
+const FloatType = 1015;
+
 export class Renderer {
     constructor(canvas) {
-        this.onstep = null;
         this.camera = new Camera();
         this.camera.position.z = 1;
         this.scene = new Scene();
@@ -45,20 +46,33 @@ export class Renderer {
         return this;
     }
 
-    render(shader, libs, uniforms = {}, offScreen = null) {
+    render(shader, libs, uniforms = {}, offScreen = null, float = false) {
         const s = getShaderThree(shader, libs, getUniforms(uniforms), offScreen);
         this.shader(s.vertexShader, s.fragmentShader, uniforms);
 
         if (offScreen) {
-            console.log(s.fragmentShader);
-            if (!this.target || (this.target && ((this.target.width !== offScreen[0]) || (this.target.height !== offScreen[1])))) {
-                this.target = new WebGLRenderTarget(offScreen[0], offScreen[1], {
-                    depthBuffer: false,
-                    stencilBuffer: false
-                });
+            let target;
+
+            if (float) {
+                if (!this.targetFloat || (this.targetFloat && ((this.targetFloat.width !== offScreen[0]) || (this.targetFloat.height !== offScreen[1])))) {
+                    this.targetFloat = new WebGLRenderTarget(offScreen[0], offScreen[1], {
+                        depthBuffer: false,
+                        stencilBuffer: false,
+                        type: FloatType
+                    });
+                }
+                target = this.targetFloat;
+            } else {
+                if (!this.target || (this.target && ((this.target.width !== offScreen[0]) || (this.target.height !== offScreen[1])))) {
+                    this.target = new WebGLRenderTarget(offScreen[0], offScreen[1], {
+                        depthBuffer: false,
+                        stencilBuffer: false
+                    });
+                }
+                target = this.target;
             }
 
-            this.renderer.render(this.scene, this.camera, this.target);
+            this.renderer.render(this.scene, this.camera, target);
         } else {
             this.renderer.render(this.scene, this.camera);
         }
@@ -66,13 +80,20 @@ export class Renderer {
         return this;
     }
 
-    pixels() {
-        if (!this.buffer || (this.buffer.length !== (this.target.width * this.target.height * 4))) {
-            this.buffer = new Uint8Array(this.target.width * this.target.height * 4);
+    pixels(float = false) {
+        if (float) {
+            if (!this.bufferFloat || (this.buffer.length !== (this.targetFloat.width * this.targetFloat.height * 4))) {
+                this.bufferFloat = new Float32Array(this.targetFloat.width * this.targetFloat.height * 4);
+            }
+            this.renderer.readRenderTargetPixels(this.targetFloat, 0, 0, this.targetFloat.width, this.targetFloat.height, this.bufferFloat);
+            return this.bufferFloat;
+        } else {
+            if (!this.buffer || (this.buffer.length !== (this.target.width * this.target.height * 4))) {
+                this.buffer = new Uint8Array(this.target.width * this.target.height * 4);
+            }
+            this.renderer.readRenderTargetPixels(this.target, 0, 0, this.target.width, this.target.height, this.buffer);
+            return this.buffer;
         }
-
-        this.renderer.readRenderTargetPixels(this.target, 0, 0, this.target.width, this.target.height, this.buffer);
-        return this.buffer;
     }
 
     update() {
@@ -95,10 +116,10 @@ export class Renderer {
         );
     }
 
-    drawTarget(canvas) {
+    drawTarget(canvas, float = false) {
         let ct = canvas.getContext('2d');
         let id = ct.getImageData(0, 0, canvas.width, canvas.height);
-        id.data.set(new Uint8ClampedArray(this.pixels().buffer));
+        id.data.set(new Uint8ClampedArray(this.pixels().buffer, 0, canvas.width * canvas.height * 4));
         ct.putImageData(id, 0, 0, 0, 0, canvas.width, canvas.height);
 
         // window.createImageBitmap(
