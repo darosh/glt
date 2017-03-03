@@ -26,7 +26,6 @@ export default function() {
             x1 = xz[1],
             tz = threshold(values, x0, x1);
 
-        console.log(x0, x1);
         // Convert number of thresholds into uniform thresholds.
         if (!Array.isArray(tz)) tz = ticks(x0, x1, tz);
 

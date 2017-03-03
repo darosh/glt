@@ -8,7 +8,20 @@ declare const window;
 
 @Directive({
   selector: '[render]',
-  inputs: ['render', 'renderSize', 'renderTime', 'renderPartials', 'renderQuality', 'renderMode', 'renderUpdate', 'renderFull', 'renderDirect', 'renderOffScreen', 'renderPreCompiled']
+  inputs: [
+    'render',
+    'renderSize',
+    'renderTime',
+    'renderPartials',
+    'renderQuality',
+    'renderMode',
+    'renderUpdate',
+    'renderFull',
+    'renderDirect',
+    'renderOffScreen',
+    'renderPreCompiled',
+    'renderHistogram'
+  ]
 })
 export class RenderDirective implements OnInit {
   render;
@@ -22,6 +35,7 @@ export class RenderDirective implements OnInit {
   renderDirect;
   renderOffScreen;
   renderPreCompiled;
+  renderHistogram;
 
   full;
 
@@ -116,6 +130,26 @@ export class RenderDirective implements OnInit {
         this.renderMode ? this.compiled.uniforms : null,
         this.renderOffScreen ? sizeA : null
       );
+
+    if (this.renderHistogram) {
+      this.service.renderer.render(
+        this.renderPartials ? this.compiled.partials : this.compiled.shader,
+        this.compiled.code,
+        this.renderMode ? this.compiled.uniforms : null,
+        this.renderOffScreen ? sizeA : null,
+        true
+      );
+
+      if (this.renderPartials) {
+        const array = this.service.renderer.pixels(true);
+        this.renderHistogram.value = this.compiled.partials.map((v, i) => {
+          const s = sizeA[0] * sizeA[0] * 4;
+          const f = s * i;
+          const t = s * (i + 1);
+          return glt.histogram(array, 32, true, f, t);
+        });
+      }
+    }
 
     if (this.renderTime) {
       this.renderTime.value = Date.now() - start;
