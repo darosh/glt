@@ -45,6 +45,13 @@
       </md-option>
     </md-select>
   </md-list-item>
+  <md-list-item class="select">
+    <md-select placeholder="Partial size" [(ngModel)]="config.partialSize">
+      <md-option *ngFor="let item of config.partialSizes" [value]="item">
+        {{item[0]}} &times; {{item[1]}}
+      </md-option>
+    </md-select>
+  </md-list-item>
 </md-list>
 
 

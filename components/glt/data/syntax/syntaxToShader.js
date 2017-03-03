@@ -82,12 +82,12 @@ function defaultType(type) {
 }
 
 function uniform(top, p, type, tree) {
-    let name = tree.name + capitalize(type[1]);
-    top.names = top.names || {};
-    top.names[name] = top.names[name] || 0;
-    top.names[name]++;
-    const index = top.names[name];
-    name = name + ((index > 1) ? +index : '');
+    let name = tree.name + '_' + tree.id + '_' + capitalize(type[1]);
+    // top.names = top.names || {};
+    // top.names[name] = top.names[name] || 0;
+    // top.names[name]++;
+    // const index = top.names[name];
+    // name = name + ((index > 1) ? +index : '');
     top.uniforms[name] = {value: p, proto: type, id: tree.id, index: tree.proto.input.indexOf(type)};
     return name;
 }

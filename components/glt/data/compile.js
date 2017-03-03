@@ -21,11 +21,11 @@ export function compile(data, type = variableType.INLINE, multi = false) {
 
     expandPlaceholders(syntax.data);
 
-    let partials = syntaxToPartialShaders(syntax);
-
     if (type > variableType.INLINE) {
         syntax.data.uniforms = {};
     }
+
+    let partials = syntaxToPartialShaders(syntax);
 
     detectRequired(syntax.data);
     functionsToLib(syntax.data, syntax.data);

@@ -8,7 +8,7 @@ declare const window;
 
 @Directive({
   selector: '[render]',
-  inputs: ['render', 'renderSize', 'renderTime', 'renderPartials', 'renderQuality', 'renderMode', 'renderUpdate', 'renderFull', 'renderDirect', 'renderOffScreen']
+  inputs: ['render', 'renderSize', 'renderTime', 'renderPartials', 'renderQuality', 'renderMode', 'renderUpdate', 'renderFull', 'renderDirect', 'renderOffScreen', 'renderPreCompiled']
 })
 export class RenderDirective implements OnInit {
   render;
@@ -21,6 +21,8 @@ export class RenderDirective implements OnInit {
   renderFull;
   renderDirect;
   renderOffScreen;
+  renderPreCompiled;
+
   full;
 
   el;
@@ -68,11 +70,21 @@ export class RenderDirective implements OnInit {
     this.frontend.width = size[0];
     this.frontend.height = size[1];
     this.el.nativeElement.appendChild(this.frontend);
-    this.update();
+
+    if (this.compiled) {
+      this.update();
+    }
   }
 
   compile() {
-    this.compiled = glt.compile(this.render, this.renderMode);
+    if (this.renderPreCompiled) {
+      if (Object.keys(this.renderPreCompiled).length) {
+        this.compiled = this.renderPreCompiled;
+      }
+    } else {
+      this.compiled = glt.compile(this.render, this.renderMode);
+    }
+
     this.renderCompiled.emit(this.compiled);
   }
 
@@ -82,7 +94,9 @@ export class RenderDirective implements OnInit {
         this.compile();
       }
 
-      this.update();
+      if (this.compiled) {
+        this.update();
+      }
     }
   }
 
@@ -94,15 +108,18 @@ export class RenderDirective implements OnInit {
     let sizeA = this.getSize(this.renderQuality);
     let sizeB = this.getSize();
     let start = Date.now();
-    this.service.renderer
-      .size(sizeA)
+
+    (this.renderOffScreen ? this.service.renderer : this.service.renderer.size(sizeA))
       .render(
         this.renderPartials ? this.compiled.partials : this.compiled.shader,
         this.compiled.code,
         this.renderMode ? this.compiled.uniforms : null,
-        this.renderOffScreen
+        this.renderOffScreen ? sizeA : null
       );
-    this.renderTime.value = Date.now() - start;
+
+    if (this.renderTime) {
+      this.renderTime.value = Date.now() - start;
+    }
 
     if (this.renderFull && full) {
       window.document.body.style.display = 'none';
@@ -120,12 +137,7 @@ export class RenderDirective implements OnInit {
           this.frontend.height = sizeB[1];
           window.requestAnimationFrame(() => {
             if (this.frontend !== this.service.canvas) {
-              this.frontend.getContext('2d')
-                .drawImage(
-                  this.service.canvas,
-                  0, 0, sizeA[0], sizeA[1],
-                  0, 0, sizeB[0], sizeB[1]
-                );
+              this.service.renderer.draw(this.frontend);
             }
             this.frontend.style.visibility = null;
             window.document.body.style.display = null;
@@ -137,24 +149,10 @@ export class RenderDirective implements OnInit {
       this.frontend.height = sizeB[1];
 
       if (this.frontend !== this.service.canvas) {
-
         if (this.renderOffScreen) {
-          window.createImageBitmap(new window.ImageData(new Uint8ClampedArray(this.service.renderer.pixels().buffer), sizeA[0], sizeA[1]),
-            0, 0, sizeA[0], sizeA[1]).then((id) => {
-            this.frontend.getContext('2d')
-              .drawImage(
-                id,
-                0, 0, sizeA[0], sizeA[1],
-                0, 0, sizeB[0], sizeB[1]
-              );
-          });
+          this.service.renderer.drawTarget(this.frontend);
         } else {
-          this.frontend.getContext('2d')
-            .drawImage(
-              this.service.canvas,
-              0, 0, sizeA[0], sizeA[1],
-              0, 0, sizeB[0], sizeB[1]
-            );
+          this.service.renderer.draw(this.frontend);
         }
       }
     }
@@ -187,7 +185,7 @@ export class RenderDirective implements OnInit {
       size = [window.screen.width, window.screen.height];
     }
 
-    if (this.renderPartials) {
+    if (this.renderPartials && this.compiled) {
       size[1] = this.compiled.partials.length * size[0];
     }
 

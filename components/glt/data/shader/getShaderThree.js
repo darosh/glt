@@ -1,13 +1,15 @@
 import {POS, COORD} from '../../features/names';
 import {isArray} from '../../utils/isArray';
 
-export function getShaderThree(shader, lib, uniforms) {
+export function getShaderThree(shader, lib, uniforms, flipY) {
     let shaderLines;
 
     if (isArray(shader)) {
         const L = shader.length;
         shaderLines = [
-            ' vec2 ' + POS + ' = vec2(' + COORD + ');',
+            flipY
+                ? ' vec2 ' + POS + ' = vec2(' + COORD + '.x, -' + COORD + '.y);'
+                : ' vec2 ' + POS + ' = vec2(' + COORD + ');',
             ' int part = int(floor(((' + POS + '.y+1.)/2.)*' + L + '.));',
             ' ' + POS + '.y = mod((' + POS + '.y+1.)*' + L + '.,2.)-1.;',
             ' vec3 color;'
