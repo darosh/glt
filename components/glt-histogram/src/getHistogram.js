@@ -3,7 +3,7 @@ import {default as range} from 'd3-array/src/range';
 
 export function getHistogram(array, ext = [-1, 1], overflow = true, bins = 32, from = 0, _to = 0) {
     const ret = [];
-    const r = range(ext[0], ext[1], (ext[1] - ext[0]) / bins);
+    const r = range(ext[0], ext[1], (ext[1] - ext[0] + (ext[1] === 255 ? 1 : 0)) / bins);
     const thresholds = overflow ? [-Infinity, ...r, ext[1], +Infinity] : [...r, ext[1]];
     const to = _to ? _to : array.length;
 

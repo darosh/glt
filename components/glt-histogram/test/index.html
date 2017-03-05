@@ -51,13 +51,15 @@
         var bins = 32;
         var range = [0, 255];
         let array = pixels;
-        var floats = true;
+//        var floats = true;
+        var floats = false;
 
         if (floats) {
             array = [];
             // pixels.forEach(d => array.push(1.5 * d / 255 - 0.5));
             pixels.forEach(d => array.push(d / 255));
-            range = [0, 1];
+//            range = [0, 1];
+            range = [-1, 1];
         }
 
         var h = glt.getHistogram(array, range, floats, bins);

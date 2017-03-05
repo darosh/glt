@@ -9,20 +9,20 @@ export function viewHistogram(svg, h, options = {}) {
     const opt = {...viewHistogram.m(), ...options};
 
     const mid = (h.ext[0] + h.ext[1]) / 2;
-    const rangeMid = [h.ext[0], mid, h.ext[1]];
+    const rangeMid = [h.ext[0], h.thresholds[Math.floor(h.thresholds.length / 2)], h.ext[1]];
 
-    const f = format(/*(h.ext[0] < 0 ? '+' : '') + */'+,.' + opt.precision);
-    const ft = d => f(d).replace('-', '&minus;').replace(/^\+0$/, '0');
+    const f = format((h.ext[0] < 0 ? '+' : '') + ',');
+    const ft = d => f(Math.round(d * Math.pow(10, opt.precision)) / Math.pow(10, opt.precision)).replace('-', '&minus;').replace(/^\+0$/, '0');
     const fp = format('.0%');
 
     const l = h.blocks[0].length - (h.overflow ? 2 : 0) + (!opt.curve ? 1 : 0);
 
     const extentPosition = d => d < h.ext[0] ? xe(0) : d > h.ext[1] ? xe(1) : xv(Math.max(h.ext[0], Math.min(h.ext[1], d)));
 
-    const tp = Math.max(opt.overflow, opt.fontSize * 2.25);
+    const tp = Math.max(opt.overflow, opt.fontSize * opt.em);
     const x = scaleLinear().domain([0, l - 1]).range([h.overflow ? opt.overflow : 0, opt.width - (h.overflow ? opt.overflow : 0)]);
     const xo = scaleLinear().domain([0, 1, 2, 3]).range([0, opt.overflow, opt.width - opt.overflow, opt.width]);
-    const xv = scaleLinear().domain(h.ext).range([h.overflow ? tp : 0, opt.width - (h.overflow ? tp : 0)]);
+    const xv = scaleLinear().domain(h.ext).range([h.overflow ? tp : 0 + opt.shift, opt.width - (h.overflow ? tp : 0 + opt.shift)]);
     const xe = scaleLinear().domain([0, 1]).range([0, opt.width]);
     const y = scaleLinear().domain([0, h.normalize]).range([opt.height - opt.bottom, opt.top]);
     const z = scaleOrdinal().range(opt.colors);
@@ -58,8 +58,6 @@ export function viewHistogram(svg, h, options = {}) {
 
     op[0] /= h.samples;
     op[1] /= h.samples;
-
-    console.log(op);
 
     const areaShape = area()
         .curve(opt.curve ? curveMonotoneX : curveStepAfter)
@@ -222,6 +220,8 @@ viewHistogram.m = function () {
         bottom: 16,
         line: 12,
         fontSize: 12,
+        em: 2.25,
+        shift: 1,
         font: '"Roboto", monospace',
         curve: true,
         labels: true,
