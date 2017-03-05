@@ -105,6 +105,8 @@ export function viewHistogram(svg, h, options = {}) {
         stacked2.forEach(d => d.push(d[d.length - 1]));
     }
 
+    svg.style('background-color', opt.background);
+
     let join = svg.selectAll('.bin').data(stacked2);
     join.exit().remove();
     join.enter()
@@ -176,6 +178,7 @@ export function viewHistogram(svg, h, options = {}) {
         .attr('font-family', opt.font)
         .attr('font-size', opt.fontSize)
         .attr('line-height', opt.line)
+        .attr('fill', opt.color)
         .attr('x', d => xv(d))
         .attr('y', (opt.line - opt.fontSize) / 2)
         .html(d => ft(d));
@@ -191,7 +194,8 @@ export function viewHistogram(svg, h, options = {}) {
         .attr('font-family', opt.font)
         .attr('font-size', opt.fontSize)
         .attr('line-height', opt.line)
-        .attr('x', (d, i) => eps[i] + [1, -1][i])
+        .attr('fill', opt.color)
+        .attr('x', (d, i) => eps[i])
         .attr('y', opt.height - (opt.line - opt.fontSize) / 2)
         .html(d => ft(d));
 
@@ -206,39 +210,43 @@ export function viewHistogram(svg, h, options = {}) {
         .attr('font-family', opt.font)
         .attr('font-size', opt.fontSize)
         .attr('line-height', opt.line)
+        .attr('fill', opt.color)
         .attr('x', (d, i) => [1, opt.width - 1][i])
         .attr('y', d => y(d * h.samples) + (opt.line - opt.fontSize) / 2)
         .text(d => d ? fp(d) : '');
 }
 
-viewHistogram.m = function () {
+viewHistogram.m = function (dark) {
     return {
-        width: 128,
-        height: 128,
-        overflow: 12,
-        top: 16,
-        bottom: 16,
-        line: 12,
-        fontSize: 12,
-        em: 2.25,
-        shift: 1,
-        font: '"Roboto", monospace',
-        curve: true,
-        labels: true,
-        ticks: true,
-        lines: true,
-        mid: false,
-        precision: 1,
-        colors: ['#888', '#ff4', '#f4f', '#4ff', '#f44', '#4f4', '#44f'],
-        strokeWidth: 0.75,
-        stroke: 'rgba(0,0,0,.66',
-        dash: '3 3'
+        ...{
+            width: 128,
+            height: 128,
+            overflow: 12,
+            top: 16,
+            bottom: 16,
+            line: 12,
+            fontSize: 12,
+            em: 2.25,
+            shift: 2,
+            font: '"Roboto", monospace',
+            curve: true,
+            labels: true,
+            ticks: true,
+            lines: true,
+            mid: false,
+            precision: 1,
+            colors: ['#888', '#ff4', '#f4f', '#4ff', '#f44', '#4f4', '#44f'],
+            strokeWidth: 0.75,
+            stroke: 'rgba(0,0,0,.66)',
+            dash: '3 3'
+        },
+        ...(dark ? viewHistogram.dark() : {})
     };
 };
 
-viewHistogram.xs = function () {
+viewHistogram.xs = function (dark) {
     return {
-        ...viewHistogram.m(), ...{
+        ...viewHistogram.m(dark), ...{
             width: 64,
             height: 64,
             labels: false,
@@ -252,23 +260,34 @@ viewHistogram.xs = function () {
     };
 };
 
-viewHistogram.s = function () {
+viewHistogram.s = function (dark) {
     return {
-        ...viewHistogram.m(), ...{
+        ...viewHistogram.m(dark), ...{
             width: 96,
             height: 96,
         }
     };
 };
 
-viewHistogram.l = function () {
+viewHistogram.l = function (dark) {
     return {
-        ...viewHistogram.m(), ...{
+        ...viewHistogram.m(dark), ...{
             width: 256,
             height: 128,
             mid: true,
             overflow: 16,
             precision: 2
+        }
+    };
+};
+
+viewHistogram.dark = function () {
+    return {
+        ...viewHistogram.m(), ...{
+            colors: ['#fff', '#ff4', '#f4f', '#4ff', '#f44', '#4f4', '#44f'],
+            stroke: 'rgba(255,255,255,.66)',
+            background: '#444',
+            color: '#fff'
         }
     };
 };
