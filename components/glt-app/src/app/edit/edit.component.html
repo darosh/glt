@@ -2,6 +2,16 @@
   <md-input-container fxHide>
     <textarea mdInput></textarea>
   </md-input-container>
+  <div *ngIf="compiled"
+       render
+       [renderPreCompiled]="compiled"
+       [renderSize]="config.partialSize"
+       [renderUpdate]="updateCounter"
+       renderMode="1"
+       renderOffScreen="true"
+       renderPartials="true"
+       class="mat-elevation-z2 overflow-y"
+       style="z-index: 4000; background-color: #fafafa"></div>
   <md-tab-group fxFlex fxLayout="column" dynamicHeight class="mat-elevation-z2"
                 style="z-index: 5000; background-color: #fafafa">
     <md-tab label="Uniforms" fxFlex>
@@ -99,32 +109,23 @@
                 autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
     </md-tab>
   </md-tab-group>
-  <div *ngIf="compiled"
-       render
-       [renderPreCompiled]="compiled"
-       [renderSize]="config.partialSize"
-       [renderUpdate]="updateCounter"
-       [renderHistogram]="{}"
-       renderMode="1"
-       renderOffScreen="true"
-       renderPartials="true"
-       class="mat-elevation-z2 overflow-y"
-       style="z-index: 4000; background-color: #fafafa"></div>
   <div fxLayout="column" style="z-index: 3000">
     <div [render]="graph"
          [renderSize]="config.editSize"
          [renderTime]="time"
          [renderUpdate]="updateCounter"
+         [renderHistogram]="histogram"
+         [renderHistogramBins]="config.histogramBin"
          renderFull="true"
          renderDirect="true"
          renderMode="1"
          (renderCompiled)="onCompiled($event)"
-         class="mat-elevation-z2"
+         class="mat-elevation-z1"
          style="background-color: #888; z-index: 4000"
          [style.width.px]="config.editSize[0]"
          [style.height.px]="config.editSize[1]"
          #renderMain></div>
-    <md-toolbar class="mat-elevation-z1">
+    <md-toolbar class="mat-elevation-z1" style="z-index: 2000">
       <button md-icon-button (click)="start()">
         <md-icon [textContent]="running ? 'pause' : 'play_arrow'"></md-icon>
       </button>
@@ -140,5 +141,11 @@
         <span *ngIf="time.value >= 0">{{time.value | number}}</span> ms
       </div>
     </md-toolbar>
+    <div [histogram]="histogram.value"
+         [histogramSize]="[config.editSize[0], config.histogramSize]"
+         [histogramOptionsDark]="config.histogramDark"
+         [histogramOptionsCurve]="config.histogramCurve"
+         [histogramOptionsMid]="true"
+         class="mat-elevation-z1"></div>
   </div>
 </div>

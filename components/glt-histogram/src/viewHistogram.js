@@ -20,7 +20,18 @@ export function viewHistogram(svg, h, options = {}) {
     const extentPosition = d => d < h.ext[0] ? xe(0) : d > h.ext[1] ? xe(1) : xv(Math.max(h.ext[0], Math.min(h.ext[1], d)));
 
     const tp = Math.max(opt.overflow, opt.fontSize * opt.em);
-    const x = scaleLinear().domain([0, l - 1]).range([h.overflow ? opt.overflow : 0, opt.width - (h.overflow ? opt.overflow : 0)]);
+
+    const t = (opt.width - (h.overflow ? opt.overflow : 0) * 2) / (l + 1) / 2;
+
+    const x = !opt.curve
+        ? scaleLinear().domain([0, l - 1]).range([h.overflow ? opt.overflow : 0, opt.width - (h.overflow ? opt.overflow : 0)])
+        : scaleLinear().domain([0, 1, l - 2 + 2, l - 1 + 2]).range([
+            h.overflow ? opt.overflow : 0,
+            (h.overflow ? opt.overflow : 0) + t,
+            opt.width - (h.overflow ? opt.overflow : 0) - t,
+            opt.width - (h.overflow ? opt.overflow : 0)
+        ]);
+
     const xo = scaleLinear().domain([0, 1, 2, 3]).range([0, opt.overflow, opt.width - opt.overflow, opt.width]);
     const xv = scaleLinear().domain(h.ext).range([h.overflow ? tp : 0 + opt.shift, opt.width - (h.overflow ? tp : 0 + opt.shift)]);
     const xe = scaleLinear().domain([0, 1]).range([0, opt.width]);
@@ -101,9 +112,11 @@ export function viewHistogram(svg, h, options = {}) {
         stacked.forEach(d => d.push(d[d.length - 1]));
     }
 
-    if (!opt.curve) {
-        stacked2.forEach(d => d.push(d[d.length - 1]));
+    if (opt.curve) {
+        stacked2.forEach(d => d.unshift(d[0]));
     }
+
+    stacked2.forEach(d => d.push(d[d.length - 1]));
 
     svg.style('background-color', opt.background);
 
@@ -159,8 +172,8 @@ export function viewHistogram(svg, h, options = {}) {
         .append('line')
         .attr('class', 'line-mid')
         .merge(join)
-        .attr('x1', x((l - 1) / 2))
-        .attr('x2', x((l - 1) / 2))
+        .attr('x1', x((l - 1 + 2 * !!opt.curve) / 2))
+        .attr('x2', x((l - 1 + 2 * !!opt.curve) / 2))
         .attr('y1', y(0))
         .attr('y2', y(h.normalize))
         .attr('stroke-width', opt.strokeWidth)
@@ -174,7 +187,7 @@ export function viewHistogram(svg, h, options = {}) {
         .attr('class', 'labels')
         .merge(join)
         .attr('text-anchor', (d, i) => ['start', 'middle', 'end'][opt.mid ? i : (i * 2)])
-        .attr('dominant-baseline', 'text-before-edge')
+        .attr('dominant-baseline', 'hanging')
         .attr('font-family', opt.font)
         .attr('font-size', opt.fontSize)
         .attr('line-height', opt.line)
@@ -190,7 +203,7 @@ export function viewHistogram(svg, h, options = {}) {
         .attr('class', 'extent')
         .merge(join)
         .attr('text-anchor', (d, i) => ['start', 'end'][i])
-        .attr('dominant-baseline', 'text-after-edge')
+        .attr('dominant-baseline', 'baseline')
         .attr('font-family', opt.font)
         .attr('font-size', opt.fontSize)
         .attr('line-height', opt.line)
@@ -206,7 +219,7 @@ export function viewHistogram(svg, h, options = {}) {
         .attr('class', 'percent')
         .merge(join)
         .attr('text-anchor', (d, i) => ['start', 'end'][i])
-        .attr('dominant-baseline', 'text-after-edge')
+        .attr('dominant-baseline', 'baseline')
         .attr('font-family', opt.font)
         .attr('font-size', opt.fontSize)
         .attr('line-height', opt.line)
@@ -222,12 +235,12 @@ viewHistogram.m = function (dark) {
             width: 128,
             height: 128,
             overflow: 12,
-            top: 16,
-            bottom: 16,
-            line: 12,
+            top: 17,
+            bottom: 17,
+            line: 20,
             fontSize: 12,
             em: 2.25,
-            shift: 2,
+            shift: 3,
             font: '"Roboto", monospace',
             curve: true,
             labels: true,

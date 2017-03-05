@@ -1,7 +1,7 @@
 <md-list *ngIf="menu === 'thumbnails'">
   <!--<h3 md-subheader>Application</h3>-->
   <!--<md-list-item>-->
-    <!--<button md-button fullScreen>Fullscreen</button>-->
+  <!--<button md-button fullScreen>Fullscreen</button>-->
   <!--</md-list-item>-->
   <h3 md-subheader>Thumbnails</h3>
   <md-list-item>
@@ -51,6 +51,27 @@
         {{item[0]}} &times; {{item[1]}}
       </md-option>
     </md-select>
+  </md-list-item>
+  <h3 md-subheader>Histogram</h3>
+  <md-list-item class="select">
+    <md-select placeholder="Histogram size" [(ngModel)]="config.histogramSize">
+      <md-option *ngFor="let item of config.histogramSizes" [value]="item">
+        {{item}}
+      </md-option>
+    </md-select>
+  </md-list-item>
+  <md-list-item class="select">
+    <md-select placeholder="Histogram bins" [(ngModel)]="config.histogramBin">
+      <md-option *ngFor="let item of config.histogramBins" [value]="item">
+        {{item}}
+      </md-option>
+    </md-select>
+  </md-list-item>
+  <md-list-item>
+    <md-slide-toggle [(ngModel)]="config.histogramDark">Dark</md-slide-toggle>
+  </md-list-item>
+  <md-list-item>
+    <md-slide-toggle [(ngModel)]="config.histogramCurve">Curved</md-slide-toggle>
   </md-list-item>
 </md-list>
 

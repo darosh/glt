@@ -20,7 +20,8 @@ declare const window;
     'renderDirect',
     'renderOffScreen',
     'renderPreCompiled',
-    'renderHistogram'
+    'renderHistogram',
+    'renderHistogramBins'
   ]
 })
 export class RenderDirective implements OnInit {
@@ -36,6 +37,7 @@ export class RenderDirective implements OnInit {
   renderOffScreen;
   renderPreCompiled;
   renderHistogram;
+  renderHistogramBins;
 
   full;
 
@@ -131,25 +133,28 @@ export class RenderDirective implements OnInit {
         this.renderOffScreen ? sizeA : null
       );
 
-    // if (this.renderHistogram) {
-    //   this.service.renderer.render(
-    //     this.renderPartials ? this.compiled.partials : this.compiled.shader,
-    //     this.compiled.code,
-    //     this.renderMode ? this.compiled.uniforms : null,
-    //     this.renderOffScreen ? sizeA : null,
-    //     true
-    //   );
-    //
-    //   if (this.renderPartials) {
-    //     const array = this.service.renderer.pixels(true);
-    //     this.renderHistogram.value = this.compiled.partials.map((v, i) => {
-    //       const s = sizeA[0] * sizeA[0] * 4;
-    //       const f = s * i;
-    //       const t = s * (i + 1);
-    //       return glt.histogram(array, 32, true, f, t);
-    //     });
-    //   }
-    // }
+    if (this.renderHistogram) {
+      // this.service.renderer.render(
+      //   this.renderPartials ? this.compiled.partials : this.compiled.shader,
+      //   this.compiled.code,
+      //   this.renderMode ? this.compiled.uniforms : null,
+      //   this.renderOffScreen ? sizeA : null,
+      //   true
+      // );
+
+      if (this.renderPartials) {
+        // const array = this.service.renderer.pixels(true);
+        // this.renderHistogram.value = this.compiled.partials.map((v, i) => {
+        //   const s = sizeA[0] * sizeA[0] * 4;
+        //   const f = s * i;
+        //   const t = s * (i + 1);
+        //   return glt.histogram(array, 32, true, f, t);
+        // });
+      } else {
+        const array = this.service.renderer.pixels(false, true);
+        this.renderHistogram.value = glt.getHistogram(array, [0, 255], false, this.renderHistogramBins);
+      }
+    }
 
     if (this.renderTime) {
       this.renderTime.value = Date.now() - start;

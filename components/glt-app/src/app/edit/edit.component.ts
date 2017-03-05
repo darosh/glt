@@ -29,6 +29,7 @@ export class EditComponent {
 
   time = {value: -1};
   compiled: any = {};
+  histogram: any = {};
 
   constructor(config: ConfigService, route: ActivatedRoute) {
     this.config = config;

@@ -106,3 +106,7 @@ h1, h2 {
 [render] > canvas {
   transform: translateZ(0);
 }
+
+svg {
+  display: block;
+}

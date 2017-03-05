@@ -80,8 +80,15 @@ export class Renderer {
         return this;
     }
 
-    pixels(float = false) {
-        if (float) {
+    pixels(float = false, direct = false) {
+        if (direct) {
+            if (!this.buffer || (this.buffer.length !== (this._size[0] * this._size[1] * 4))) {
+                this.buffer = new Uint8Array(this._size[0] * this._size[1] * 4);
+            }
+            const gl = this.renderer.getContext();
+            gl.readPixels(0, 0, this._size[0], this._size[1], gl.RGBA, gl.UNSIGNED_BYTE, this.buffer);
+            return this.buffer;
+        } else if (float) {
             if (!this.bufferFloat || (this.buffer.length !== (this.targetFloat.width * this.targetFloat.height * 4))) {
                 this.bufferFloat = new Float32Array(this.targetFloat.width * this.targetFloat.height * 4);
             }

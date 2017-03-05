@@ -12,6 +12,7 @@ import {AppComponent} from './app.component';
 import {KeysPipe} from './pipes/keys.pipe';
 import {CjsonPipe} from './pipes/cjson.pipe';
 import {RenderDirective} from './directives/render.directive';
+import {HistogramDirective} from './directives/histogram.directive';
 import {ListComponent} from './list/list.component';
 import {EditComponent} from './edit/edit.component';
 import {MenuComponent} from './menu/menu.component';
@@ -28,13 +29,14 @@ import {FullService} from './services/full.service';
     AppComponent,
     KeysPipe,
     CjsonPipe,
+    FullScreenDirective,
     RenderDirective,
+    HistogramDirective,
+    MenuComponent,
     ListComponent,
     EditComponent,
-    MenuComponent,
     PrototypesComponent,
-    ExtractorComponent,
-    FullScreenDirective
+    ExtractorComponent
   ],
   imports: [
     BrowserModule,

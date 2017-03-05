@@ -25,6 +25,7 @@
       "scripts": [
         "../../three/three.js",
         "../../glt/glt.js",
+        "../../glt-histogram/glt-histogram.js",
         "../../glt-samples/glt-samples.js",
         "../../glt-extractor/glt-extractor.js",
         "../../cjson/cjson.js",
