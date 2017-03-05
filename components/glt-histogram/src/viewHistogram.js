@@ -249,6 +249,7 @@ viewHistogram.m = function (dark) {
             mid: false,
             precision: 1,
             colors: ['#888', '#ff4', '#f4f', '#4ff', '#f44', '#4f4', '#44f'],
+            background: '#fff',
             strokeWidth: 0.75,
             stroke: 'rgba(0,0,0,.66)',
             dash: '3 3'

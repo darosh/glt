@@ -110,3 +110,11 @@ h1, h2 {
 svg {
   display: block;
 }
+
+.divider {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.bg {
+  background-color: #fafafa;
+}
