@@ -118,3 +118,7 @@ svg {
 .bg {
   background-color: #fafafa;
 }
+
+.mat-sidenav-transition .mat-sidenav-content {
+  transition-duration: 0s !important;
+}
