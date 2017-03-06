@@ -15,7 +15,6 @@ declare const window;
 export class RenderDirective implements OnInit, OnDestroy, OnChanges {
   @Input() appRender;
   @Input() renderSize;
-  @Input() renderTime;
   @Input() renderPartials = false;
   @Input() renderQuality = 1;
   @Input() renderMode = 0;
@@ -24,8 +23,12 @@ export class RenderDirective implements OnInit, OnDestroy, OnChanges {
   @Input() renderDirect;
   @Input() renderOffScreen;
   @Input() renderPreCompiled;
-  @Input() renderHistogram;
   @Input() renderHistogramBins;
+  @Input() renderHistogram;
+
+  @Output() renderHistogramEvent = new EventEmitter();
+  @Output() renderCompiled = new EventEmitter();
+  @Output() renderTime = new EventEmitter();
 
   full;
 
@@ -37,8 +40,7 @@ export class RenderDirective implements OnInit, OnDestroy, OnChanges {
   destroyed;
   fullService;
 
-
-  @Output('renderCompiled') renderCompiled = new EventEmitter();
+  FPS = 1000 / 30;
 
   constructor(service: RenderService, full: FullService, el: ElementRef) {
     this.el = el;
@@ -115,7 +117,7 @@ export class RenderDirective implements OnInit, OnDestroy, OnChanges {
 
     (this.renderOffScreen ? this.service.renderer : this.service.renderer.size(sizeA))
       .render(
-        this.renderPartials ? this.compiled.partials : this.compiled.shader,
+        this.renderPartials ? this.compiled.partials.map(p => p.shader) : this.compiled.shader,
         this.compiled.code,
         this.renderMode ? this.compiled.uniforms : null,
         this.renderOffScreen ? sizeA : null
@@ -140,13 +142,12 @@ export class RenderDirective implements OnInit, OnDestroy, OnChanges {
         // });
       } else {
         const array = this.service.renderer.pixels(false, true);
-        this.renderHistogram.value = glt.getHistogram(array, [0, 255], false, this.renderHistogramBins);
+
+        this.renderHistogramEvent.emit(glt.getHistogram(array, [0, 255], false, this.renderHistogramBins));
       }
     }
 
-    if (this.renderTime) {
-      this.renderTime.value = Date.now() - start;
-    }
+    this.renderTime.emit(Date.now() - start);
 
     if (this.renderFull && full) {
       window.document.body.style.display = 'none';
@@ -177,12 +178,24 @@ export class RenderDirective implements OnInit, OnDestroy, OnChanges {
 
       if (this.frontend !== this.service.canvas) {
         if (this.renderOffScreen) {
-          this.service.renderer.drawTarget(this.frontend);
+          if (typeof this.renderOffScreen === 'object') {
+            if (this.renderPartials) {
+              this.offScreenPartials();
+            }
+          } else {
+            this.service.renderer.drawTarget(this.frontend);
+          }
         } else {
           this.service.renderer.draw(this.frontend);
         }
       }
     }
+  }
+
+  offScreenPartials() {
+    this.compiled.partials.forEach((p, i) => {
+      // window.document.createElement('canvas');
+    });
   }
 
   update() {
@@ -192,14 +205,24 @@ export class RenderDirective implements OnInit, OnDestroy, OnChanges {
         return done();
       }
 
-      window.requestAnimationFrame(() => {
+      if ((this.service.time > that.FPS) || ((Date.now() - this.service.last) > that.FPS)) {
+        this.service.time = 0;
+      }
+
+      if (!this.service.time) {
+        window.requestAnimationFrame(next);
+      } else {
+        next();
+      }
+
+      function next() {
         if (that.destroyed) {
           return done();
         }
 
         that.paint();
         done();
-      });
+      }
     });
   }
 

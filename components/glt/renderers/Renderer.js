@@ -128,16 +128,5 @@ export class Renderer {
         let id = ct.getImageData(0, 0, canvas.width, canvas.height);
         id.data.set(new Uint8ClampedArray(this.pixels().buffer, 0, canvas.width * canvas.height * 4));
         ct.putImageData(id, 0, 0, 0, 0, canvas.width, canvas.height);
-
-        // window.createImageBitmap(
-        //     new window.ImageData(
-        //         new Uint8ClampedArray(this.pixels().buffer), this.target.width, this.target.height),
-        //     0, 0, this.target.width, this.target.height).then((id) => {
-        //     canvas.getContext('2d').drawImage(
-        //         id,
-        //         0, 0, this.target.width, this.target.height,
-        //         0, 0, canvas.width, canvas.height
-        //     );
-        // });
     }
 }

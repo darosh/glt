@@ -26,9 +26,10 @@ export class EditComponent implements OnDestroy {
   running = false;
   updateCounter = 0;
 
-  time = {value: -1};
+  time = -1;
   compiled: any = {};
-  histogram: any = {};
+  histogram = null;
+  renderedPartials: any = {};
 
   constructor(config: ConfigService, route: ActivatedRoute) {
     this.config = config;

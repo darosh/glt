@@ -2,18 +2,26 @@
   <md-input-container fxHide>
     <textarea mdInput></textarea>
   </md-input-container>
-  <div *ngIf="compiled"
-       appRender
-       [renderPreCompiled]="compiled"
-       [renderSize]="config.partialSize"
-       [renderUpdate]="updateCounter"
-       renderMode="1"
-       renderOffScreen="true"
-       renderPartials="true"
-       class="mat-elevation-z2 overflow-y"
-       style="z-index: 4000; background-color: #fafafa"></div>
   <md-tab-group fxFlex fxLayout="column" dynamicHeight class="mat-elevation-z2"
                 style="z-index: 5000; background-color: #fafafa">
+    <md-tab label="Components" fxFlex>
+      <div fxFlex fxLayoutWrap fxLayout="row" fxLayoutAlign="start start" class="overflow-y padding">
+        <div *ngIf="compiled"
+             fxHide
+             appRender
+             [renderPreCompiled]="compiled"
+             [renderSize]="config.partialSize"
+             [renderUpdate]="updateCounter"
+             renderMode="1"
+             [renderOffScreen]="renderedPartials"
+             renderPartials="true"
+             style="z-index: 4000; background-color: #fafafa"></div>
+        <div *ngFor="let item of compiled.ids | keys" class="padding mat-elevation-z1">
+          <span>{{item.key}} &mdash; {{item.value[0]}}</span>
+          <div></div>
+        </div>
+      </div>
+    </md-tab>
     <md-tab label="Uniforms" fxFlex>
       <div fxFlex fxLayoutWrap fxLayout="row" fxLayoutAlign="start start" class="overflow-y padding">
         <div *ngFor="let item of compiled.uniforms | keys" fxFlex="375px" class="padding">
@@ -112,9 +120,10 @@
   <div fxLayout="column" style="z-index: 3000" class="bg">
     <div [appRender]="graph"
          [renderSize]="config.editSize"
-         [renderTime]="time"
+         (renderTime)="time = $event"
          [renderUpdate]="updateCounter"
-         [renderHistogram]="histogram"
+         renderHistogram="true"
+         (renderHistogramEvent)="histogram = $event"
          [renderHistogramBins]="config.histogramBin"
          renderFull="true"
          renderDirect="true"
@@ -140,15 +149,17 @@
       </button>
       <span fxFlex></span>
       <div *ngIf="config.editSize[0] > 256" class="mono padding">
-        <span *ngIf="time.value < 0">&mdash;</span>
-        <span *ngIf="time.value >= 0">{{time.value | number}}</span> ms
+        <span *ngIf="time < 0">&mdash;</span>
+        <span *ngIf="time >= 0">{{time | number}}</span> ms
       </div>
     </md-toolbar>
-    <div [appHistogram]="histogram.value"
-         [histogramSize]="[config.editSize[0], config.histogramSize]"
-         [histogramOptionsDark]="config.histogramDark"
-         [histogramOptionsCurve]="config.histogramCurve"
-         [histogramOptionsMid]="true"
-         class="divider"></div>
+    <div
+      *ngIf="histogram"
+      [appHistogram]="histogram"
+      [histogramSize]="[config.editSize[0], config.histogramSize]"
+      [histogramOptionsDark]="config.histogramDark"
+      [histogramOptionsCurve]="config.histogramCurve"
+      [histogramOptionsMid]="true"
+      class="divider"></div>
   </div>
 </div>

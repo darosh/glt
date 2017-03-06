@@ -32,7 +32,7 @@ export class ListComponent implements OnDestroy {
     }
 
     while (list ? list.length : this.recipes.length < this.config.randomItems) {
-      this.times.push({value: -1});
+      this.times.push(-1);
       if (list) {
         this.recipes.push(list.shift());
       } else {

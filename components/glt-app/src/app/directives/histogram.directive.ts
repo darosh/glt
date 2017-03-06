@@ -26,6 +26,7 @@ export class HistogramDirective implements OnInit, OnChanges {
     this.el.nativeElement.appendChild(this.svg);
     this.svg.setAttribute('width', this.histogramSize[0]);
     this.svg.setAttribute('height', this.histogramSize[1]);
+    this.ngOnChanges(null);
   }
 
   ngOnChanges(e) {
