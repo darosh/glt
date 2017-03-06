@@ -258,19 +258,38 @@ export const samplesDemo = [
         ],
     },
     {
-        "title": "Worley + twirl",
-        "data": [
-            ["WorleyF1", 0.22, 0.33],
-            ["Invert"],
-            ["Twirl", 0.8099999999999994, 26, [0, 0]],
+        title: 'Worley + twirl',
+        data: [
+            ['WorleyF1', 0.22, 0.33],
+            ['Invert'],
+            ['Twirl', 0.81, 26, [0, 0]],
             [
-                "CosPalette",
-                [0.2799999999999999, 0.28, 0.12],
+                'CosPalette',
+                [0.28, 0.28, 0.12],
                 [0.48, 0.59, 0.36],
                 [0.53, 0.43, 0.61],
-                [0.32999999999999996, 0.5700000000000001, 0.5599999999999999]
+                [0.33, 0.57, 0.56]
             ],
-            ["Scale", [4.13999999999996, 1.4900000000000029]]
+            ['Scale', [4.14, 1.49]]
+        ]
+    },
+    {
+        title: 'RGB',
+        data: [
+            [
+                'RGB',
+                {data: [['SimplexNoise'], ['Normalize']]},
+                {
+                    data: [
+                        ['SimplexNoise'],
+                        ['Normalize'],
+                        ['Translate', [51.43, -60.57]]
+                    ]
+                },
+                {data: [['SimplexNoise'], ['Normalize'], ['Translate', [-96, 92.57]]]}
+            ],
+            ['Gain', 0.05],
+            ['Scale', [-8.71, -7.57]]
         ]
     }
 ];

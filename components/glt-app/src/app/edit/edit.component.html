@@ -132,11 +132,14 @@
       <button md-icon-button (click)="reset()">
         <md-icon>undo</md-icon>
       </button>
+      <button md-icon-button (click)="reset()">
+        <md-icon>redo</md-icon>
+      </button>
       <button md-icon-button (click)="renderMain.click($event)">
         <md-icon>fullscreen</md-icon>
       </button>
       <span fxFlex></span>
-      <div class="mono padding">
+      <div *ngIf="config.editSize[0] > 256" class="mono padding">
         <span *ngIf="time.value < 0">&mdash;</span>
         <span *ngIf="time.value >= 0">{{time.value | number}}</span> ms
       </div>
