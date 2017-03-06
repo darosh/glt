@@ -10,10 +10,10 @@ import {FullService} from '../services/full.service';
 declare const window;
 
 @Directive({
-  selector: '[render]',
+  selector: '[appRender]',
 })
 export class RenderDirective implements OnInit, OnDestroy, OnChanges {
-  @Input() render;
+  @Input() appRender;
   @Input() renderSize;
   @Input() renderTime;
   @Input() renderPartials = false;
@@ -86,7 +86,7 @@ export class RenderDirective implements OnInit, OnDestroy, OnChanges {
         this.compiled = this.renderPreCompiled;
       }
     } else {
-      this.compiled = glt.compile(this.render, this.renderMode);
+      this.compiled = glt.compile(this.appRender, this.renderMode);
     }
 
     this.renderCompiled.emit(this.compiled);
@@ -94,7 +94,7 @@ export class RenderDirective implements OnInit, OnDestroy, OnChanges {
 
   ngOnChanges(e) {
     if (this.frontend) {
-      if (e.render) {
+      if (e.appRender) {
         this.compile();
       }
 

@@ -6,7 +6,7 @@ import {ResizeService} from './services/resize.service';
 declare const window;
 
 @Component({
-  selector: '[app-root]',
+  selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })

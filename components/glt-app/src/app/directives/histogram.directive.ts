@@ -5,10 +5,10 @@ import {glt} from '../../vendor';
 declare const window;
 
 @Directive({
-  selector: '[histogram]',
+  selector: '[appHistogram]',
 })
 export class HistogramDirective implements OnInit, OnChanges {
-  @Input() histogram;
+  @Input() appHistogram;
   @Input() histogramSize;
   @Input() histogramOptionsDark;
   @Input() histogramOptionsCurve;
@@ -29,7 +29,7 @@ export class HistogramDirective implements OnInit, OnChanges {
   }
 
   ngOnChanges(e) {
-    if (this.svg && this.histogram && this.histogramSize) {
+    if (this.svg && this.appHistogram && this.histogramSize) {
       this.svg.setAttribute('width', this.histogramSize[0]);
       this.svg.setAttribute('height', this.histogramSize[1]);
       const opt = glt.viewHistogram.m(this.histogramOptionsDark);
@@ -37,7 +37,7 @@ export class HistogramDirective implements OnInit, OnChanges {
       opt.curve = this.histogramOptionsCurve;
       opt.width = this.histogramSize[0];
       opt.height = this.histogramSize[1];
-      glt.viewHistogram(this.svg, this.histogram, opt);
+      glt.viewHistogram(this.svg, this.appHistogram, opt);
     }
   }
 }

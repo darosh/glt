@@ -3,14 +3,14 @@ import {Directive, HostListener, Input} from '@angular/core';
 import {screenfull} from '../../vendor';
 
 @Directive({
-  selector: '[fullScreen]',
+  selector: '[appFullScreen]',
 })
 export class FullScreenDirective {
-  @Input() fullScreen;
+  @Input() appFullScreen;
 
   @HostListener('click') clicked() {
     if (screenfull.enabled) {
-      screenfull.toggle(this.fullScreen);
+      screenfull.toggle(this.appFullScreen);
     }
   }
 }

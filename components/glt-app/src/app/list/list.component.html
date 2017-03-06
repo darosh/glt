@@ -8,7 +8,7 @@
     <div fxFlexFill>
       <div class="card-title" *ngIf="item.title">{{item.title}}</div>
     </div>
-    <div [render]="item"
+    <div [appRender]="item"
          [renderSize]="config.thumbnailSize"
          [renderQuality]="config.thumbnailQuality"
          [renderTime]="times[i]"

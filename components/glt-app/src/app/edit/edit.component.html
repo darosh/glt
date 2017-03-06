@@ -3,7 +3,7 @@
     <textarea mdInput></textarea>
   </md-input-container>
   <div *ngIf="compiled"
-       render
+       appRender
        [renderPreCompiled]="compiled"
        [renderSize]="config.partialSize"
        [renderUpdate]="updateCounter"
@@ -110,7 +110,7 @@
     </md-tab>
   </md-tab-group>
   <div fxLayout="column" style="z-index: 3000" class="bg">
-    <div [render]="graph"
+    <div [appRender]="graph"
          [renderSize]="config.editSize"
          [renderTime]="time"
          [renderUpdate]="updateCounter"
@@ -141,7 +141,7 @@
         <span *ngIf="time.value >= 0">{{time.value | number}}</span> ms
       </div>
     </md-toolbar>
-    <div [histogram]="histogram.value"
+    <div [appHistogram]="histogram.value"
          [histogramSize]="[config.editSize[0], config.histogramSize]"
          [histogramOptionsDark]="config.histogramDark"
          [histogramOptionsCurve]="config.histogramCurve"
