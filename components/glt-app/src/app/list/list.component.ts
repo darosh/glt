@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import {ConfigService} from '../services/config.service';
 import {ActivatedRoute} from '@angular/router';
 
@@ -10,7 +10,7 @@ declare const window;
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.css']
 })
-export class ListComponent {
+export class ListComponent implements OnDestroy {
   config: any;
   recipes: any = [];
   times: any = [];
@@ -53,7 +53,7 @@ export class ListComponent {
   }
 
   toJson(value) {
-    return JSON.stringify(value)
+    return JSON.stringify(value);
   }
 
   spacers(w) {

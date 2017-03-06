@@ -1,4 +1,7 @@
-import {Directive, ElementRef, OnInit, EventEmitter, Output, HostListener} from '@angular/core';
+import {
+  Directive, ElementRef, OnInit, EventEmitter, Output, HostListener, OnDestroy, Input,
+  OnChanges
+} from '@angular/core';
 import {RenderService} from '../services/render.service';
 
 import {glt, screenfull} from '../../vendor';
@@ -8,36 +11,21 @@ declare const window;
 
 @Directive({
   selector: '[render]',
-  inputs: [
-    'render',
-    'renderSize',
-    'renderTime',
-    'renderPartials',
-    'renderQuality',
-    'renderMode',
-    'renderUpdate',
-    'renderFull',
-    'renderDirect',
-    'renderOffScreen',
-    'renderPreCompiled',
-    'renderHistogram',
-    'renderHistogramBins'
-  ]
 })
-export class RenderDirective implements OnInit {
-  render;
-  renderSize;
-  renderTime;
-  renderPartials = false;
-  renderQuality = 1;
-  renderMode = 0;
-  renderUpdate;
-  renderFull;
-  renderDirect;
-  renderOffScreen;
-  renderPreCompiled;
-  renderHistogram;
-  renderHistogramBins;
+export class RenderDirective implements OnInit, OnDestroy, OnChanges {
+  @Input() render;
+  @Input() renderSize;
+  @Input() renderTime;
+  @Input() renderPartials = false;
+  @Input() renderQuality = 1;
+  @Input() renderMode = 0;
+  @Input() renderUpdate;
+  @Input() renderFull;
+  @Input() renderDirect;
+  @Input() renderOffScreen;
+  @Input() renderPreCompiled;
+  @Input() renderHistogram;
+  @Input() renderHistogramBins;
 
   full;
 
@@ -82,7 +70,7 @@ export class RenderDirective implements OnInit {
     }
 
     this.compile();
-    let size = this.getSize();
+    const size = this.getSize();
     this.frontend.width = size[0];
     this.frontend.height = size[1];
     this.el.nativeElement.appendChild(this.frontend);
@@ -121,9 +109,9 @@ export class RenderDirective implements OnInit {
   }
 
   paint(full) {
-    let sizeA = this.getSize(this.renderQuality);
-    let sizeB = this.getSize();
-    let start = Date.now();
+    const sizeA = this.getSize(this.renderQuality);
+    const sizeB = this.getSize();
+    const start = Date.now();
 
     (this.renderOffScreen ? this.service.renderer : this.service.renderer.size(sizeA))
       .render(

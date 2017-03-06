@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {ConfigService} from './services/config.service';
 import {ResizeService} from './services/resize.service';
@@ -10,7 +10,7 @@ declare const window;
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   config;
   router;
   route;
@@ -39,6 +39,6 @@ export class AppComponent {
           currentRoute = currentRoute.children[0];
         }
         this.data = currentRoute.snapshot.data;
-      })
+      });
   }
 }

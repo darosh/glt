@@ -1,4 +1,4 @@
-import {Directive, ElementRef, OnInit} from '@angular/core';
+import {Directive, ElementRef, Input, OnChanges, OnInit} from '@angular/core';
 
 import {glt} from '../../vendor';
 
@@ -6,20 +6,14 @@ declare const window;
 
 @Directive({
   selector: '[histogram]',
-  inputs: [
-    'histogram',
-    'histogramSize',
-    'histogramOptionsDark',
-    'histogramOptionsCurve',
-    'histogramOptionsMid'
-  ]
 })
-export class HistogramDirective implements OnInit {
-  histogram;
-  histogramSize;
-  histogramOptionsDark;
-  histogramOptionsCurve;
-  histogramOptionsMid;
+export class HistogramDirective implements OnInit, OnChanges {
+  @Input() histogram;
+  @Input() histogramSize;
+  @Input() histogramOptionsDark;
+  @Input() histogramOptionsCurve;
+  @Input() histogramOptionsMid;
+
   el;
   svg;
 

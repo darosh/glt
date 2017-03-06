@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {ConfigService} from '../services/config.service';
 
@@ -10,8 +10,7 @@ declare const window;
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.css']
 })
-export class EditComponent {
-  indexFn = (i) => i;
+export class EditComponent implements OnDestroy {
   config;
 
   route;
@@ -42,6 +41,8 @@ export class EditComponent {
 
     this.graph = this.config.source;
   }
+
+  indexFn = (i) => i;
 
   ngOnDestroy() {
     this.stop();
@@ -78,8 +79,10 @@ export class EditComponent {
   treeChanged() {
     this.syntaxJson = CJSON(this.compiled.syntax);
 
-    for (let key in this.compiled.uniforms) {
-      this.compiled.uniforms[key].animate = this.compiled.uniforms[key].value.length ? [] : true;
+    for (const key in this.compiled.uniforms) {
+      if (this.compiled.uniforms.hasOwnProperty(key)) {
+        this.compiled.uniforms[key].animate = this.compiled.uniforms[key].value.length ? [] : true;
+      }
     }
 
     this.updateDisplay();
@@ -91,7 +94,13 @@ export class EditComponent {
       glsl: glt.getShaderGlslSandbox,
       toy: glt.getShaderShadertoy,
     };
-    this.display = glt.formatShader(this.tree, parseInt(this.view.vars.toString()), this.view.multi, this.compiled.uniforms, shaders[this.view.type]);
+    this.display = glt.formatShader(
+      this.tree,
+      parseInt(this.view.vars.toString(), 10),
+      this.view.multi,
+      this.compiled.uniforms,
+      shaders[this.view.type]
+    );
   }
 
   randomize() {
