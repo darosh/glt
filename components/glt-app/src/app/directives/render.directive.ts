@@ -6,6 +6,7 @@ import {RenderService} from '../services/render.service';
 
 import {glt, screenfull} from '../../vendor';
 import {FullService} from '../services/full.service';
+import {QueueService} from '../services/queue.service';
 
 declare const window;
 
@@ -29,11 +30,13 @@ export class RenderDirective implements OnInit, OnDestroy, OnChanges {
   @Output() renderHistogramEvent = new EventEmitter();
   @Output() renderCompiled = new EventEmitter();
   @Output() renderTime = new EventEmitter();
+  @Output() renderOffScreenEvent = new EventEmitter();
 
   full;
 
   el;
   service;
+  queue;
 
   compiled;
   frontend;
@@ -42,8 +45,9 @@ export class RenderDirective implements OnInit, OnDestroy, OnChanges {
 
   FPS = 1000 / 30;
 
-  constructor(service: RenderService, full: FullService, el: ElementRef) {
+  constructor(service: RenderService, queue: QueueService, full: FullService, el: ElementRef) {
     this.el = el;
+    this.queue = queue;
     this.service = service;
     this.fullService = full;
   }
@@ -120,7 +124,8 @@ export class RenderDirective implements OnInit, OnDestroy, OnChanges {
         this.renderPartials ? this.compiled.partials.map(p => p.shader) : this.compiled.shader,
         this.compiled.code,
         this.renderMode ? this.compiled.uniforms : null,
-        this.renderOffScreen ? sizeA : null
+        this.renderOffScreen ? sizeA : null,
+        true
       );
 
     if (this.renderHistogram) {
@@ -178,13 +183,13 @@ export class RenderDirective implements OnInit, OnDestroy, OnChanges {
 
       if (this.frontend !== this.service.canvas) {
         if (this.renderOffScreen) {
-          if (typeof this.renderOffScreen === 'object') {
-            if (this.renderPartials) {
-              this.offScreenPartials();
-            }
-          } else {
-            this.service.renderer.drawTarget(this.frontend);
+          // if (typeof this.renderOffScreen === 'object') {
+          if (this.renderPartials) {
+            this.offScreenPartials(sizeA);
           }
+          // } else {
+          // this.service.renderer.drawTarget(this.frontend);
+          // }
         } else {
           this.service.renderer.draw(this.frontend);
         }
@@ -192,24 +197,32 @@ export class RenderDirective implements OnInit, OnDestroy, OnChanges {
     }
   }
 
-  offScreenPartials() {
+  offScreenPartials(sizeA) {
+    const ret: any = {};
+    const length = 4 * sizeA[0] * sizeA[0];
+
     this.compiled.partials.forEach((p, i) => {
-      // window.document.createElement('canvas');
+      p.offset = length * (this.compiled.partials.length - 1 - i);
+      ret[p.syntax.id] = p;
     });
+
+    ret.size = [sizeA[0], sizeA[0]];
+    ret.pixels = this.service.renderer.pixels(true);
+    this.renderOffScreenEvent.emit(ret);
   }
 
   update() {
     const that: any = this;
-    this.service.next((done) => {
+    this.queue.next((done) => {
       if (that.destroyed) {
         return done();
       }
 
-      if ((this.service.time > that.FPS) || ((Date.now() - this.service.last) > that.FPS)) {
-        this.service.time = 0;
+      if ((this.queue.time > that.FPS) || ((Date.now() - this.service.last) > that.FPS)) {
+        this.queue.time = 0;
       }
 
-      if (!this.service.time) {
+      if (!this.queue.time) {
         window.requestAnimationFrame(next);
       } else {
         next();

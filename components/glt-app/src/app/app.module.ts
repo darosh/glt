@@ -8,19 +8,24 @@ import 'hammerjs';
 import {MaterialModule} from '@angular/material';
 import {FlexLayoutModule} from '@angular/flex-layout';
 
-import {AppComponent} from './app.component';
 import {KeysPipe} from './pipes/keys.pipe';
 import {CjsonPipe} from './pipes/cjson.pipe';
-import {RenderDirective} from './directives/render.directive';
-import {HistogramDirective} from './directives/histogram.directive';
+
+import {AppComponent} from './app.component';
+import {MenuComponent} from './menu/menu.component';
 import {ListComponent} from './list/list.component';
 import {EditComponent} from './edit/edit.component';
-import {MenuComponent} from './menu/menu.component';
 import {PrototypesComponent} from './prototypes/prototypes.component';
 import {ExtractorComponent} from './extractor/extractor.component';
-import {ConfigService} from './services/config.service';
-import {RenderService} from './services/render.service';
+
+import {RenderDirective} from './directives/render.directive';
+import {CanvasDirective} from './directives/canvas.directive';
+import {HistogramDirective} from './directives/histogram.directive';
 import {FullScreenDirective} from './directives/full-screen.directive';
+
+import {ConfigService} from './services/config.service';
+import {QueueService} from "./services/queue.service";
+import {RenderService} from './services/render.service';
 import {ResizeService} from './services/resize.service';
 import {FullService} from './services/full.service';
 
@@ -31,6 +36,7 @@ import {FullService} from './services/full.service';
     CjsonPipe,
     FullScreenDirective,
     RenderDirective,
+    CanvasDirective,
     HistogramDirective,
     MenuComponent,
     ListComponent,
@@ -57,7 +63,7 @@ import {FullService} from './services/full.service';
       {path: 'extractor', component: ExtractorComponent}
     ], {useHash: true})
   ],
-  providers: [ConfigService, RenderService, ResizeService, FullService],
+  providers: [ConfigService, RenderService, ResizeService, FullService, QueueService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

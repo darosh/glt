@@ -13,12 +13,15 @@
              [renderSize]="config.partialSize"
              [renderUpdate]="updateCounter"
              renderMode="1"
-             [renderOffScreen]="renderedPartials"
-             renderPartials="true"
-             style="z-index: 4000; background-color: #fafafa"></div>
+             renderOffScreen="true"
+             (renderOffScreenEvent)="renderedPartials = $event"
+             renderPartials="true"></div>
         <div *ngFor="let item of compiled.ids | keys" class="padding mat-elevation-z1">
           <span>{{item.key}} &mdash; {{item.value[0]}}</span>
-          <div></div>
+          <div *ngIf="renderedPartials && renderedPartials[item.key]"
+               [appCanvas]="renderedPartials.pixels"
+               [canvasSize]="renderedPartials.size"
+               [canvasOffset]="renderedPartials[item.key].offset"></div>
         </div>
       </div>
     </md-tab>
