@@ -207,18 +207,20 @@ export class RenderDirective implements OnInit, OnDestroy, OnChanges {
     });
 
     ret.size = [sizeA[0], sizeA[0]];
-    ret.pixels = this.service.renderer.pixels(true);
+    this.service.pixels = this.service.renderer.pixels(true);
+    ret.pixels = true;
     this.renderOffScreenEvent.emit(ret);
   }
 
   update() {
-    const that: any = this;
+    const self: any = this;
+
     this.queue.next((done) => {
-      if (that.destroyed) {
+      if (self.destroyed) {
         return done();
       }
 
-      if ((this.queue.time > that.FPS) || ((Date.now() - this.service.last) > that.FPS)) {
+      if ((this.queue.time > self.FPS) || ((Date.now() - this.queue.last) > self.FPS)) {
         this.queue.time = 0;
       }
 
@@ -229,11 +231,11 @@ export class RenderDirective implements OnInit, OnDestroy, OnChanges {
       }
 
       function next() {
-        if (that.destroyed) {
+        if (self.destroyed) {
           return done();
         }
 
-        that.paint();
+        self.paint();
         done();
       }
     });
