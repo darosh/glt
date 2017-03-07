@@ -17,9 +17,8 @@ export function viewHistogram(svg, h, options = {}) {
 
     const l = h.blocks[0].length - (h.overflow ? 2 : 0) + (!opt.curve ? 1 : 0);
 
-    const extentPosition = d => d < h.ext[0] ? xe(0) : d > h.ext[1] ? xe(1) : xv(Math.max(h.ext[0], Math.min(h.ext[1], d)));
-
-    const tp = Math.max(opt.overflow, opt.fontSize * opt.em);
+    // const tp = Math.max(opt.overflow, opt.fontSize * opt.em);
+    const tp = opt.overflow;
 
     const t = (opt.width - (h.overflow ? opt.overflow : 0) * 2) / (l + 1) / 2;
 
@@ -37,26 +36,27 @@ export function viewHistogram(svg, h, options = {}) {
     const xe = scaleLinear().domain([0, 1]).range([0, opt.width]);
     const y = scaleLinear().domain([0, h.normalize]).range([opt.height - opt.bottom, opt.top]);
     const z = scaleOrdinal().range(opt.colors);
+    const extentPosition = d => d < h.ext[0] ? xe(0) : d > h.ext[1] ? xe(1) : xv(d);
+    // const eps = [h.min, h.max].map(extentPosition);
+    const eps = [xe(0) + opt.shift, xe(1) - opt.shift];
 
-    const eps = [h.min, h.max].map(extentPosition);
-
-    while ((eps[1] - eps[0]) < (opt.fontSize * 6)) {
-        let moved = false;
-
-        if ((eps[0] - 1) >= 0) {
-            eps[0]--;
-            moved = true;
-        }
-
-        if ((eps[1] + 1) <= opt.width) {
-            eps[1]++;
-            moved = true;
-        }
-
-        if (!moved) {
-            break;
-        }
-    }
+    // while ((eps[1] - eps[0]) < (opt.fontSize * 6)) {
+    //     let moved = false;
+    //
+    //     if ((eps[0] - 1) >= 0) {
+    //         eps[0]--;
+    //         moved = true;
+    //     }
+    //
+    //     if ((eps[1] + 1) <= opt.width) {
+    //         eps[1]++;
+    //         moved = true;
+    //     }
+    //
+    //     if (!moved) {
+    //         break;
+    //     }
+    // }
 
     let op = [0, 0];
 
@@ -158,8 +158,8 @@ export function viewHistogram(svg, h, options = {}) {
         .append('line')
         .attr('class', 'line-max')
         .merge(join)
-        .attr('x1', Math.ceil(x(l - 1)))
-        .attr('x2', Math.ceil(x(l - 1)))
+        .attr('x1', Math.ceil(x(l + 1)))
+        .attr('x2', Math.ceil(x(l + 1)))
         .attr('y1', y(0))
         .attr('y2', y(h.normalize))
         .attr('stroke-width', opt.strokeWidth)
@@ -224,8 +224,8 @@ export function viewHistogram(svg, h, options = {}) {
         .attr('font-size', opt.fontSize)
         .attr('line-height', opt.line)
         .attr('fill', opt.color)
-        .attr('x', (d, i) => [1, opt.width - 1][i])
-        .attr('y', d => y(d * h.samples) + (opt.line - opt.fontSize) / 2)
+        .attr('x', (d, i) => [0, opt.width][i])
+        .attr('y', d => y(d * h.samples) - (opt.line - opt.fontSize) / 2)
         .text(d => d ? fp(d) : '');
 }
 
@@ -234,7 +234,7 @@ viewHistogram.m = function (dark) {
         ...{
             width: 128,
             height: 128,
-            overflow: 12,
+            overflow: 20,
             top: 17,
             bottom: 17,
             line: 20,

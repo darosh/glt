@@ -8,7 +8,7 @@ export function getHistogram(array, ext = [-1, 1], overflow = true, bins = 32, f
     const to = _to ? _to : array.length;
 
     for (let i = 0; i < 3; i++) {
-        let h = histogram(array, thresholds, i, 4);
+        let h = histogram(array, thresholds, i, 4, from, to);
         ret.push(h);
     }
 

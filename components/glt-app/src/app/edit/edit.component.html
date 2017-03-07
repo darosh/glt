@@ -29,11 +29,15 @@
                  [canvasSize]="renderedPartials.size"
                  [canvasOffset]="renderedPartials[item.key].offset"></div>
             <div *ngIf="renderedPartials && renderedPartials[item.key]"
-                 [appHistogram]="histogram"
+                 [appHistogram]="renderedPartials"
+                 histogramFloats="true"
                  [histogramSize]="config.partialSize"
+                 [histogramBins]="config.partialBin"
+                 [histogramOffset]="renderedPartials[item.key].offset"
+                 [histogramLength]="renderedPartials.length"
                  [histogramOptionsDark]="config.histogramDark"
                  [histogramOptionsCurve]="config.histogramCurve"
-                 [histogramOptionsMid]="false"></div>
+                 [histogramOptionsMid]="true"></div>
           </div>
         </div>
       </div>
@@ -140,7 +144,6 @@
          [renderUpdate]="updateCounter"
          renderHistogram="true"
          (renderHistogramEvent)="histogram = $event"
-         [renderHistogramBins]="config.histogramBin"
          renderFull="true"
          renderDirect="true"
          renderMode="1"
@@ -173,6 +176,7 @@
       *ngIf="histogram"
       [appHistogram]="histogram"
       [histogramSize]="[config.editSize[0], config.histogramSize]"
+      [histogramBins]="config.histogramBin"
       [histogramOptionsDark]="config.histogramDark"
       [histogramOptionsCurve]="config.histogramCurve"
       [histogramOptionsMid]="true"

@@ -10,7 +10,7 @@ export class ConfigService {
   thumbnailSize = this.thumbnailSizes[2];
 
   partialSizes = [[64, 64], [96, 96], [128, 128]];
-  partialSize = this.partialSizes[1];
+  partialSize = this.partialSizes[2];
 
   editSizes = [[256, 256], [384, 384], [512, 512], [640, 640], [768, 768]];
   editSize = this.editSizes[1];
@@ -28,6 +28,7 @@ export class ConfigService {
   histogramCurve = true;
   histogramBins = [16, 32, 64, 128, 256];
   histogramBin = this.histogramBins[2];
+  partialBin = this.histogramBins[1];
 
   show = {
     code: false,

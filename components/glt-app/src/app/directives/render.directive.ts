@@ -117,16 +117,8 @@ export class RenderDirective extends Queueable implements OnInit, OnChanges {
       );
 
     if (this.renderHistogram) {
-      // this.service.renderer.render(
-      //   this.renderPartials ? this.compiled.partials : this.compiled.shader,
-      //   this.compiled.code,
-      //   this.renderMode ? this.compiled.uniforms : null,
-      //   this.renderOffScreen ? sizeA : null,
-      //   true
-      // );
-
       if (this.renderPartials) {
-        // const array = this.service.renderer.pixels(true);
+        // this.service.arrayFloat = this.service.renderer.pixels(true);
         // this.renderHistogram.value = this.compiled.partials.map((v, i) => {
         //   const s = sizeA[0] * sizeA[0] * 4;
         //   const f = s * i;
@@ -134,8 +126,8 @@ export class RenderDirective extends Queueable implements OnInit, OnChanges {
         //   return glt.histogram(array, 32, true, f, t);
         // });
       } else {
-        const array = this.service.renderer.pixels(false, true);
-        this.renderHistogramEvent.emit(glt.getHistogram(array, [0, 255], false, this.renderHistogramBins));
+        this.service.arrayInt = this.service.renderer.pixels(false, true);
+        this.renderHistogramEvent.emit(++this.service.arrayCount);
       }
     }
 
@@ -170,13 +162,15 @@ export class RenderDirective extends Queueable implements OnInit, OnChanges {
 
       if (this.frontend !== this.service.canvas) {
         if (this.renderOffScreen) {
-          // if (typeof this.renderOffScreen === 'object') {
           if (this.renderPartials) {
-            this.offScreenPartials(sizeA);
+            const r = this.offScreenPartials(sizeA);
+            this.renderOffScreenEvent.emit(r);
+            if (this.renderHistogram) {
+              if (this.renderPartials) {
+                this.renderHistogramEvent.emit(r);
+              }
+            }
           }
-          // } else {
-          // this.service.renderer.drawTarget(this.frontend);
-          // }
         } else {
           this.service.renderer.draw(this.frontend);
         }
@@ -194,9 +188,10 @@ export class RenderDirective extends Queueable implements OnInit, OnChanges {
     });
 
     ret.size = [sizeA[0], sizeA[0]];
-    this.service.pixels = this.service.renderer.pixels(true);
-    ret.pixels = ++this.service.pixelsCount;
-    this.renderOffScreenEvent.emit(ret);
+    ret.length = sizeA[0] * sizeA[0] * 4;
+    this.service.arrayFloat = this.service.renderer.pixels(true);
+    ret.pixels = ++this.service.arrayCount;
+    return ret;
   }
 
   getSize(quality = 1) {

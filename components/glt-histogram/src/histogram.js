@@ -1,7 +1,6 @@
 import bisect from 'd3-array/src/bisect';
 
-export function histogram(data, tz, channel, channels) {
-    let n = data.length;
+export function histogram(data, tz, channel, channels, from, to) {
     let m = tz.length - 1;
     let bins = [];
     let x0 = Infinity;
@@ -16,8 +15,13 @@ export function histogram(data, tz, channel, channels) {
     let a = tz[1];
     let b = tz[tz.length - 2];
 
-    for (let i = channel; i < n; i += channels) {
+    for (let i = from + channel; i < to; i += channels) {
         let x = data[i];
+
+        if (isNaN(x)) {
+            continue;
+        }
+
         x0 = Math.min(x0, x);
         x1 = Math.max(x1, x);
         let ind = inf
