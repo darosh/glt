@@ -16,12 +16,25 @@
              renderOffScreen="true"
              (renderOffScreenEvent)="renderedPartials = $event"
              renderPartials="true"></div>
-        <div *ngFor="let item of compiled.ids | keys" class="padding mat-elevation-z1">
-          <span>{{item.key}} &mdash; {{item.value[0]}}</span>
-          <div *ngIf="renderedPartials && renderedPartials[item.key]"
-               [appCanvas]="renderedPartials.pixels"
-               [canvasSize]="renderedPartials.size"
-               [canvasOffset]="renderedPartials[item.key].offset"></div>
+        <div fxFlexFill fxFlex fxLayout="row" fxLayoutAlign="start start" fxLayoutWrap class="canvas-list">
+          <div *ngFor="let item of compiled.ids | keys"
+               fxLayout="column"
+               fxLayoutAlign="center center"
+               class="canvas-wrap mat-elevation-z2">
+            <div fxFlexFill>
+              <div class="card-title">{{item.key}} &mdash; {{item.value[0]}}</div>
+            </div>
+            <div *ngIf="renderedPartials && renderedPartials[item.key]"
+                 [appCanvas]="renderedPartials.pixels"
+                 [canvasSize]="renderedPartials.size"
+                 [canvasOffset]="renderedPartials[item.key].offset"></div>
+            <div *ngIf="renderedPartials && renderedPartials[item.key]"
+                 [appHistogram]="histogram"
+                 [histogramSize]="config.partialSize"
+                 [histogramOptionsDark]="config.histogramDark"
+                 [histogramOptionsCurve]="config.histogramCurve"
+                 [histogramOptionsMid]="false"></div>
+          </div>
         </div>
       </div>
     </md-tab>

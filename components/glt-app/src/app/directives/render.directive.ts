@@ -135,7 +135,6 @@ export class RenderDirective extends Queueable implements OnInit, OnChanges {
         // });
       } else {
         const array = this.service.renderer.pixels(false, true);
-
         this.renderHistogramEvent.emit(glt.getHistogram(array, [0, 255], false, this.renderHistogramBins));
       }
     }
@@ -196,7 +195,7 @@ export class RenderDirective extends Queueable implements OnInit, OnChanges {
 
     ret.size = [sizeA[0], sizeA[0]];
     this.service.pixels = this.service.renderer.pixels(true);
-    ret.pixels = true;
+    ret.pixels = ++this.service.pixelsCount;
     this.renderOffScreenEvent.emit(ret);
   }
 

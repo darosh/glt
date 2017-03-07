@@ -40,6 +40,8 @@ export class CanvasDirective extends Queueable implements OnInit, OnChanges {
   }
 
   paint() {
+    this.canvas.width = this.canvasSize[0];
+    this.canvas.height = this.canvasSize[1];
     const id = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height);
     const l = this.canvas.width * this.canvas.height * 4;
     for (let i = 0; i < l; i++) {

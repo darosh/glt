@@ -17,3 +17,23 @@ md-slider {
 md-toolbar [md-icon-button] {
   margin-right: 16px;
 }
+
+.canvas-list {
+  padding: 8px 8px 0 8px;
+}
+
+.canvas-wrap {
+  margin: 8px;
+}
+
+.canvas-list:after {
+  content: "";
+  display: flex;
+  flex: 1;
+  height: 8px;
+}
+
+.canvas-wrap {
+  background-color: #fff;
+  border-radius: 2px;
+}
