@@ -1,13 +1,14 @@
 import {Directive, ElementRef, Input, OnChanges, OnInit} from '@angular/core';
 import {QueueService} from '../services/queue.service';
 import {RenderService} from '../services/render.service';
+import {Queueable} from '../base/queueable';
 
 declare const window;
 
 @Directive({
   selector: '[appCanvas]',
 })
-export class CanvasDirective implements OnInit, OnChanges {
+export class CanvasDirective extends Queueable implements OnInit, OnChanges {
   @Input() appCanvas;
   @Input() canvasOffset;
   @Input() canvasSize;
@@ -15,13 +16,11 @@ export class CanvasDirective implements OnInit, OnChanges {
   el;
   ctx;
   canvas;
-  queue;
   render;
-  destroyed;
 
   constructor(el: ElementRef, queue: QueueService, render: RenderService) {
+    super(queue);
     this.el = el;
-    this.queue = queue;
     this.render = render;
   }
 
@@ -40,10 +39,6 @@ export class CanvasDirective implements OnInit, OnChanges {
     }
   }
 
-  ngOnDestroy() {
-    this.destroyed = true;
-  }
-
   paint() {
     const id = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height);
     const l = this.canvas.width * this.canvas.height * 4;
@@ -51,34 +46,5 @@ export class CanvasDirective implements OnInit, OnChanges {
       id.data[i] = this.render.pixels[i + this.canvasOffset] * 255;
     }
     this.ctx.putImageData(id, 0, 0, 0, 0, this.canvas.width, this.canvas.height);
-  }
-
-  update() {
-    const self: any = this;
-
-    this.queue.next((done) => {
-      if (self.destroyed) {
-        return done();
-      }
-
-      if ((this.queue.time > self.FPS) || ((Date.now() - this.queue.last) > self.FPS)) {
-        this.queue.time = 0;
-      }
-
-      if (!this.queue.time) {
-        window.requestAnimationFrame(next);
-      } else {
-        next();
-      }
-
-      function next() {
-        if (self.destroyed) {
-          return done();
-        }
-
-        self.paint();
-        done();
-      }
-    });
   }
 }

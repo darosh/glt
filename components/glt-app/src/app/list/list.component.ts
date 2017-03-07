@@ -44,7 +44,7 @@ export class ListComponent implements OnDestroy {
   refresh() {
     this.recipes.forEach((r, i) => {
       this.recipes[i] = this.generator();
-      this.times[i].value = -1;
+      this.times[i]= -1;
     });
   }
 

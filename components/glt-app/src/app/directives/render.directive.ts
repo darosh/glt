@@ -1,19 +1,17 @@
-import {
-  Directive, ElementRef, OnInit, EventEmitter, Output, HostListener, OnDestroy, Input,
-  OnChanges
-} from '@angular/core';
+import {Directive, ElementRef, OnInit, EventEmitter, Output, HostListener, Input, OnChanges} from '@angular/core';
 import {RenderService} from '../services/render.service';
 
 import {glt, screenfull} from '../../vendor';
 import {FullService} from '../services/full.service';
 import {QueueService} from '../services/queue.service';
+import {Queueable} from '../base/queueable';
 
 declare const window;
 
 @Directive({
   selector: '[appRender]',
 })
-export class RenderDirective implements OnInit, OnDestroy, OnChanges {
+export class RenderDirective extends Queueable implements OnInit, OnChanges {
   @Input() appRender;
   @Input() renderSize;
   @Input() renderPartials = false;
@@ -33,21 +31,15 @@ export class RenderDirective implements OnInit, OnDestroy, OnChanges {
   @Output() renderOffScreenEvent = new EventEmitter();
 
   full;
-
   el;
   service;
-  queue;
-
   compiled;
   frontend;
-  destroyed;
   fullService;
 
-  FPS = 1000 / 30;
-
   constructor(service: RenderService, queue: QueueService, full: FullService, el: ElementRef) {
+    super(queue);
     this.el = el;
-    this.queue = queue;
     this.service = service;
     this.fullService = full;
   }
@@ -108,10 +100,6 @@ export class RenderDirective implements OnInit, OnDestroy, OnChanges {
         this.update();
       }
     }
-  }
-
-  ngOnDestroy() {
-    this.destroyed = true;
   }
 
   paint(full) {
@@ -210,35 +198,6 @@ export class RenderDirective implements OnInit, OnDestroy, OnChanges {
     this.service.pixels = this.service.renderer.pixels(true);
     ret.pixels = true;
     this.renderOffScreenEvent.emit(ret);
-  }
-
-  update() {
-    const self: any = this;
-
-    this.queue.next((done) => {
-      if (self.destroyed) {
-        return done();
-      }
-
-      if ((this.queue.time > self.FPS) || ((Date.now() - this.queue.last) > self.FPS)) {
-        this.queue.time = 0;
-      }
-
-      if (!this.queue.time) {
-        window.requestAnimationFrame(next);
-      } else {
-        next();
-      }
-
-      function next() {
-        if (self.destroyed) {
-          return done();
-        }
-
-        self.paint();
-        done();
-      }
-    });
   }
 
   getSize(quality = 1) {

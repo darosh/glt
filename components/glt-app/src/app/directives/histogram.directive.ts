@@ -1,13 +1,15 @@
 import {Directive, ElementRef, Input, OnChanges, OnInit} from '@angular/core';
 
 import {glt} from '../../vendor';
+import {QueueService} from '../services/queue.service';
+import {Queueable} from '../base/queueable';
 
 declare const window;
 
 @Directive({
   selector: '[appHistogram]',
 })
-export class HistogramDirective implements OnInit, OnChanges {
+export class HistogramDirective extends Queueable implements OnInit, OnChanges {
   @Input() appHistogram;
   @Input() histogramSize;
   @Input() histogramOptionsDark;
@@ -17,7 +19,8 @@ export class HistogramDirective implements OnInit, OnChanges {
   el;
   svg;
 
-  constructor(el: ElementRef) {
+  constructor(el: ElementRef, queue: QueueService) {
+    super(queue);
     this.el = el;
   }
 
@@ -31,14 +34,18 @@ export class HistogramDirective implements OnInit, OnChanges {
 
   ngOnChanges(e) {
     if (this.svg && this.appHistogram && this.histogramSize) {
-      this.svg.setAttribute('width', this.histogramSize[0]);
-      this.svg.setAttribute('height', this.histogramSize[1]);
-      const opt = glt.viewHistogram.m(this.histogramOptionsDark);
-      opt.mid = this.histogramOptionsMid;
-      opt.curve = this.histogramOptionsCurve;
-      opt.width = this.histogramSize[0];
-      opt.height = this.histogramSize[1];
-      glt.viewHistogram(this.svg, this.appHistogram, opt);
+      this.update();
     }
+  }
+
+  paint() {
+    this.svg.setAttribute('width', this.histogramSize[0]);
+    this.svg.setAttribute('height', this.histogramSize[1]);
+    const opt = glt.viewHistogram.m(this.histogramOptionsDark);
+    opt.mid = this.histogramOptionsMid;
+    opt.curve = this.histogramOptionsCurve;
+    opt.width = this.histogramSize[0];
+    opt.height = this.histogramSize[1];
+    glt.viewHistogram(this.svg, this.appHistogram, opt);
   }
 }
