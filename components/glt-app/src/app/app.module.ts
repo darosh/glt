@@ -22,6 +22,7 @@ import {RenderDirective} from './directives/render.directive';
 import {CanvasDirective} from './directives/canvas.directive';
 import {HistogramDirective} from './directives/histogram.directive';
 import {FullScreenDirective} from './directives/full-screen.directive';
+import {ArrowDirective} from './directives/arrow.directive';
 
 import {ConfigService} from './services/config.service';
 import {QueueService} from "./services/queue.service";
@@ -38,6 +39,7 @@ import {FullService} from './services/full.service';
     RenderDirective,
     CanvasDirective,
     HistogramDirective,
+    ArrowDirective,
     MenuComponent,
     ListComponent,
     EditComponent,

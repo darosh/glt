@@ -22,7 +22,6 @@ export class RenderDirective extends Queueable implements OnInit, OnChanges {
   @Input() renderDirect;
   @Input() renderOffScreen;
   @Input() renderPreCompiled;
-  @Input() renderHistogramBins;
   @Input() renderHistogram;
 
   @Output() renderHistogramEvent = new EventEmitter();

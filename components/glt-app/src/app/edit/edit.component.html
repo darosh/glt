@@ -5,39 +5,61 @@
   <md-tab-group fxFlex fxLayout="column" dynamicHeight class="mat-elevation-z2"
                 style="z-index: 5000; background-color: #fafafa">
     <md-tab label="Components" fxFlex>
-      <div fxFlex fxLayoutWrap fxLayout="row" fxLayoutAlign="start start" class="overflow-y padding">
-        <div *ngIf="compiled"
-             fxHide
-             appRender
-             [renderPreCompiled]="compiled"
-             [renderSize]="config.partialSize"
-             [renderUpdate]="updateCounter"
-             renderMode="1"
-             renderOffScreen="true"
-             (renderOffScreenEvent)="renderedPartials = $event"
-             renderPartials="true"></div>
-        <div fxFlexFill fxFlex fxLayout="row" fxLayoutAlign="start start" fxLayoutWrap class="canvas-list">
-          <div *ngFor="let item of compiled.ids | keys"
-               fxLayout="column"
-               fxLayoutAlign="center center"
-               class="canvas-wrap mat-elevation-z2">
-            <div fxFlexFill>
-              <div class="card-title">{{item.key}} &mdash; {{item.value[0]}}</div>
+      <div>
+        <svg width="1" height="1" style="overflow: visible; z-index: 1; margin-bottom: -1px" #arrows>
+          <defs>
+            <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"
+                    markerUnits="strokeWidth">
+              <path d="M0,0 L0,6 L9,3 z" fill="#ccc"/>
+            </marker>
+            <marker id="point" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto"
+                    markerUnits="strokeWidth">
+              <circle cx="5" cy="5" r="2" fill="#ccc"/>
+            </marker>
+          </defs>
+        </svg>
+        <div fxFlex fxLayoutWrap fxLayout="row" fxLayoutAlign="start start" class="overflow-y padding">
+          <div *ngIf="compiled"
+               fxHide
+               appRender
+               [renderPreCompiled]="compiled"
+               [renderSize]="config.partialSize"
+               [renderUpdate]="updateCounter"
+               renderMode="1"
+               renderOffScreen="true"
+               (renderOffScreenEvent)="renderedPartials = $event"
+               renderPartials="true"></div>
+          <div fxFlexFill fxFlex fxLayout="row" fxLayoutAlign="start start" fxLayoutWrap class="canvas-list">
+            <div *ngFor="let item of compiled.ids | keys"
+                 [id]="'PART_' + item.key"
+                 fxLayout="column"
+                 fxLayoutAlign="center center"
+                 class="canvas-wrap mat-elevation-z2">
+              <div fxFlexFill>
+                <!--<div class="card-title">{{item.key}} &mdash; {{item.value[0]}}</div>-->
+                <div class="card-title">{{item.value[0]}}</div>
+              </div>
+              <div *ngIf="renderedPartials && renderedPartials[item.key]"
+                   [appCanvas]="renderedPartials.pixels"
+                   [canvasSize]="renderedPartials.size"
+                   [canvasOffset]="renderedPartials[item.key].offset"></div>
+              <div *ngIf="renderedPartials && renderedPartials[item.key]"
+                   [appHistogram]="renderedPartials"
+                   histogramFloats="true"
+                   [histogramSize]="config.partialSize"
+                   [histogramBins]="config.partialBin"
+                   [histogramOffset]="renderedPartials[item.key].offset"
+                   [histogramLength]="renderedPartials.length"
+                   [histogramOptionsDark]="config.histogramDark"
+                   [histogramOptionsCurve]="config.histogramCurve"
+                   [histogramOptionsMid]="true"></div>
             </div>
-            <div *ngIf="renderedPartials && renderedPartials[item.key]"
-                 [appCanvas]="renderedPartials.pixels"
-                 [canvasSize]="renderedPartials.size"
-                 [canvasOffset]="renderedPartials[item.key].offset"></div>
-            <div *ngIf="renderedPartials && renderedPartials[item.key]"
-                 [appHistogram]="renderedPartials"
-                 histogramFloats="true"
-                 [histogramSize]="config.partialSize"
-                 [histogramBins]="config.partialBin"
-                 [histogramOffset]="renderedPartials[item.key].offset"
-                 [histogramLength]="renderedPartials.length"
-                 [histogramOptionsDark]="config.histogramDark"
-                 [histogramOptionsCurve]="config.histogramCurve"
-                 [histogramOptionsMid]="true"></div>
+            <div *ngIf="renderedPartials">
+            <appArrow *ngFor="let item of compiled.ids | keys"
+                      [arrowSvg]="arrows"
+                      [arrowFrom]="'PART_' + item.key"
+                      [arrowTo]="'PART_' + item.value.parent"></appArrow>
+            </div>
           </div>
         </div>
       </div>

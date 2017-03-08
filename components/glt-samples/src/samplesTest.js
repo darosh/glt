@@ -386,5 +386,12 @@ export const samplesTest = [
             ],
             ['Scale', [2.5, 2.5]]
         ]
+    },
+    {
+        title: 'Tint',
+        data: [
+            ['Length'],
+            ['Tint', [1, 0, 0]]
+        ]
     }
 ];

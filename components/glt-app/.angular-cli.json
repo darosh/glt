@@ -29,7 +29,9 @@
         "../../glt-samples/glt-samples.js",
         "../../glt-extractor/glt-extractor.js",
         "../../cjson/cjson.js",
-        "../node_modules/screenfull/dist/screenfull.js"
+        "../node_modules/screenfull/dist/screenfull.js",
+        "../node_modules/d3-path/build/d3-path.min.js",
+        "../node_modules/d3-shape/build/d3-shape.min.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {
