@@ -37,3 +37,8 @@ md-toolbar [md-icon-button] {
   background-color: #fff;
   border-radius: 2px;
 }
+
+.md-toolbar-mini, .md-toolbar-mini >>> md-toolbar-row {
+  height: 48px;
+  min-height: 48px;
+}

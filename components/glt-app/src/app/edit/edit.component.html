@@ -6,7 +6,8 @@
                 style="z-index: 5000; background-color: #fafafa">
     <md-tab label="Components" fxFlex>
       <div>
-        <svg width="1" height="1" style="overflow: visible; position: relative; z-index: 2000; margin-bottom: -1px" #arrows>
+        <svg width="1" height="1" style="overflow: visible; position: relative; z-index: 2000; margin-bottom: -1px"
+             #arrows>
           <defs>
             <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"
                     markerUnits="strokeWidth">
@@ -18,7 +19,8 @@
             </marker>
           </defs>
         </svg>
-        <div fxFlex fxLayoutWrap fxLayout="row" fxLayoutAlign="start start" class="overflow-y padding" style="z-index: 1000">
+        <div fxFlex fxLayoutWrap fxLayout="row" fxLayoutAlign="start start" class="overflow-y padding"
+             style="z-index: 1000">
           <div *ngIf="compiled"
                fxHide
                appRender
@@ -56,11 +58,11 @@
                    [histogramOptionsMid]="true"></div>
             </div>
             <div *ngIf="renderedPartials">
-            <appArrow *ngFor="let item of compiled.ids | keys"
-                      [arrowSvg]="arrows"
-                      [arrowOrder]="item.value.order"
-                      [arrowFrom]="item.value.measure"
-                      [arrowTo]="item.value.parent ? compiled.ids[item.value.parent].measure : null"></appArrow>
+              <appArrow *ngFor="let item of compiled.ids | keys"
+                        [arrowSvg]="arrows"
+                        [arrowOrder]="item.value.order"
+                        [arrowFrom]="item.value.measure"
+                        [arrowTo]="item.value.parent ? compiled.ids[item.value.parent].measure : null"></appArrow>
             </div>
           </div>
         </div>
@@ -162,22 +164,7 @@
     </md-tab>
   </md-tab-group>
   <div fxLayout="column" style="z-index: 3000" class="bg">
-    <div [appRender]="graph"
-         [renderSize]="config.editSize"
-         (renderTime)="time = $event"
-         [renderUpdate]="updateCounter"
-         renderHistogram="true"
-         (renderHistogramEvent)="histogram = $event"
-         renderFull="true"
-         renderDirect="true"
-         renderMode="1"
-         (renderCompiled)="onCompiled($event)"
-         class="divider"
-         style="background-color: #888; z-index: 4000"
-         [style.width.px]="config.editSize[0]"
-         [style.height.px]="config.editSize[1]"
-         #renderMain></div>
-    <md-toolbar class="divider" style="z-index: 2000">
+    <md-toolbar class="mat-elevation-z2 md-toolbar-mini" style="z-index: 5000">
       <button md-icon-button (click)="start()">
         <md-icon [textContent]="running ? 'pause' : 'play_arrow'"></md-icon>
       </button>
@@ -196,6 +183,21 @@
         <span *ngIf="time >= 0">{{time | number}}</span> ms
       </div>
     </md-toolbar>
+    <div [appRender]="graph"
+         [renderSize]="config.editSize"
+         (renderTime)="time = $event"
+         [renderUpdate]="updateCounter"
+         renderHistogram="true"
+         (renderHistogramEvent)="histogram = $event"
+         renderFull="true"
+         renderDirect="true"
+         renderMode="1"
+         (renderCompiled)="onCompiled($event)"
+         class="divider"
+         style="background-color: #888; z-index: 4000"
+         [style.width.px]="config.editSize[0]"
+         [style.height.px]="config.editSize[1]"
+         #renderMain></div>
     <div
       *ngIf="histogram"
       [appHistogram]="histogram"
