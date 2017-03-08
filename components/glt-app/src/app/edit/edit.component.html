@@ -6,7 +6,7 @@
                 style="z-index: 5000; background-color: #fafafa">
     <md-tab label="Components" fxFlex>
       <div>
-        <svg width="1" height="1" style="overflow: visible; z-index: 1; margin-bottom: -1px" #arrows>
+        <svg width="1" height="1" style="overflow: visible; position: relative; z-index: 2000; margin-bottom: -1px" #arrows>
           <defs>
             <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"
                     markerUnits="strokeWidth">
@@ -18,7 +18,7 @@
             </marker>
           </defs>
         </svg>
-        <div fxFlex fxLayoutWrap fxLayout="row" fxLayoutAlign="start start" class="overflow-y padding">
+        <div fxFlex fxLayoutWrap fxLayout="row" fxLayoutAlign="start start" class="overflow-y padding" style="z-index: 1000">
           <div *ngIf="compiled"
                fxHide
                appRender
@@ -32,11 +32,12 @@
           <div fxFlexFill fxFlex fxLayout="row" fxLayoutAlign="start start" fxLayoutWrap class="canvas-list">
             <div *ngFor="let item of compiled.ids | keys"
                  [id]="'PART_' + item.key"
+                 appMeasure
+                 (measureRect)="item.value.measure = $event"
                  fxLayout="column"
                  fxLayoutAlign="center center"
                  class="canvas-wrap mat-elevation-z2">
               <div fxFlexFill>
-                <!--<div class="card-title">{{item.key}} &mdash; {{item.value[0]}}</div>-->
                 <div class="card-title">{{item.value[0]}}</div>
               </div>
               <div *ngIf="renderedPartials && renderedPartials[item.key]"
@@ -57,8 +58,9 @@
             <div *ngIf="renderedPartials">
             <appArrow *ngFor="let item of compiled.ids | keys"
                       [arrowSvg]="arrows"
-                      [arrowFrom]="'PART_' + item.key"
-                      [arrowTo]="'PART_' + item.value.parent"></appArrow>
+                      [arrowOrder]="item.value.order"
+                      [arrowFrom]="item.value.measure"
+                      [arrowTo]="item.value.parent ? compiled.ids[item.value.parent].measure : null"></appArrow>
             </div>
           </div>
         </div>

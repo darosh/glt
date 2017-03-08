@@ -93,27 +93,57 @@ export const samplesDemo = [
             ['CosPalette', [0.97, 0.03, 0.58], [0.70, 0.85, 0.28], [0.40, 0.90, 0.65], [0.15, 0.84, 0.56]]
         ]
     },
+    /*{
+     title: 'Abstract #3 obsolete',
+     data: [
+     ['BlendSubtract', {
+     data: [
+     ['WorleyF1', 0.52, 1],
+     ['Scale', [-2.09, -37.81]],
+     ['Rotate', 36.21]
+     ]
+     }, {
+     data: [
+     ['SinY'],
+     ['Scale', [-126.41, 37.04]]
+     ]
+     }, 0.72],
+     ['Tint', [0.77, 0.33, 0.05]],
+     ['BlendOverlay', .9, 'RidgedMultiFractal', 3.58, 0.70, 1.24, 4.96, -1.97, 2.25],
+     ['Tint', [0.79, 0.92, 0.76]],
+     ['Bias', 0.90],
+     ['Rotate', 24.62],
+     ['Tile', [125.95, 49.88], 0, 0]
+     ]
+     },*/
     {
         title: 'Abstract #3',
         data: [
-            ['BlendSubtract', {
+            ['BlendOverlay', {
                 data: [
-                    ['WorleyF1', 0.52, 1],
-                    ['Scale', [-2.09, -37.81]],
-                    ['Rotate', 36.21]
+                    ['BlendSubtract', {
+                        data: [
+                            ['WorleyF1', 0.52, 1],
+                            ['Scale', [-2.09, -37.81]],
+                            ['Rotate', 36.21]
+                        ]
+                    }, {
+                        data: [
+                            ['SinY'],
+                            ['Scale', [-126.41, 37.04]]
+                        ]
+                    }, 0.72],
+                    ['Tint', [0.77, 0.33, 0.05]]
                 ]
             }, {
                 data: [
-                    ['SinY'],
-                    ['Scale', [-126.41, 37.04]]
+                    ['RidgedMultiFractal', 3.58, 0.70, 1.24, 4.96, -1.97, 2.25],
+                    ['Tint', [0.79, 0.92, 0.76]],
+                    ['Bias', 0.90],
+                    ['Rotate', 24.62],
+                    ['Tile', [125.95, 49.88], 0, 0]
                 ]
-            }, 0.72],
-            ['Tint', [0.77, 0.33, 0.05]],
-            ['BlendOverlay', .9, 'RidgedMultiFractal', 3.58, 0.70, 1.24, 4.96, -1.97, 2.25],
-            ['Tint', [0.79, 0.92, 0.76]],
-            ['Bias', 0.90],
-            ['Rotate', 24.62],
-            ['Tile', [125.95, 49.88], 0, 0]
+            }, .9]
         ]
     },
     {

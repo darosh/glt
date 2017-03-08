@@ -29,6 +29,7 @@ import {QueueService} from "./services/queue.service";
 import {RenderService} from './services/render.service';
 import {ResizeService} from './services/resize.service';
 import {FullService} from './services/full.service';
+import {MeasureDirective} from './directives/measure.directive';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import {FullService} from './services/full.service';
     RenderDirective,
     CanvasDirective,
     HistogramDirective,
+    MeasureDirective,
     ArrowDirective,
     MenuComponent,
     ListComponent,
