@@ -28,7 +28,7 @@ export default new Router({
     },
     {
       path: '/palettes',
-      name: 'Palette',
+      name: 'Palettes',
       component: List,
       meta: {
         menu: 'thumbnails',

@@ -88,6 +88,7 @@
     watch: {
       $route: function () {
         this.scrolled = false
+        document.title = (this.$route.name === 'Home' ? '' : (this.$route.name + ' | ')) + 'glt'
       }
     },
     methods: {

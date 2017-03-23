@@ -9,11 +9,11 @@
               <md-table-head md-sort-by="4"></md-table-head>
               <md-table-head md-sort-by="0">Type</md-table-head>
               <md-table-head md-sort-by="1">Output</md-table-head>
+              <md-table-head md-sort-by="5" md-numeric>Input</md-table-head>
               <md-table-head md-sort-by="2">Name</md-table-head>
               <md-table-head md-sort-by="3">Signature</md-table-head>
             </md-table-row>
           </md-table-header>
-
           <md-table-body>
             <md-table-row v-for="(row, index) in prototypesArray" :key="index">
               <md-table-cell>
@@ -29,6 +29,7 @@
               </md-table-cell>
               <md-table-cell>{{row[0]}}</md-table-cell>
               <md-table-cell class="mono">{{row[1]}}</md-table-cell>
+              <md-table-cell class="md-body-1" md-numeric>{{row[5]}}</md-table-cell>
               <md-table-cell class="md-body-2">{{row[2]}}</md-table-cell>
               <md-table-cell class="mono">{{row[3]}}</md-table-cell>
             </md-table-row>
@@ -53,7 +54,7 @@
         prototypes: CJSON(glt.all),
         prototypesArray: glt.all
           .map(function (v) {
-            return [v.type, v.output, v.name, glt.getSignature(v), v.type + v.name + v.output]
+            return [v.type, v.output, v.name, glt.getSignature(v), v.type + v.name + v.output, v.input.length]
           })
       }
     },
@@ -64,7 +65,7 @@
       sort: function (v, by) {
         if (by) {
           v.sort(function (a, b) {
-            return (by.type === 'asc' ? 1 : -1) * a[by.name].localeCompare(b[by.name])
+            return (by.type === 'asc' ? 1 : -1) * a[by.name].toString().localeCompare(b[by.name].toString())
           })
         }
         return v

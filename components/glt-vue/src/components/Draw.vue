@@ -21,6 +21,9 @@
       'preCompiled',
       'renderHistogram'
     ],
+    beforeDestroy: function () {
+      this.destroyed = true
+    },
     mounted: function () {
       this.$el.width = this.size[0]
       this.$el.height = this.size[1]
