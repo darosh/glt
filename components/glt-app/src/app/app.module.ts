@@ -25,7 +25,7 @@ import {FullScreenDirective} from './directives/full-screen.directive';
 import {ArrowDirective} from './directives/arrow.directive';
 
 import {ConfigService} from './services/config.service';
-import {QueueService} from "./services/queue.service";
+import {QueueService} from './services/queue.service';
 import {RenderService} from './services/render.service';
 import {ResizeService} from './services/resize.service';
 import {FullService} from './services/full.service';

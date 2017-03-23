@@ -19,7 +19,7 @@ export class ArrowDirective implements OnInit, OnChanges {
   }
 
   ngOnChanges(e) {
-    setTimeout(()=>this.paint(), 0);
+    setTimeout(() => this.paint(), 0);
   }
 
   paint() {

@@ -8,21 +8,21 @@ import {default as layout} from 'ciena-dagre/src/layout';
 import {default as Graph} from 'ciena-graphlib/src/graph';
 declare const window;
 
-const g = new Graph()
-  .setGraph({})
-  .setDefaultEdgeLabel(function () {
-    return {};
-  });
+// const g = new Graph()
+//   .setGraph({})
+//   .setDefaultEdgeLabel(function () {
+//     return {};
+//   });
 
-g.graph().ranksep = 300;
-g.setNode('a', {width: 50, height: 100});
-g.setNode('b', {width: 75, height: 200});
-g.setEdge('a', 'b', {width: 60, height: 70, minlen: 2, labelpos: 'c'});
+// g.graph().ranksep = 300;
+// g.setNode('a', {width: 50, height: 100});
+// g.setNode('b', {width: 75, height: 200});
+// g.setEdge('a', 'b', {width: 60, height: 70, minlen: 2, labelpos: 'c'});
 
-let l = layout(g);
+// const l = layout(g);
 
-console.log(g);
-console.log(l);
+// console.log(g);
+// console.log(l);
 
 @Component({
   selector: 'app-edit',

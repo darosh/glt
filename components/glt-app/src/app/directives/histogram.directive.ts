@@ -3,7 +3,7 @@ import {Directive, ElementRef, Input, OnChanges, OnInit} from '@angular/core';
 import {glt} from '../../vendor';
 import {QueueService} from '../services/queue.service';
 import {Queueable} from '../base/queueable';
-import {RenderService} from "../services/render.service";
+import {RenderService} from '../services/render.service';
 
 declare const window;
 
