@@ -1,5 +1,5 @@
 class ConfigService {
-  time = true
+  time = false
   code = false
   partials = false
   size = 1
