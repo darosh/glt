@@ -22,6 +22,8 @@ __Early stage! Work in progress!__
 
 ### glt-app
 
+[components/glt-app/dist/](https://darosh.github.io/glt/components/glt-app/dist/index.html)
+
 - [x] angular-cli based single page application
 - [x] reusing single rendering context
 

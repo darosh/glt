@@ -10,9 +10,13 @@ import {glt} from '../../vendor';
 export class PrototypesComponent {
   features = glt.toJson(glt.features);
   all = glt.toJson(glt.all);
-  prototypes = glt.all
+  prototypesArray = glt.all
+    .map(function (v) {
+      return [v.type, v.name, glt.getSignature(v)];
+    });
+  prototypesList = glt.all
     .map(function (v) {
       return v.type + ', ' + v.name + ', ' + glt.getSignature(v);
-    })
-    .join('\n');
+    });
+  prototypes = this.prototypesList.join('\n');
 }

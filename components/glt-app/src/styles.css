@@ -97,6 +97,13 @@ h1, h2 {
   position: relative;
 }
 
+.uniform-title {
+  font-size: 14px;
+  font-weight: 400;
+  margin-left: 8px;
+  /*margin-bottom: -4px;*/
+}
+
 /*canvas:fullscreen, canvas:-webkit-full-screen, canvas:-moz-full-screen {*/
 /*background-color: rgba(255, 255, 255, 1);*/
 /*width: 100% !important;*/

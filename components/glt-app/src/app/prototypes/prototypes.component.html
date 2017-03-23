@@ -4,13 +4,43 @@
   </md-input-container>
   <md-tab-group fxFlex fxLayout="column" dynamicHeight>
     <md-tab label="Prototypes">
-      <textarea fxFlex mdInput [(ngModel)]="prototypes" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
+      <!--<div fxFlex>
+        Blend <md-icon>call_merge</md-icon>
+        Colorize <md-icon>group_work</md-icon>
+        Desaturate <md-icon>fiber_manual_record</md-icon>
+        Generator <md-icon>photo</md-icon>
+        Modify <md-icon>tune</md-icon>
+        Transform <md-icon>open_with</md-icon>
+      </div>-->
+      <div fxFlexFill class="overflow-y">
+        <table>
+          <tr *ngFor="let item of prototypesArray">
+            <td [ngSwitch]="item[0]">
+              <md-icon *ngSwitchCase="'blend'">call_merge</md-icon>
+              <md-icon *ngSwitchCase="'colorize'">group_work</md-icon>
+              <md-icon *ngSwitchCase="'desaturate'">fiber_manual_record</md-icon>
+              <md-icon *ngSwitchCase="'generator'">photo</md-icon>
+              <md-icon *ngSwitchCase="'modify'">tune</md-icon>
+              <md-icon *ngSwitchCase="'transform'">open_with</md-icon>
+            </td>
+            <td>{{item[0]}}</td>
+            <td>{{item[1]}}</td>
+            <td>{{item[2]}}</td>
+          </tr>
+        </table>
+      </div>
+    </md-tab>
+    <md-tab label="Prototypes">
+      <textarea fxFlex mdInput [(ngModel)]="prototypes" autocomplete="off" autocorrect="off" autocapitalize="off"
+                spellcheck="false"></textarea>
     </md-tab>
     <md-tab label="Features">
-      <textarea fxFlex mdInput [(ngModel)]="features" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
+      <textarea fxFlex mdInput [(ngModel)]="features" autocomplete="off" autocorrect="off" autocapitalize="off"
+                spellcheck="false"></textarea>
     </md-tab>
     <md-tab label="All">
-      <textarea fxFlex mdInput [(ngModel)]="all" class="wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
+      <textarea fxFlex mdInput [(ngModel)]="all" class="wrap" autocomplete="off" autocorrect="off" autocapitalize="off"
+                spellcheck="false"></textarea>
     </md-tab>
   </md-tab-group>
 </div>

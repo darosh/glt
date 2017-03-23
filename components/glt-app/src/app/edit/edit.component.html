@@ -34,6 +34,7 @@
           <div fxFlexFill fxFlex fxLayout="row" fxLayoutAlign="start start" fxLayoutWrap class="canvas-list">
             <div *ngFor="let item of compiled.ids | keys"
                  [id]="'PART_' + item.key"
+                 (click)="selected = item.key"
                  appMeasure
                  (measureRect)="item.value.measure = $event"
                  fxLayout="column"
@@ -198,7 +199,7 @@
          [style.width.px]="config.editSize[0]"
          [style.height.px]="config.editSize[1]"
          #renderMain></div>
-    <div
+    <!--<div
       *ngIf="histogram"
       [appHistogram]="histogram"
       [histogramSize]="[config.editSize[0], config.histogramSize]"
@@ -206,6 +207,52 @@
       [histogramOptionsDark]="config.histogramDark"
       [histogramOptionsCurve]="config.histogramCurve"
       [histogramOptionsMid]="true"
-      class="divider"></div>
+      class="divider"></div>-->
+    <div fxFlexFill fxFlex class="overflow-y">
+      <div *ngFor="let item of compiled.uniforms | keys" class="padding">
+        <div class="uniform-title">{{item.key}}</div>
+        <div *ngIf="!item.value.value.length">
+          <md-slider
+            style="width: calc(100% - 111px)"
+            thumbLabel
+            type="range"
+            (change)="change(item.value)"
+            [(ngModel)]="item.value.value"
+            #ctrl="ngModel"
+            [min]="item.value.proto[3][0]"
+            [max]="item.value.proto[3][1]"
+            step="0.01"></md-slider>
+          <md-input-container>
+            <input mdInput
+                   type="number"
+                   (change)="change(item.value)"
+                   [(ngModel)]="item.value.value">
+          </md-input-container>
+          <md-checkbox type="checkbox"
+                       [(ngModel)]="item.value.animate"></md-checkbox>
+        </div>
+        <div *ngIf="item.value.value.length">
+          <div *ngFor="let sub of item.value.value; trackBy:indexFn; let i = index">
+            <md-slider thumbLabel
+                       style="width: calc(100% - 111px)"
+                       type="range"
+                       (change)="change(item.value)"
+                       [(ngModel)]="item.value.value[i]"
+                       #ctrl="ngModel"
+                       [min]="item.value.proto[3][0]"
+                       [max]="item.value.proto[3][1]"
+                       step="0.01"></md-slider>
+            <md-input-container>
+              <input mdInput
+                     type="number"
+                     (change)="change(item.value)"
+                     [(ngModel)]="item.value.value[i]">
+            </md-input-container>
+            <md-checkbox type="checkbox"
+                         [(ngModel)]="item.value.animate[i]"></md-checkbox>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

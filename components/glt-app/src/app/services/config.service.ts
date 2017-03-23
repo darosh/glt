@@ -13,7 +13,7 @@ export class ConfigService {
   partialSize = this.partialSizes[2];
 
   editSizes = [[256, 256], [384, 384], [512, 512], [640, 640], [768, 768]];
-  editSize = this.editSizes[1];
+  editSize = this.editSizes[0];
 
   thumbnailQualities = [0.5, 1, 2, 4, 8];
   thumbnailQuality = this.thumbnailQualities[1];

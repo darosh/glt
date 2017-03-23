@@ -3,7 +3,26 @@ import {ActivatedRoute} from '@angular/router';
 import {ConfigService} from '../services/config.service';
 
 import {glt, CJSON} from '../../vendor';
+
+import {default as layout} from 'ciena-dagre/src/layout';
+import {default as Graph} from 'ciena-graphlib/src/graph';
 declare const window;
+
+const g = new Graph()
+  .setGraph({})
+  .setDefaultEdgeLabel(function () {
+    return {};
+  });
+
+g.graph().ranksep = 300;
+g.setNode('a', {width: 50, height: 100});
+g.setNode('b', {width: 75, height: 200});
+g.setEdge('a', 'b', {width: 60, height: 70, minlen: 2, labelpos: 'c'});
+
+let l = layout(g);
+
+console.log(g);
+console.log(l);
 
 @Component({
   selector: 'app-edit',
@@ -25,6 +44,7 @@ export class EditComponent implements OnDestroy {
   treeJson;
   running = false;
   updateCounter = 0;
+  selected = null;
 
   time = -1;
   compiled: any = {};
