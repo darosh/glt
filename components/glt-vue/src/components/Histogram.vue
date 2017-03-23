@@ -32,9 +32,6 @@
     },
     methods: {
       paint: function () {
-        console.log(this.render)
-//        this.svg.setAttribute('width', this.histogramSize[0])
-//        this.svg.setAttribute('height', this.histogramSize[1])
         const opt = glt.viewHistogram.m(this.dark)
         opt.mid = this.mid
         opt.curve = this.curve
@@ -44,7 +41,7 @@
         let h
 
         if (this.floats) {
-//          h = glt.getHistogram(this.render.arrayFloat, [-1, 1], true, this.histogramBins, this.histogramOffset, this.histogramOffset + this.histogramLength);
+          h = glt.getHistogram(this.render.arrayFloat, [-1, 1], true, this.bins, this.offset, this.offset + this.length)
         } else {
           h = glt.getHistogram(render.arrayInt, [0, 255], false, this.bins)
         }
