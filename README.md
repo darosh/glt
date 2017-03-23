@@ -25,6 +25,12 @@ __Early stage! Work in progress!__
 - [x] angular-cli based single page application
 - [x] reusing single rendering context
 
+### glt-vue
+
+[components/glt-vue/dist/](https://darosh.github.io/glt/components/glt-vue/dist/)
+
+- [x] vue.js based single page application, replacing glt-app
+
 ### glt-extractor
 
 - [x] build utility parsing GLSL functions to JSON with dependencies
