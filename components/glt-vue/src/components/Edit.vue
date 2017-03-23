@@ -1,16 +1,39 @@
 <template>
   <div class="main-content">
-    <md-layout md-row>
-      <md-layout  md-row md-align="stretch">
+    <md-layout>
+      <md-layout>
         <md-tabs class="md-transparent" :md-dynamic-height="false">
-          <md-tab id="tab-1" md-label="Components">
-            <div>Components</div>
-          </md-tab>
-          <md-tab id="tab-2" md-label="Uniforms">
-            <div>Uniforms</div>
-          </md-tab>
+          <!--<md-tab id="tab-1" md-label="Components">-->
+          <!--<div>Components</div>-->
+          <!--</md-tab>-->
+          <!--<md-tab id="tab-2" md-label="Uniforms">-->
+          <!--<div>Uniforms</div>-->
+          <!--</md-tab>-->
           <md-tab id="tab-3" md-label="Data">
-            <div>Data</div>
+            <md-layout md-column style="height: 100vh; padding-top:145px; margin-top: -145px">
+              <md-layout md-row md-gutter md-align="start" class="no-flex">
+                <md-card class="md-whiteframe-1dp">
+                  <div>
+                    <md-radio
+                      v-for="(item, index) in dataViews" :key="index"
+                      v-model="dataView"
+                      v-on:change="dataView = $event, dataEdit = toCJSON(data[dataView])"
+                      class="md-primary"
+                      :md-value="item"
+                      :name="'data-view-' + index"
+                      :id="'data-view-' + index">
+                      {{item}}
+
+
+                    </md-radio>
+                  </div>
+                </md-card>
+              </md-layout>
+              <textarea class="mono pre" style="flex: 1; overflow-y: auto; width: 100%" v-model="dataEdit"
+                        :disabled="dataView !== 'Graph'"
+                        v-on:change="dataChanged($event)"
+                        v-on:keyup="dataChanged($event)"></textarea>
+            </md-layout>
           </md-tab>
           <md-tab id="tab-4" md-label="Shader">
             <md-layout md-column style="height: 100vh; padding-top:145px; margin-top: -145px">
@@ -22,8 +45,12 @@
                       v-for="(item, index) in shaderViews" :key="index"
                       v-model="shaderView"
                       class="md-primary"
-                      :md-value="item" :name="'shader-view-' + index" :id="'shader-view-' + index">
+                      :md-value="item"
+                      :name="'shader-view-' + index"
+                      :id="'shader-view-' + index">
                       {{item}}
+
+
                     </md-radio>
                   </div>
                 </md-card>
@@ -34,8 +61,11 @@
                       v-for="(item, index) in shaderTargets" :key="index"
                       v-model="shaderTarget"
                       class="md-primary"
-                      :md-value="item" :name="'shader-target-' + index" :id="'shader-target-' + index">
-                      {{item}}
+                      :md-value="item"
+                      :name="'shader-target-' + index"
+                      :id="'shader-target-' + index">{{item}}
+
+
                     </md-radio>
                   </div>
                 </md-card>
@@ -46,24 +76,33 @@
                       v-for="(item, index) in shaderTypes" :key="index"
                       v-model="shaderType"
                       class="md-primary"
-                      :md-value="item" :name="'shader-type-' + index" :id="'shader-type-' + index">
-                      {{item}}
+                      :md-value="item"
+                      :name="'shader-type-' + index"
+                      :id="'shader-type-' + index">{{item}}
+
+
                     </md-radio>
                   </div>
                 </md-card>
                 <md-card class="md-whiteframe-1dp">
-                  <md-checkbox v-on:change="multiLine = $event, updateShader()"
-                               id="shader-multi-line" name="shader-multi-line" v-model="multiLine" class="md-primary">
-                    Multi line
+                  <md-checkbox
+                    v-on:change="multiLine = $event, updateShader()"
+                    id="shader-multi-line"
+                    name="shader-multi-line"
+                    v-model="multiLine"
+                    class="md-primary">Multi line
+
+
                   </md-checkbox>
                 </md-card>
-              </md-layout style>
+              </md-layout>
               <md-layout md-flex class="mono pre" style="flex: 1; overflow-y: auto">{{shader}}</md-layout>
             </md-layout>
           </md-tab>
         </md-tabs>
       </md-layout>
       <draw :recipe="recipe" :size="config.editSize"
+            v-on:compiled="updateData($event)"
             :style="{width: config.editSize[0] + 'px', height: config.editSize[1] + 'px'}"
             class="md-whiteframe-1dp"></draw>
     </md-layout>
@@ -84,6 +123,8 @@
       return {
         recipe: recipe,
         config: config,
+        dataView: 'Graph',
+        dataViews: ['Graph', 'Tree', 'Syntax'],
         shaderView: 'All',
         shaderViews: ['All', 'Color', 'Functions', 'Variables'],
         shaderTarget: 'Three.js',
@@ -91,10 +132,32 @@
         shaderType: 'Define',
         shaderTypes: ['Define', 'Uniforms', 'Inline'],
         multiLine: false,
-        shader: this.getShader(recipe, 'Three.js', 'Define', false)['all']
+        shader: this.getShader(recipe, 'Three.js', 'Define', false)['all'],
+        data: {
+          Graph: recipe
+        },
+        dataEdit: this.toCJSON(recipe)
       }
     },
     methods: {
+      toCJSON: function (o) {
+        return CJSON(o)
+      },
+      dataChanged: function (e) {
+        if (this.dataView === 'Graph') {
+          try {
+            let o = JSON.parse(e.target.value)
+            this.recipe = o
+          } catch (ign) {}
+        }
+      },
+      updateData: function (compiled) {
+        this.data = {
+          Graph: this.recipe,
+          Tree: compiled.tree,
+          Syntax: compiled.syntax
+        }
+      },
       updateShader: function () {
         this.shader = this.getShader(this.recipe, this.shaderTarget, this.shaderType, this.multiLine)[this.shaderView.toLowerCase()]
       },
@@ -147,8 +210,22 @@
     flex: initial !important;
   }
 
-  .md-card {
+  .md-card, textarea {
     border: 1px solid rgba(0, 0, 0, .12);
     box-shadow: none;
+  }
+
+  textarea {
+    resize: none;
+    border-radius: 2px;
+  }
+
+  textarea:focus {
+    outline: none;
+  }
+
+  textarea:disabled {
+    background-color: transparent;
+    border: none;
   }
 </style>

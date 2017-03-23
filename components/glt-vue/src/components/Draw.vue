@@ -29,12 +29,17 @@
       this.update()
     },
     watch: {
-      'size': function () {
+      size: function () {
         this.$el.width = this.size[0]
         this.$el.height = this.size[1]
         this.update()
       },
       partials: function () {
+        this.update()
+      },
+      recipe: function () {
+        this.compiled = glt.compile(this.recipe, 1)
+        this.$emit('compiled', this.compiled)
         this.update()
       }
     },
