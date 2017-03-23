@@ -24,7 +24,7 @@
 </template>
 
 <script>
-  import draw from '@/components/Draw'
+  import draw from './Draw'
   import config from '../services/config'
   import Vue from 'vue'
 

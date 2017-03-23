@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import Edit from '@/components/Edit'
-import List from '@/components/List'
-import Prototypes from '@/components/Prototypes'
-import Extractor from '@/components/Extractor'
+import Edit from '../components/Edit'
+import List from '../components/List'
+import Prototypes from '../components/Prototypes'
+import Extractor from '../components/Extractor'
 
 Vue.use(Router)
 
