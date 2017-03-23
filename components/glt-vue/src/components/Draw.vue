@@ -19,7 +19,7 @@
       'direct',
       'offScreen',
       'preCompiled',
-      'renderHistogram'
+      'histogram'
     ],
     beforeDestroy: function () {
       this.destroyed = true
@@ -86,6 +86,14 @@
         this.$el.height = sizeB[1]
 
         render.renderer.draw(this.$el)
+
+        if (this.histogram) {
+          if (this.partials) {
+          } else {
+            render.arrayInt = render.renderer.pixels(false, true)
+            this.$emit('histogram', ++render.arrayCount)
+          }
+        }
       },
       update: function () {
         const self = this

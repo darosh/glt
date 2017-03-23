@@ -23,6 +23,7 @@
                       :name="'data-view-' + index"
                       :id="'data-view-' + index">
                       {{item}}
+
                     </md-radio>
                   </div>
                 </md-card>
@@ -47,6 +48,7 @@
                       :name="'shader-view-' + index"
                       :id="'shader-view-' + index">
                       {{item}}
+
                     </md-radio>
                   </div>
                 </md-card>
@@ -60,6 +62,7 @@
                       :md-value="item"
                       :name="'shader-target-' + index"
                       :id="'shader-target-' + index">{{item}}
+
                     </md-radio>
                   </div>
                 </md-card>
@@ -73,6 +76,7 @@
                       :md-value="item"
                       :name="'shader-type-' + index"
                       :id="'shader-type-' + index">{{item}}
+
                     </md-radio>
                   </div>
                 </md-card>
@@ -83,6 +87,7 @@
                     name="shader-multi-line"
                     v-model="multiLine"
                     class="md-primary">Multi line
+
                   </md-checkbox>
                 </md-card>
               </md-layout>
@@ -91,22 +96,34 @@
           </md-tab>
         </md-tabs>
       </md-layout>
-      <draw :recipe="recipe" :size="config.editSize"
-            v-on:compiled="updateData($event)"
-            :style="{width: config.editSize[0] + 'px', height: config.editSize[1] + 'px'}"
-            class="md-whiteframe-1dp"></draw>
+      <md-layout md-column class="no-flex">
+        <draw :recipe="recipe" :size="config.editSize"
+              histogram="true"
+              v-on:compiled="updateData($event)"
+              v-on:histogram="updateHistogram = $event"
+              :style="{width: config.editSize[0] + 'px', height: config.editSize[1] + 'px'}"
+              class="md-whiteframe-1dp"></draw>
+        <histogram
+          :render="updateHistogram"
+          :dark="config.histogramDark"
+          :curve="config.histogramCurve"
+          :size="[config.editSize[0], config.editSize[0] / 2]"
+          class="md-whiteframe-1dp"></histogram>
+      </md-layout>
     </md-layout>
   </div>
 </template>
 
 <script>
   import draw from './Draw'
+  import histogram from './Histogram'
   import config from '../services/config'
 
   export default {
     name: 'edit',
     components: {
-      draw: draw
+      draw: draw,
+      histogram: histogram
     },
     data: function () {
       const recipe = this.$route.params.json ? JSON.parse(this.$route.params.json) : glt.samplesDemo[0]
@@ -126,7 +143,8 @@
         data: {
           Graph: recipe
         },
-        dataEdit: this.toCJSON(recipe)
+        dataEdit: this.toCJSON(recipe),
+        updateHistogram: 0
       }
     },
     methods: {

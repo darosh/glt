@@ -14,6 +14,19 @@
         </md-radio>
       </md-list-item>
     </md-list>
+    <md-toolbar class="md-dense">
+      <div class="md-toolbar-container">
+        <h3 class="md-subheading">Histogram</h3>
+      </div>
+    </md-toolbar>
+    <md-list>
+      <md-list-item>
+        <md-switch v-model="config.histogramCurve" id="histogram-curve" name="histogram-curve">Curve</md-switch>
+      </md-list-item>
+      <md-list-item>
+        <md-switch v-model="config.histogramDark" id="histogram-dark" name="histogram-dark">Dark</md-switch>
+      </md-list-item>
+    </md-list>
   </md-theme>
 </template>
 
