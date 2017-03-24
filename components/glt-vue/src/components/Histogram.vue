@@ -46,6 +46,7 @@
           h = glt.getHistogram(render.arrayInt, [0, 255], false, this.bins)
         }
 
+        this.$el.style.backgroundImage = 'none'
         glt.viewHistogram(this.$el, h, opt)
       },
       update: function () {
@@ -85,5 +86,8 @@
     display: block;
     font-style: normal;
     letter-spacing: 0;
+    background-image: linear-gradient(45deg, #e0e0e0 25%, transparent 25%), linear-gradient(-45deg, #e0e0e0 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #e0e0e0 75%), linear-gradient(-45deg, transparent 75%, #e0e0e0 75%);
+    background-size: 16px 16px;
+    background-position: 0 0, 0 8px, 8px -8px, -8px 0;
   }
 </style>
