@@ -60,7 +60,7 @@
 
     </md-toolbar>
 
-    <div v-scroll="onScroll" class="main-content">
+    <div v-scroll="onScroll" class="main-content" v-bind:style="{'overflow-y': $route.meta.tabs ? 'scroll' : null}">
       <router-view ref="view"></router-view>
     </div>
 

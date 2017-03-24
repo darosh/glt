@@ -26,9 +26,6 @@
                   :name="'data-view-' + index"
                   :id="'data-view-' + index">
                   {{item}}
-
-
-
                 </md-radio>
               </div>
             </md-card>
@@ -52,9 +49,6 @@
                   :name="'shader-view-' + index"
                   :id="'shader-view-' + index">
                   {{item}}
-
-
-
                 </md-radio>
               </div>
             </md-card>
@@ -68,9 +62,6 @@
                   :md-value="item"
                   :name="'shader-target-' + index"
                   :id="'shader-target-' + index">{{item}}
-
-
-
                 </md-radio>
               </div>
             </md-card>
@@ -84,9 +75,6 @@
                   :md-value="item"
                   :name="'shader-type-' + index"
                   :id="'shader-type-' + index">{{item}}
-
-
-
                 </md-radio>
               </div>
             </md-card>
@@ -97,9 +85,6 @@
                 name="shader-multi-line"
                 v-model="multiLine"
                 class="md-primary">Multi line
-
-
-
               </md-checkbox>
             </md-card>
           </md-layout>

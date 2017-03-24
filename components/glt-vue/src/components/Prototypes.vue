@@ -1,40 +1,40 @@
 <template>
   <div class="main-content">
-    <md-tabs md-elevation="1">
+    <md-tabs md-elevation="1" :md-dynamic-height="false">
       <md-tab id="tab-1" md-label="Table">
-        <md-table-card>
-        <md-table md-sort="calories" @sort="prototypesArray = sort(prototypesArray, $event)">
-          <md-table-header>
-            <md-table-row>
-              <md-table-head md-sort-by="4"></md-table-head>
-              <md-table-head md-sort-by="0">Type</md-table-head>
-              <md-table-head md-sort-by="1">Output</md-table-head>
-              <md-table-head md-sort-by="5" md-numeric>Input</md-table-head>
-              <md-table-head md-sort-by="2">Name</md-table-head>
-              <md-table-head md-sort-by="3">Signature</md-table-head>
-            </md-table-row>
-          </md-table-header>
-          <md-table-body>
-            <md-table-row v-for="(row, index) in prototypesArray" :key="index">
-              <md-table-cell>
-                <md-avatar class="md-avatar-icon"
-                           :class="{'md-primary': row[1] === 'vec3', 'md-warn': row[1] === 'vec2'}">
-                  <md-icon v-if="row[0] === 'blend'">call_merge</md-icon>
-                  <md-icon v-else-if="row[0] === 'colorize'">group_work</md-icon>
-                  <md-icon v-else-if="row[0] === 'desaturate'">fiber_manual_record</md-icon>
-                  <md-icon v-else-if="row[0] === 'generator'">photo</md-icon>
-                  <md-icon v-else-if="row[0] === 'modify'">tune</md-icon>
-                  <md-icon v-else-if="row[0] === 'transform'">open_with</md-icon>
-                </md-avatar>
-              </md-table-cell>
-              <md-table-cell>{{row[0]}}</md-table-cell>
-              <md-table-cell class="mono">{{row[1]}}</md-table-cell>
-              <md-table-cell class="md-body-1" md-numeric>{{row[5]}}</md-table-cell>
-              <md-table-cell class="md-body-2">{{row[2]}}</md-table-cell>
-              <md-table-cell class="mono">{{row[3]}}</md-table-cell>
-            </md-table-row>
-          </md-table-body>
-        </md-table>
+        <md-table-card v-show="prototypesArray.length">
+          <md-table md-sort="calories" @sort="prototypesArray = sort(prototypesArray, $event)">
+            <md-table-header>
+              <md-table-row>
+                <md-table-head md-sort-by="4"></md-table-head>
+                <md-table-head md-sort-by="0">Type</md-table-head>
+                <md-table-head md-sort-by="1">Output</md-table-head>
+                <md-table-head md-sort-by="5" md-numeric>Input</md-table-head>
+                <md-table-head md-sort-by="2">Name</md-table-head>
+                <md-table-head md-sort-by="3">Signature</md-table-head>
+              </md-table-row>
+            </md-table-header>
+            <md-table-body>
+              <md-table-row v-for="(row, index) in prototypesArray" :key="index">
+                <md-table-cell>
+                  <md-avatar class="md-avatar-icon"
+                             :class="{'md-primary': row[1] === 'vec3', 'md-warn': row[1] === 'vec2'}">
+                    <md-icon v-if="row[0] === 'blend'">call_merge</md-icon>
+                    <md-icon v-else-if="row[0] === 'colorize'">group_work</md-icon>
+                    <md-icon v-else-if="row[0] === 'desaturate'">fiber_manual_record</md-icon>
+                    <md-icon v-else-if="row[0] === 'generator'">photo</md-icon>
+                    <md-icon v-else-if="row[0] === 'modify'">tune</md-icon>
+                    <md-icon v-else-if="row[0] === 'transform'">open_with</md-icon>
+                  </md-avatar>
+                </md-table-cell>
+                <md-table-cell>{{row[0]}}</md-table-cell>
+                <md-table-cell class="mono">{{row[1]}}</md-table-cell>
+                <md-table-cell class="md-body-1" md-numeric>{{row[5]}}</md-table-cell>
+                <md-table-cell class="md-body-2">{{row[2]}}</md-table-cell>
+                <md-table-cell class="mono">{{row[3]}}</md-table-cell>
+              </md-table-row>
+            </md-table-body>
+          </md-table>
         </md-table-card>
       </md-tab>
       <md-tab id="tab-2" md-label="Data">
@@ -48,14 +48,18 @@
   export default {
     name: 'prototypes',
     data: function () {
+      setTimeout(() => {
+        this.prototypesArray = glt.all
+          .map(function (v) {
+            return [v.type, v.output, v.name, glt.getSignature(v), v.type + v.name + v.output, v.input.length]
+          })
+      })
+
       return {
         scrolled: false,
         sortBy: null,
         prototypes: CJSON(glt.all),
-        prototypesArray: glt.all
-          .map(function (v) {
-            return [v.type, v.output, v.name, glt.getSignature(v), v.type + v.name + v.output, v.input.length]
-          })
+        prototypesArray: []
       }
     },
     methods: {
