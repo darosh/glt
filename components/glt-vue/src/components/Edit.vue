@@ -2,99 +2,110 @@
   <div class="main-content">
     <md-layout>
       <md-layout>
-        <md-tabs class="md-transparent" :md-dynamic-height="false">
+        <md-tabs class="md-transparent" :md-dynamic-height="false" v-on:change="tab = $event">
           <!--<md-tab id="tab-1" md-label="Components">-->
           <!--<div>Components</div>-->
           <!--</md-tab>-->
           <!--<md-tab id="tab-2" md-label="Uniforms">-->
           <!--<div>Uniforms</div>-->
           <!--</md-tab>-->
-          <md-tab id="tab-3" md-label="Data">
-            <md-layout md-column style="height: 100vh; padding-top:145px; margin-top: -145px">
-              <md-layout md-row md-gutter md-align="start" class="no-flex">
-                <md-card class="md-whiteframe-1dp">
-                  <div>
-                    <md-radio
-                      v-for="(item, index) in dataViews" :key="index"
-                      v-model="dataView"
-                      v-on:change="dataView = $event, dataEdit = toCJSON(data[dataView])"
-                      class="md-primary"
-                      :md-value="item"
-                      :name="'data-view-' + index"
-                      :id="'data-view-' + index">
-                      {{item}}
-
-                    </md-radio>
-                  </div>
-                </md-card>
-              </md-layout>
-              <textarea class="mono pre" style="flex: 1; overflow-y: auto; width: 100%" v-model="dataEdit"
-                        :disabled="dataView !== 'Graph'"
-                        v-on:change="dataChanged($event)"
-                        v-on:keyup="dataChanged($event)"></textarea>
-            </md-layout>
-          </md-tab>
-          <md-tab id="tab-4" md-label="Shader">
-            <md-layout md-column style="height: 100vh; padding-top:145px; margin-top: -145px">
-              <md-layout md-row md-gutter md-align="start" class="no-flex">
-                <md-card class="md-whiteframe-1dp">
-                  <div>
-                    <md-radio
-                      v-on:change="shaderView = $event, updateShader()"
-                      v-for="(item, index) in shaderViews" :key="index"
-                      v-model="shaderView"
-                      class="md-primary"
-                      :md-value="item"
-                      :name="'shader-view-' + index"
-                      :id="'shader-view-' + index">
-                      {{item}}
-
-                    </md-radio>
-                  </div>
-                </md-card>
-                <md-card class="md-whiteframe-1dp">
-                  <div>
-                    <md-radio
-                      v-on:change="shaderTarget = $event, updateShader()"
-                      v-for="(item, index) in shaderTargets" :key="index"
-                      v-model="shaderTarget"
-                      class="md-primary"
-                      :md-value="item"
-                      :name="'shader-target-' + index"
-                      :id="'shader-target-' + index">{{item}}
-
-                    </md-radio>
-                  </div>
-                </md-card>
-                <md-card class="md-whiteframe-1dp">
-                  <div>
-                    <md-radio
-                      v-on:change="shaderType = $event, updateShader()"
-                      v-for="(item, index) in shaderTypes" :key="index"
-                      v-model="shaderType"
-                      class="md-primary"
-                      :md-value="item"
-                      :name="'shader-type-' + index"
-                      :id="'shader-type-' + index">{{item}}
-
-                    </md-radio>
-                  </div>
-                </md-card>
-                <md-card class="md-whiteframe-1dp">
-                  <md-checkbox
-                    v-on:change="multiLine = $event, updateShader()"
-                    id="shader-multi-line"
-                    name="shader-multi-line"
-                    v-model="multiLine"
-                    class="md-primary">Multi line
-
-                  </md-checkbox>
-                </md-card>
-              </md-layout>
-              <md-layout md-flex class="mono pre" style="flex: 1; overflow-y: auto">{{shader}}</md-layout>
-            </md-layout>
-          </md-tab>
+          <md-tab id="tab-3" md-label="Data"></md-tab>
+          <md-tab id="tab-4" md-label="Shader"></md-tab>
         </md-tabs>
+
+        <md-layout v-if="!tab" md-column class="padding">
+          <md-layout md-row md-gutter md-align="start" class="no-flex">
+            <md-card class="md-whiteframe-1dp">
+              <div>
+                <md-radio
+                  v-for="(item, index) in dataViews" :key="index"
+                  v-model="dataView"
+                  v-on:change="dataView = $event, dataEdit = toCJSON(data[dataView])"
+                  class="md-primary"
+                  :md-value="item"
+                  :name="'data-view-' + index"
+                  :id="'data-view-' + index">
+                  {{item}}
+
+
+
+                </md-radio>
+              </div>
+            </md-card>
+          </md-layout>
+          <textarea class="mono pre" style="flex: 1; overflow-y: auto; width: 100%" v-model="dataEdit"
+                    :disabled="dataView !== 'Graph'"
+                    v-on:change="dataChanged($event)"
+                    v-on:keyup="dataChanged($event)"></textarea>
+        </md-layout>
+
+        <md-layout v-else-if="tab === 1" md-column class="padding">
+          <md-layout md-row md-gutter md-align="start" class="no-flex">
+            <md-card class="md-whiteframe-1dp">
+              <div>
+                <md-radio
+                  v-on:change="shaderView = $event, updateShader()"
+                  v-for="(item, index) in shaderViews" :key="index"
+                  v-model="shaderView"
+                  class="md-primary"
+                  :md-value="item"
+                  :name="'shader-view-' + index"
+                  :id="'shader-view-' + index">
+                  {{item}}
+
+
+
+                </md-radio>
+              </div>
+            </md-card>
+            <md-card class="md-whiteframe-1dp">
+              <div>
+                <md-radio
+                  v-on:change="shaderTarget = $event, updateShader()"
+                  v-for="(item, index) in shaderTargets" :key="index"
+                  v-model="shaderTarget"
+                  class="md-primary"
+                  :md-value="item"
+                  :name="'shader-target-' + index"
+                  :id="'shader-target-' + index">{{item}}
+
+
+
+                </md-radio>
+              </div>
+            </md-card>
+            <md-card class="md-whiteframe-1dp">
+              <div>
+                <md-radio
+                  v-on:change="shaderType = $event, updateShader()"
+                  v-for="(item, index) in shaderTypes" :key="index"
+                  v-model="shaderType"
+                  class="md-primary"
+                  :md-value="item"
+                  :name="'shader-type-' + index"
+                  :id="'shader-type-' + index">{{item}}
+
+
+
+                </md-radio>
+              </div>
+            </md-card>
+            <md-card class="md-whiteframe-1dp">
+              <md-checkbox
+                v-on:change="multiLine = $event, updateShader()"
+                id="shader-multi-line"
+                name="shader-multi-line"
+                v-model="multiLine"
+                class="md-primary">Multi line
+
+
+
+              </md-checkbox>
+            </md-card>
+          </md-layout>
+          <md-layout md-flex class="mono pre" style="flex: 1; overflow-y: auto">{{shader}}</md-layout>
+        </md-layout>
+
       </md-layout>
       <md-layout md-column class="no-flex">
         <draw :recipe="recipe" :size="config.editSize"
@@ -128,6 +139,7 @@
     data: function () {
       const recipe = this.$route.params.json ? JSON.parse(this.$route.params.json) : glt.samplesDemo[0]
       return {
+        tab: 0,
         recipe: recipe,
         config: config,
         dataView: 'Graph',
@@ -235,5 +247,15 @@
   textarea:disabled {
     background-color: transparent;
     border: none;
+  }
+
+  .md-tabs .md-tab {
+    padding: 0;
+  }
+
+  .padding {
+    padding: 161px 16px 16px 16px;
+    height: 100vh;
+    margin-top: -145px
   }
 </style>

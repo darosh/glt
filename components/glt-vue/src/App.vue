@@ -52,7 +52,8 @@
             <span>Extractor</span>
           </md-menu-item>
           <md-menu-item v-on:selected="nav('https://github.com/darosh/glt/')">
-            <span>Github</span>
+            <span>About</span>
+            <md-icon md-src="static/icon-github.svg" class="github"></md-icon>
           </md-menu-item>
         </md-menu-content>
       </md-menu>
@@ -63,14 +64,16 @@
       <router-view ref="view"></router-view>
     </div>
 
+    <transition name="slide-fade">
+      <md-button v-show="$route.meta.refresh" v-on:click.native="onRefresh()" class="md-fab md-fab-bottom-right md-primary">
+        <md-icon>refresh</md-icon>
+      </md-button>
+    </transition>
+
     <md-sidenav class="md-left" ref="leftSidenav" md-fixed md-swipeable @open="open('Left')" @close="close('Left')">
       <options-list v-if="$route.meta.menu === 'thumbnails'"></options-list>
       <options-edit v-else-if="$route.meta.menu === 'edit'"></options-edit>
     </md-sidenav>
-
-    <md-button v-if="$route.meta.refresh" v-on:click.native="onRefresh()" class="md-fab md-fab-bottom-right md-primary">
-      <md-icon>refresh</md-icon>
-    </md-button>
   </div>
 </template>
 
@@ -172,10 +175,6 @@
   @import "../node_modules/vue-material/dist/components/mdCheckbox/index.css";
   @import "../node_modules/vue-material/dist/components/mdTooltip/index.css";
 
-  .md-theme-default a.md-link-button {
-    /*color: #fff !important;*/
-  }
-
   .md-title {
     color: #fff !important;
   }
@@ -183,5 +182,20 @@
   .md-theme-light .md-subheading {
     color: #757575 !important;
     padding-left: 8px;
+  }
+
+  .slide-fade-enter-active {
+    transition: all .3s ease;
+  }
+  .slide-fade-leave-active {
+    transition: all .3s ease;
+  }
+  .slide-fade-enter, .slide-fade-leave-to {
+    transform: translateX(32px);
+    opacity: 0;
+  }
+
+  .github path {
+    fill: rgba(0,0,0,.54) !important;
   }
 </style>
