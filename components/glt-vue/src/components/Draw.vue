@@ -41,6 +41,8 @@
         this.update()
       },
       recipe () {
+        this.ctx = this.ctx || this.$el.getContext('2d')
+        this.ctx.clearRect(0, 0, this.$el.width, this.$el.height)
         this.compiled = glt.compile(this.recipe, 1)
         this.$emit('compiled', this.compiled)
         this.update()

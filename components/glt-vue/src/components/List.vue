@@ -1,7 +1,9 @@
 <template>
   <div class="main-content">
     <md-layout md-gutter class="md-wrap">
-      <router-link v-for="(item, index) in recipes" :key="id + '-' + index"
+      <!--:key="id + '-' + index"-->
+      <router-link v-for="(item, index) in recipes"
+                   :key="index"
                    :to="{ name: 'Edit', params: { json: toJSON(item) }}">
         <md-card>
           <span v-if="item.title"
@@ -45,6 +47,16 @@
     },
     data () {
       return this.getData()
+//      setTimeout(() => {
+//        Object.assign(this, this.getData())
+//      })
+//
+//      return {
+//        recipes: [],
+//        times: [],
+//        id: 0,
+//        config: config
+//      }
     },
     methods: {
       onTime (v, i) {
