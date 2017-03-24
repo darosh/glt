@@ -16,8 +16,6 @@
       <md-list-item>
         <md-switch v-model="config.partials" id="config-partials" name="config-partials">
           Partials
-
-
         </md-switch>
       </md-list-item>
     </md-list>
@@ -33,8 +31,6 @@
                   v-on:change="config.thumbnailSize = config.thumbnailSizes[$event]"
                   :md-value="index" :name="'thumb-size-' + index" :id="'thumb-size-' + index">
           {{item[0]}} &times; {{item[1]}}
-
-
         </md-radio>
       </md-list-item>
     </md-list>
@@ -46,7 +42,7 @@
 
   export default {
     name: 'optionsList',
-    data: function () {
+    data () {
       return {
         config: config
       }

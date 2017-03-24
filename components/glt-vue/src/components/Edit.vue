@@ -122,7 +122,7 @@
       draw: draw,
       histogram: histogram
     },
-    data: function () {
+    data () {
       const recipe = this.$route.params.json ? JSON.parse(this.$route.params.json) : glt.samplesDemo[0]
       return {
         tab: 0,
@@ -146,10 +146,10 @@
       }
     },
     methods: {
-      toCJSON: function (o) {
+      toCJSON (o) {
         return CJSON(o)
       },
-      dataChanged: function (e) {
+      dataChanged (e) {
         if (this.dataView === 'Graph') {
           try {
             let o = JSON.parse(e.target.value)
@@ -157,17 +157,17 @@
           } catch (ign) {}
         }
       },
-      updateData: function (compiled) {
+      updateData (compiled) {
         this.data = {
           Graph: this.recipe,
           Tree: compiled.tree,
           Syntax: compiled.syntax
         }
       },
-      updateShader: function () {
+      updateShader () {
         this.shader = this.getShader(this.recipe, this.shaderTarget, this.shaderType, this.multiLine)[this.shaderView.toLowerCase()]
       },
-      getShader: function (recipe, shaderTarget, shaderType, multiLine) {
+      getShader (recipe, shaderTarget, shaderType, multiLine) {
         const shaders = {
           'Three.js': glt.getShaderThree,
           'glslsandbox.com': glt.getShaderGlslSandbox,

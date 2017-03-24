@@ -59,7 +59,7 @@
 <script>
   export default {
     name: 'prototypes',
-    data: function () {
+    data () {
       setTimeout(() => {
         this.prototypesArray = glt.all
           .map(function (v) {
@@ -86,10 +86,10 @@
       }
     },
     methods: {
-      onScroll: function (e, p) {
+      onScroll (e, p) {
         this.scrolled = p.scrollTop > 0
       },
-      sort: function (v, by) {
+      sort (v, by) {
         if (by) {
           v.sort(function (a, b) {
             return (by.type === 'asc' ? 1 : -1) * a[by.name].toString().localeCompare(b[by.name].toString())

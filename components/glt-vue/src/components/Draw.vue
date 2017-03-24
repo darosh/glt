@@ -21,10 +21,10 @@
       'preCompiled',
       'histogram'
     ],
-    beforeDestroy: function () {
+    beforeDestroy () {
       this.destroyed = true
     },
-    mounted: function () {
+    mounted () {
       this.$el.width = this.size[0]
       this.$el.height = this.size[1]
       this.compiled = glt.compile(this.recipe, 1)
@@ -32,22 +32,22 @@
       this.update()
     },
     watch: {
-      size: function () {
+      size () {
         this.$el.width = this.size[0]
         this.$el.height = this.size[1]
         this.update()
       },
-      partials: function () {
+      partials () {
         this.update()
       },
-      recipe: function () {
+      recipe () {
         this.compiled = glt.compile(this.recipe, 1)
         this.$emit('compiled', this.compiled)
         this.update()
       }
     },
     methods: {
-      getSize: function (quality = 1) {
+      getSize (quality = 1) {
         let size
 
         if (!this.full) {
@@ -62,7 +62,7 @@
 
         return [size[0] / quality, size[1] / quality]
       },
-      paint: function () {
+      paint () {
         const sizeA = this.getSize(this.quality)
         const sizeB = this.getSize()
 
@@ -95,7 +95,7 @@
           }
         }
       },
-      update: function () {
+      update () {
         const self = this
 
         queue.next((done) => {

@@ -14,7 +14,7 @@
 <script>
   export default {
     name: 'extractor',
-    data: function () {
+    data () {
       return {
         source: glt.GLSL[0] === '\n' ? glt.GLSL.slice(1) : glt.GLSL,
         extracted: CJSON(glt.getFragments())

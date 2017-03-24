@@ -15,23 +15,23 @@
       'curve',
       'dark'
     ],
-    mounted: function () {
+    mounted () {
       if (this.render) {
         this.update()
       }
     },
     watch: {
-      size: function () {
+      size () {
         if (this.render) {
           this.update()
         }
       },
-      render: function () {
+      render () {
         this.update()
       }
     },
     methods: {
-      paint: function () {
+      paint () {
         const opt = glt.viewHistogram.m(this.dark)
         opt.mid = this.mid
         opt.curve = this.curve
@@ -49,7 +49,7 @@
         this.$el.style.backgroundImage = 'none'
         glt.viewHistogram(this.$el, h, opt)
       },
-      update: function () {
+      update () {
         const self = this
 
         queue.next((done) => {

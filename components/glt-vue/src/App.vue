@@ -89,33 +89,33 @@
       'options-edit': OptionsEdit
     },
     watch: {
-      $route: function () {
+      $route () {
         this.scrolled = false
         document.title = (this.$route.name === 'Home' ? '' : (this.$route.name + ' | ')) + 'glt'
       }
     },
     methods: {
-      onRefresh: function () {
+      onRefresh () {
         this.$refs.view.refresh()
       },
-      onScroll: function (e, p) {
+      onScroll (e, p) {
         this.scrolled = p.scrollTop > 0
       },
-      toggleLeftSidenav: function () {
+      toggleLeftSidenav () {
         this.$refs.leftSidenav.toggle()
       },
-      open: function () {
+      open () {
       },
-      close: function () {
+      close () {
       },
-      go: function (to) {
+      go (to) {
         this.$router.push(to)
       },
-      nav: function (to) {
+      nav (to) {
         window.open(to)
       }
     },
-    data: function () {
+    data () {
       return {
         scrolled: false,
         config: config

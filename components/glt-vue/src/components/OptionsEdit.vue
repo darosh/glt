@@ -35,7 +35,7 @@
 
   export default {
     name: 'optionsConfig',
-    data: function () {
+    data () {
       return {
         config: config
       }

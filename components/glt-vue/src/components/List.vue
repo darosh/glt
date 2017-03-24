@@ -36,7 +36,7 @@
       draw: draw
     },
     watch: {
-      $route: function () {
+      $route () {
         const data = this.getData()
         this.recipes = data.recipes
         this.times = data.times
@@ -47,19 +47,19 @@
       return this.getData()
     },
     methods: {
-      onTime: function (v, i) {
+      onTime (v, i) {
         Vue.set(this.times, i, v)
       },
-      refresh: function () {
+      refresh () {
         Object.assign(this, this.getData())
       },
-      toCJSON: function (o) {
+      toCJSON (o) {
         return CJSON(o, {indent: 1, maxLength: 32})
       },
-      toJSON: function (o) {
+      toJSON (o) {
         return JSON.stringify(o)
       },
-      getSpacers: function (w) {
+      getSpacers (w) {
         const n = Math.ceil(Math.max(window.screen.width, window.screen.height) / w)
         const ret = []
 
@@ -69,7 +69,7 @@
 
         return ret
       },
-      getData: function () {
+      getData () {
         const recipes = []
         const times = []
         const _list = glt[this.$route.meta.list]
