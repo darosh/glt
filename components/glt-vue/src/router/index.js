@@ -5,6 +5,7 @@ import Edit from '../components/Edit'
 import List from '../components/List'
 import Prototypes from '../components/Prototypes'
 import Extractor from '../components/Extractor'
+import Help from '../components/Help'
 
 Vue.use(Router)
 
@@ -74,6 +75,11 @@ export default new Router({
       name: 'Extractor',
       component: Extractor,
       meta: {tabs: true}
+    },
+    {
+      path: '/help',
+      name: 'Help',
+      component: Help
     }
   ]
 })

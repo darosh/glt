@@ -23,6 +23,7 @@ import mdAvatar from 'vue-material/dist/components/mdAvatar'
 import mdInputContainer from 'vue-material/dist/components/mdInputContainer'
 import mdCheckbox from 'vue-material/dist/components/mdCheckbox'
 import mdTooltip from 'vue-material/dist/components/mdTooltip'
+import mdDivider from 'vue-material/dist/components/mdDivider'
 
 import vueScroll from 'vue-scroll'
 
@@ -47,6 +48,7 @@ Vue.use(mdAvatar)
 Vue.use(mdInputContainer)
 Vue.use(mdCheckbox)
 Vue.use(mdTooltip)
+Vue.use(mdDivider)
 
 Vue.material.registerTheme('default', {
   primary: 'blue',

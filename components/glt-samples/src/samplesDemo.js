@@ -335,5 +335,30 @@ export const samplesDemo = [
                 [0, 0, 0.34]
             ]
         ]
+    },
+    {
+        "title": "RGB",
+        "data": [
+            [
+                "RGB",
+                {"data": [["WorleyF1", 0.51, 0.31], ["Invert"]]},
+                {
+                    "data": [
+                        ["WorleyF1", 0.76, 0.25],
+                        ["Invert"],
+                        ["Translate", [94.22, -49.78]]
+                    ]
+                },
+                {
+                    "data": [
+                        ["WorleyF1", 0.5, 0.27],
+                        ["Invert"],
+                        ["Translate", [62.22, 94.22]]
+                    ]
+                }
+            ],
+            ["Gain", 0.11],
+            ["Scale", [5.85, 5.85]]
+        ]
     }
 ];

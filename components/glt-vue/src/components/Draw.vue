@@ -26,6 +26,11 @@
       this.destroyed = true
     },
     mounted () {
+      if (this.direct) {
+        this.$el.parentElement.insertBefore(render.canvas, this.$el)
+        this.$el.remove()
+      }
+
       this.$el.width = this.size[0]
       this.$el.height = this.size[1]
       this.compiled = glt.compile(this.recipe, 1)
@@ -88,7 +93,9 @@
         this.$el.width = sizeB[0]
         this.$el.height = sizeB[1]
 
-        render.renderer.draw(this.$el)
+        if (!this.direct) {
+          render.renderer.draw(this.$el)
+        }
 
         if (this.histogram) {
           if (this.partials) {

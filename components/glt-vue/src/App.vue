@@ -51,6 +51,10 @@
           <md-menu-item v-on:selected="go('/extractor')">
             <span>Extractor</span>
           </md-menu-item>
+          <md-menu-item v-on:selected="go('/help')">
+            <span>Help</span>
+            <md-icon>help</md-icon>
+          </md-menu-item>
           <md-menu-item v-on:selected="nav('https://github.com/darosh/glt/')">
             <span>About</span>
             <md-icon md-src="static/icon-github.svg" class="github"></md-icon>
@@ -174,6 +178,7 @@
   @import "../node_modules/vue-material/dist/components/mdInputContainer/index.css";
   @import "../node_modules/vue-material/dist/components/mdCheckbox/index.css";
   @import "../node_modules/vue-material/dist/components/mdTooltip/index.css";
+  @import "../node_modules/vue-material/dist/components/mdDivider/index.css";
 
   .md-title {
     color: #fff !important;

@@ -134,6 +134,7 @@
       <md-layout md-column class="no-flex">
         <draw :recipe="recipe"
               :size="config.editSize"
+              direct="true"
               histogram="true"
               v-on:compiled="updateData($event)"
               v-on:histogram="updateHistogram = $event"
