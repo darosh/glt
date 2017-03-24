@@ -88,7 +88,8 @@
               </md-checkbox>
             </md-card>
           </md-layout>
-          <md-layout md-flex class="mono pre" style="flex: 1; overflow-y: auto">{{shader}}</md-layout>
+
+          <textarea class="mono pre" style="flex: 1; overflow-y: auto; width: 100%" v-model="shader" disabled></textarea>
         </md-layout>
 
       </md-layout>
