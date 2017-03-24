@@ -12,6 +12,7 @@
             <draw :recipe="item"
                   :size="config.thumbnailSize"
                   :partials="config.partials"
+                  :index="index"
                   v-on:time="onTime($event, index)"
                   :style="{width: config.thumbnailSize[0] + 'px'}"></draw>
           </md-layout>

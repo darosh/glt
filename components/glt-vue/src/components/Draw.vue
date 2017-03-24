@@ -19,7 +19,8 @@
       'direct',
       'offScreen',
       'preCompiled',
-      'histogram'
+      'histogram',
+      'index'
     ],
     beforeDestroy () {
       this.destroyed = true
@@ -123,7 +124,7 @@
             self.paint()
             done()
           }
-        })
+        }, this.index)
       }
     }
   }
