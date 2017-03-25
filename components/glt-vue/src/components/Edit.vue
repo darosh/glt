@@ -1,7 +1,7 @@
 <template>
   <div class="main-content" style="height: 100%">
     <md-layout md-row style="height: 100%">
-      <md-layout md-column>
+      <md-layout md-column style="flex-flow: column;">
         <md-tabs class="md-transparent" :md-dynamic-height="false" v-on:change="tab = $event">
           <md-tab id="tab-1" md-label="Components"></md-tab>
           <!--<md-tab id="tab-2" md-label="Uniforms">-->
@@ -13,10 +13,21 @@
 
         <md-layout v-if="tab === 0 && compiled" md-column>
           <div class="scroll-y padding">
+            <md-layout md-row md-gutter md-align="start" class="no-flex" style="padding: 8px 8px 0 8px; margin-bottom: -8px">
+              <md-card class="md-whiteframe-1dp">
+                <div>
+                  <md-checkbox class="md-primary">Params</md-checkbox>
+                  <md-checkbox class="md-primary">Previews</md-checkbox>
+                  <md-checkbox class="md-primary">Histograms</md-checkbox>
+                  <md-checkbox class="md-primary">Chart</md-checkbox>
+                </div>
+              </md-card>
+            </md-layout>
+
             <md-layout md-row md-gutter>
               <div v-for="(item, index) in compiled.ids" class="margin">
                 <md-card style="min-width: 256px">
-                  <span class="md-title">{{item[0]}}</span>
+                  <div class="md-title">{{item[0]}}</div>
                   <div v-for="(v, i) in compiled.uniforms" class="margin" v-if="v.id == index">
                     <span class="md-subheading">{{v.proto[1]}}</span>
                     <md-layout v-if="!v.value.length" class="params">
@@ -25,7 +36,7 @@
                       </div>
                       <div>
                         <md-input-container>
-                          <md-input v-model.number="v.value" type="number"></md-input>
+                          <md-input v-model.number="v.value" v-on:input="v.value = $event, updateParam(v)" type="number" step="0.01"></md-input>
                         </md-input-container>
                       </div>
                     </md-layout>
@@ -35,7 +46,7 @@
                       </div>
                       <div>
                         <md-input-container>
-                          <md-input v-model.number="v.value[u]" type="number"></md-input>
+                          <md-input v-model.number="v.value[u]" v-on:input="v.value[u] = $event, updateParam(v)" type="number" step="0.01"></md-input>
                         </md-input-container>
                       </div>
                     </md-layout>
@@ -333,6 +344,10 @@
     min-height: 0;
     margin: -4px 0 4px;
     padding-top: 0;
+  }
+
+  .md-input-container > * {
+    flex: none;
   }
 
   .md-subheading {

@@ -41,14 +41,13 @@
   .v-range-slider {
     display: flex;
     align-items: center;
-    /*padding: 2px 11px;*/
   }
 
   .v-range-slider input[type=range] {
     -webkit-appearance: none;
     flex: 1;
     display: block;
-    overflow: hidden;
+    /*overflow: hidden;*/
     margin: 0;
     padding: 16px 1px 20px;
     box-sizing: border-box;
@@ -62,7 +61,7 @@
     height: 2px;
     background: #BDBDBD;
     border: none;
-    border-radius: 3px;
+    border-radius: 1px;
   }
 
   .v-range-slider input::-webkit-slider-thumb {
@@ -99,5 +98,20 @@
     width: 14px;
     height: 14px;
     margin-top: -5px;
+  }
+
+  .v-range-slider input::-moz-range-track {
+    /*width: 300px;*/
+    height: 2px;
+    background: #BDBDBD;
+    border: none;
+    border-radius: 1px;
+  }
+  .v-range-slider input::-moz-range-thumb {
+    border: none;
+    height: 14px;
+    width: 14px;
+    border-radius: 50%;
+    background: var(--android-green);
   }
 </style>
