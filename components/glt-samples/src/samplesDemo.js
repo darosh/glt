@@ -253,6 +253,31 @@ export const samplesDemo = [
         ]
     },
     {
+        title: 'RGB',
+        data: [
+            [
+                'RGB',
+                {'data': [['WorleyF1', 0.51, 0.31], ['Invert']]},
+                {
+                    'data': [
+                        ['WorleyF1', 0.76, 0.25],
+                        ['Invert'],
+                        ['Translate', [94.22, -49.78]]
+                    ]
+                },
+                {
+                    'data': [
+                        ['WorleyF1', 0.5, 0.27],
+                        ['Invert'],
+                        ['Translate', [62.22, 94.22]]
+                    ]
+                }
+            ],
+            ['Gain', 0.11],
+            ['Scale', [5.85, 5.85]]
+        ]
+    },
+    {
         title: 'Palette #1',
         data: [
             ['X'],
@@ -337,28 +362,17 @@ export const samplesDemo = [
         ]
     },
     {
-        "title": "RGB",
-        "data": [
+        title: 'Palette #7',
+        data: [
+            ['X'],
+            ['Normalize'],
             [
-                "RGB",
-                {"data": [["WorleyF1", 0.51, 0.31], ["Invert"]]},
-                {
-                    "data": [
-                        ["WorleyF1", 0.76, 0.25],
-                        ["Invert"],
-                        ["Translate", [94.22, -49.78]]
-                    ]
-                },
-                {
-                    "data": [
-                        ["WorleyF1", 0.5, 0.27],
-                        ["Invert"],
-                        ["Translate", [62.22, 94.22]]
-                    ]
-                }
-            ],
-            ["Gain", 0.11],
-            ["Scale", [5.85, 5.85]]
+                'CosPalette',
+                [1, 0.77, 0.8],
+                [0.77, 0.29, 0.15],
+                [0.38, 0.81, 0.78],
+                [0.08, 0.03, 0.36]
+            ]
         ]
     }
 ];
