@@ -214,12 +214,28 @@
   }
 </style>
 
-<style lang="sass">
-  @import "../node_modules/material-design-lite/src/color-definitions"
+<style lang="scss" type="text/scss">
+  @import "../node_modules/material-design-lite/src/color-definitions";
 
   $color-primary: $palette-blue-500 !default;
   $color-primary-dark: $palette-indigo-700 !default;
   $color-accent: $palette-pink-A200 !default;
 
-  @import "../node_modules/material-design-lite/src/slider/slider"
+  @import "../node_modules/material-design-lite/src/slider/slider";
+
+  .mdl-slider {
+    &.is-upgraded {
+      &::-webkit-slider-thumb {
+        transition: none
+      }
+
+      &::-ms-thumb {
+        transition: none
+      }
+    }
+  }
+
+  .mdl-slider__background-upper {
+    transition: none
+  }
 </style>
