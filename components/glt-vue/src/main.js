@@ -27,6 +27,10 @@ import mdDivider from 'vue-material/dist/components/mdDivider'
 
 import vueScroll from 'vue-scroll'
 
+import VueMdl from 'vue-mdl'
+
+Vue.use(VueMdl)
+
 Vue.use(vueScroll)
 
 Vue.use(mdCore)

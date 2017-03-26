@@ -180,6 +180,8 @@
   @import "../node_modules/vue-material/dist/components/mdTooltip/index.css";
   @import "../node_modules/vue-material/dist/components/mdDivider/index.css";
 
+  @import "../node_modules/material-design-lite/dist/material.blue-pink.min.css";
+
   .md-title {
     color: #fff !important;
   }

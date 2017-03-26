@@ -26,13 +26,14 @@
 
             <md-layout md-row md-gutter>
               <div v-for="(item, index) in compiled.ids" class="margin">
-                <md-card style="min-width: 256px">
+                <md-card style="min-width: 256px; padding-bottom: 11px">
                   <div class="md-title">{{item[0]}}</div>
                   <div v-for="(v, i) in compiled.uniforms" class="margin" v-if="v.id == index">
                     <span class="md-subheading">{{v.proto[1]}}</span>
                     <md-layout v-if="!v.value.length" class="params">
                       <div>
-                        <slider v-model="v.value" v-on:input="v.value = $event, updateParam(v)" :min="v.proto[3][0]" :max="v.proto[3][1]" :step="0.01"></slider>
+                        <mdl-slider v-model="v.value" v-on:input="v.value = $event, updateParam(v)" :min="v.proto[3][0]" :max="v.proto[3][1]" :step="0.01"></mdl-slider>
+                        <!--<slider v-model="v.value" v-on:input="v.value = $event, updateParam(v)" :min="v.proto[3][0]" :max="v.proto[3][1]" :step="0.01"></slider>-->
                       </div>
                       <div>
                         <md-input-container>
@@ -42,7 +43,8 @@
                     </md-layout>
                     <md-layout v-else v-for="(w, u) in v.value" :key="u" class="params">
                       <div>
-                        <slider v-model="v.value[u]" v-on:input="v.value[u] = $event, updateParam(v)" :min="v.proto[3][0]" :max="v.proto[3][1]" :step="0.01"></slider>
+                        <mdl-slider v-model="v.value[u]" v-on:input="v.value[u] = $event, updateParam(v)" :min="v.proto[3][0]" :max="v.proto[3][1]" :step="0.01"></mdl-slider>
+                        <!--<slider v-model="v.value[u]" v-on:input="v.value[u] = $event, updateParam(v)" :min="v.proto[3][0]" :max="v.proto[3][1]" :step="0.01"></slider>-->
                       </div>
                       <div>
                         <md-input-container>
@@ -166,15 +168,13 @@
   import draw from './Draw'
   import histogram from './Histogram'
   import config from '../services/config'
-  import slider from './Slider'
 //  import Vue from 'vue'
 
   export default {
     name: 'edit',
     components: {
       draw: draw,
-      histogram: histogram,
-      slider: slider
+      histogram: histogram
     },
     data () {
       const recipe = this.$route.params.json ? JSON.parse(this.$route.params.json) : glt.samplesDemo[0]
@@ -332,13 +332,17 @@
     overflow-y: auto;
   }
 
-  .v-range-slider {
-    margin-top: 10px;
-    margin-right: 8px;
-    width: 160px;
-    margin-bottom: -8px;
-  }
+  /*.v-range-slider {*/
+    /*margin-top: 10px;*/
+    /*margin-right: 8px;*/
+    /*width: 160px;*/
+    /*margin-bottom: -8px;*/
+  /*}*/
 
+  .mdl-slider__container {
+    width: 210px;
+    margin: 18px -20px -4px -24px !important;
+  }
   .md-input-container {
     width: 60px;
     min-height: 0;
