@@ -27,8 +27,6 @@ import mdDivider from 'vue-material/dist/components/mdDivider'
 
 import vueScroll from 'vue-scroll'
 
-// Vue.use(MdlSlider)
-
 Vue.use(vueScroll)
 
 Vue.use(mdCore)
