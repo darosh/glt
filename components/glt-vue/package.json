@@ -13,7 +13,6 @@
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs"
   },
   "dependencies": {
-    "keen-ui": "^1.0.0",
     "material-design-lite": "^1.3.0",
     "vue": "^2.2.2",
     "vue-material": "^0.7.1",
