@@ -170,10 +170,13 @@
   import config from '../services/config'
 //  import Vue from 'vue'
 
+  import {MdlSlider} from 'vue-mdl'
+
   export default {
     name: 'edit',
     components: {
       draw: draw,
+      mdlSlider: MdlSlider,
       histogram: histogram
     },
     data () {

@@ -181,7 +181,7 @@
   @import "../node_modules/vue-material/dist/components/mdTooltip/index.css";
   @import "../node_modules/vue-material/dist/components/mdDivider/index.css";
 
-  @import "../node_modules/material-design-lite/dist/material.blue-pink.min.css";
+  /*@import "../node_modules/material-design-lite/dist/material.blue-pink.min.css";*/
 
   .md-title {
     color: #fff !important;
@@ -212,4 +212,14 @@
   body {
     font-family: Roboto, Noto Sans, Noto, sans-serif;
   }
+</style>
+
+<style lang="sass">
+  @import "../node_modules/material-design-lite/src/color-definitions"
+
+  $color-primary: $palette-blue-500 !default;
+  $color-primary-dark: $palette-indigo-700 !default;
+  $color-accent: $palette-pink-A200 !default;
+
+  @import "../node_modules/material-design-lite/src/slider/slider"
 </style>
