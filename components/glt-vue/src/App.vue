@@ -69,7 +69,8 @@
     </div>
 
     <transition name="slide-fade">
-      <md-button v-show="$route.meta.refresh" v-on:click.native="onRefresh()" class="md-fab md-fab-bottom-right md-primary">
+      <md-button v-show="$route.meta.refresh" v-on:click.native="onRefresh()"
+                 class="md-fab md-fab-bottom-right md-primary">
         <md-icon>refresh</md-icon>
       </md-button>
     </transition>
@@ -194,15 +195,21 @@
   .slide-fade-enter-active {
     transition: all .3s ease;
   }
+
   .slide-fade-leave-active {
     transition: all .3s ease;
   }
+
   .slide-fade-enter, .slide-fade-leave-to {
     transform: translateX(32px);
     opacity: 0;
   }
 
   .github path {
-    fill: rgba(0,0,0,.54) !important;
+    fill: rgba(0, 0, 0, .54) !important;
+  }
+
+  body {
+    font-family: Roboto, Noto Sans, Noto, sans-serif;
   }
 </style>
