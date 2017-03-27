@@ -14,9 +14,7 @@ Powered by:
 
 - [vue](https://github.com/vuejs/vue)
 - [vue-material](https://github.com/marcosmoura/vue-material)
-- [material-design-lite](https://github.com/google/material-design-lite)
-- faster development state preserving hot reload
-- UI components: mostly missing focus highlight, worse Firefox experience
+- [material-design-lite](https://github.com/google/material-design-lite) for slider
 
 ### [glt-ng4](https://darosh.github.io/glt/components/glt-ng4/dist/index.html)
 
@@ -25,9 +23,30 @@ Powered by:
 - [angular](https://github.com/angular/angular) 
 - [material2](https://github.com/angular/material2) 
 - [flex-layout](https://github.com/angular/flex-layout)
+
+### vue vs ng4 notes
+
+_I am new to both ng2/ng4 and vue._
+
+#### vue
+- smaller footprint
+- easier to learn
+- faster development state preserving hot reload
+- route using same component preserves the component, it means less _new \<canvas\>_ created
+- UI components: 
+  - mostly missing focus highlight
+  - vue-mdl might be better choice?
+  - cross-browser compatibility
+  - future? perhaps [MDC](https://github.com/material-components/material-components-web/tree/master/framework-examples/vue)?
+  
+#### ng4
+- switched from ng2/ts, and ng2/js before, js was purely documented
 - experimental Angular 4.0.0
-- slow app loading
+- ng4 smaller than ng2, also faster dev reload
+- slow app loading, it is so bad, am I doing something wrong?
 - bigger download size
+- more browser memory used
+- UI components backed by Google
 
 ## Components
 
