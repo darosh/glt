@@ -59,18 +59,18 @@ _I am new to both ng2/ng4 and vue._
 - [x] shader format [Shadertoy](https://shadertoy.com/)
 - [x] Three.js based renderer
 
-### glt-app
-
-[components/glt-app/dist/](https://darosh.github.io/glt/components/glt-app/dist/index.html)
-
-- [x] angular-cli based single page application
-- [x] reusing single rendering context
-
 ### glt-vue
 
 [components/glt-vue/dist/](https://darosh.github.io/glt/components/glt-vue/dist/)
 
-- [x] vue.js based single page application, replacing glt-app
+- [x] vue.js based single page application
+
+### glt-ng4
+
+[components/glt-ng4/dist/](https://darosh.github.io/glt/components/glt-ng4/dist/index.html)
+
+- [x] angular-cli based single page application
+- [x] reusing single rendering context
 
 ### glt-extractor
 
