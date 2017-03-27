@@ -46,7 +46,7 @@ _I am new to both ng2/ng4 and vue._
 - switched from ng2/ts, and ng2/js before, js was purely documented
 - experimental Angular 4.0.0
 - ng4 smaller than ng2, also faster dev reload
-- slow app loading, it is so bad, am I doing something wrong?
+- slower app loading, but ng4 is better than ng2
 - bigger download size
 - more browser memory used
 - UI components backed by Google
