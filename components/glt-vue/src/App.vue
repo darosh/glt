@@ -92,6 +92,7 @@
     components: {
       'options-list': OptionsList,
       'options-edit': OptionsEdit
+//      MdlSlider: MdlSlider
     },
     watch: {
       $route () {
@@ -223,19 +224,19 @@
 
   @import "../node_modules/material-design-lite/src/slider/slider";
 
-  .mdl-slider {
-    &.is-upgraded {
-      &::-webkit-slider-thumb {
-        transition: none
-      }
+  /*.mdl-slider {*/
+    /*&.is-upgraded {*/
+      /*&::-webkit-slider-thumb {*/
+        /*transition: none*/
+      /*}*/
 
-      &::-ms-thumb {
-        transition: none
-      }
-    }
-  }
+      /*&::-ms-thumb {*/
+        /*transition: none*/
+      /*}*/
+    /*}*/
+  /*}*/
 
-  .mdl-slider__background-upper {
-    transition: none
-  }
+  /*.mdl-slider__background-upper {*/
+    /*transition: none*/
+  /*}*/
 </style>

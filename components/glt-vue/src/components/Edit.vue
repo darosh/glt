@@ -31,7 +31,7 @@
                   <div v-for="(v, i) in compiled.uniforms" class="margin" v-if="v.id == index">
                     <span class="md-subheading">{{v.proto[1]}}</span>
                     <md-layout v-if="!v.value.length" class="params">
-                      <div>
+                      <div class="slider-container">
                         <mdl-slider v-model="v.value" v-on:input="v.value = $event, updateParam(v)" :min="v.proto[3][0]" :max="v.proto[3][1]" :step="0.01"></mdl-slider>
                         <!--<slider v-model="v.value" v-on:input="v.value = $event, updateParam(v)" :min="v.proto[3][0]" :max="v.proto[3][1]" :step="0.01"></slider>-->
                       </div>
@@ -42,7 +42,7 @@
                       </div>
                     </md-layout>
                     <md-layout v-else v-for="(w, u) in v.value" :key="u" class="params">
-                      <div>
+                      <div class="slider-container">
                         <mdl-slider v-model="v.value[u]" v-on:input="v.value[u] = $event, updateParam(v)" :min="v.proto[3][0]" :max="v.proto[3][1]" :step="0.01"></mdl-slider>
                         <!--<slider v-model="v.value[u]" v-on:input="v.value[u] = $event, updateParam(v)" :min="v.proto[3][0]" :max="v.proto[3][1]" :step="0.01"></slider>-->
                       </div>
@@ -170,13 +170,11 @@
   import config from '../services/config'
 //  import Vue from 'vue'
 
-  import MdlSlider from 'vue-mdl/src/slider.vue'
-
   export default {
     name: 'edit',
     components: {
       draw: draw,
-      mdlSlider: MdlSlider,
+//      mdlSlider: MdlSlider,
       histogram: histogram
     },
     data () {
@@ -343,8 +341,8 @@
   /*}*/
 
   .mdl-slider__container {
-    width: 210px;
-    margin: 18px -20px -4px -24px !important;
+    /*width: 210px;*/
+    /*margin: 18px -20px -4px -24px !important;*/
   }
   .md-input-container {
     width: 60px;
@@ -365,5 +363,10 @@
 
   .params {
     padding: 0 6px;
+  }
+
+  .slider-container{
+    width: 210px;
+    margin: 18px -22px 0 -22px;
   }
 </style>

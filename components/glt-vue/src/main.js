@@ -69,11 +69,17 @@ Vue.material.registerTheme('light', {
 
 Vue.config.productionTip = false
 
+import 'material-design-lite/src/mdlComponentHandler'
+import 'material-design-lite/src/slider/slider'
+
+import MdlSlider from './elements/slider'
+Vue.component('MdlSlider', MdlSlider)
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
-  render: h => h(App)
+  render: h => h(App) // ,
   // template: '<App/>',
-  // components: {App}
+  // components: {MdlSlider}
 })
