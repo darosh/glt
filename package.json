@@ -45,6 +45,7 @@
     "rollup-plugin-node-resolve": "2.0.0",
     "rollup-plugin-string": "2.0.2",
     "rollup-plugin-uglify": "1.0.1",
+    "rollup-plugin-visualizer": "^0.2.0",
     "rollup-watch": "3.2.2",
     "umd": "3.0.1"
   },

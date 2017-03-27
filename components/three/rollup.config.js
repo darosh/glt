@@ -4,6 +4,7 @@ import babel from 'rollup-plugin-babel';
 import babelrc from 'babelrc-rollup';
 import commonjs from 'rollup-plugin-commonjs';
 import path from 'path';
+import visualizer from 'rollup-plugin-visualizer';
 
 function glsl() {
     return {
@@ -34,6 +35,7 @@ export default {
         commonjs(),
         glsl(),
         babel(babelrc()),
-        uglify()
+        uglify(),
+        visualizer()
     ]
 };
