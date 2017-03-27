@@ -183,7 +183,7 @@
 
   /*@import "../node_modules/material-design-lite/dist/material.blue-pink.min.css";*/
 
-  .md-title {
+  .md-title, .md-toolbar .md-icon-button {
     color: #fff !important;
   }
 
