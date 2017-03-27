@@ -5,13 +5,22 @@ class QueueService {
 
   next (fn = null, index) {
     if (fn) {
-      this.queue.push(fn)
-
       if (index >= 0) {
         fn.index = index
-        this.queue.sort(function (a, b) {
-          return (a.index || 0) - (b.index || 0)
-        })
+
+        if (this.queue[0] && ((this.queue[0].index || 0) > index)) {
+          this.queue.unshift(fn)
+        } else {
+          this.queue.push(fn)
+
+          if (this.queue.length > 1 && (index < (this.queue[this.queue.length - 2].index || 0))) {
+            this.queue.sort(function (a, b) {
+              return (a.index || 0) - (b.index || 0)
+            })
+          }
+        }
+      } else {
+        this.queue.push(fn)
       }
     }
 

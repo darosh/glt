@@ -14,18 +14,20 @@ Powered by:
 
 - [vue](https://github.com/vuejs/vue)
 - [vue-material](https://github.com/marcosmoura/vue-material)
+- [material-design-lite](https://github.com/google/material-design-lite)
+- faster development state preserving hot reload
+- UI components: mostly missing focus highlight, worse Firefox experience
 
-### [glt-app](https://darosh.github.io/glt/components/glt-app/dist/index.html)
+### [glt-ng4](https://darosh.github.io/glt/components/glt-ng4/dist/index.html)
 
 Powered by:
 
 - [angular](https://github.com/angular/angular) 
 - [material2](https://github.com/angular/material2) 
 - [flex-layout](https://github.com/angular/flex-layout)
-
-### [glt-ng4](https://darosh.github.io/glt/components/glt-ng4/dist/index.html)
-
-Angular 4 version of glt-app
+- experimental Angular 4.0.0
+- slow app loading
+- bigger download size
 
 ## Components
 
