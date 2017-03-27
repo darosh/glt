@@ -153,7 +153,7 @@
     font-family: "Roboto Mono", monospace;
     font-size: 12px;
     line-height: 18px;
-    font-weight: 500;
+    font-weight: 400;
     letter-spacing: 0;
   }
 
@@ -161,7 +161,7 @@
     white-space: pre;
     font-size: 14px;
     line-height: 18px;
-    font-weight: 500;
+    font-weight: 400;
     letter-spacing: 0;
     padding: 8px 8px 8px 8px;
   }

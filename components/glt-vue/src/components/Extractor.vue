@@ -28,7 +28,7 @@
     font-family: "Roboto Mono", monospace;
     font-size: 14px;
     line-height: 18px;
-    font-weight: 500;
+    font-weight: 400;
     letter-spacing: 0;
   }
 
