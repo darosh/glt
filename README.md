@@ -38,7 +38,7 @@ _I am new to both ng2/ng4 and vue._
 - UI components: 
   - mostly missing focus highlight
   - vue-mdl might be better choice?
-  - cross-browser compatibility
+  - cross-browser compatibility?
   - future? perhaps [MDC](https://github.com/material-components/material-components-web/tree/master/framework-examples/vue)?
 - sometimes feels (in a good way) more like AngularJS than Angular 2
   
