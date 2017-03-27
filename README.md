@@ -8,6 +8,13 @@ __Early stage! Work in progress!__
 
 ## Demo
 
+### [glt-vue](https://darosh.github.io/glt/components/glt-vue/dist/)
+
+Powered by:
+
+- [vue](https://github.com/vuejs/vue)
+- [vue-material](https://github.com/marcosmoura/vue-material)
+
 ### [glt-app](https://darosh.github.io/glt/components/glt-app/dist/index.html)
 
 Powered by:
@@ -16,13 +23,9 @@ Powered by:
 - [material2](https://github.com/angular/material2) 
 - [flex-layout](https://github.com/angular/flex-layout)
 
-### [glt-vue](https://darosh.github.io/glt/components/glt-vue/dist/)
+### [glt-ng4](https://darosh.github.io/glt/components/glt-ng4/dist/index.html)
 
-Powered by:
-
-- [vue](https://github.com/vuejs/vue)
-- [vue-material](https://github.com/marcosmoura/vue-material)
-
+Angular 4 version of glt-app
 
 ## Components
 
