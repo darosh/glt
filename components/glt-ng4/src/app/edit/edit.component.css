@@ -1,0 +1,57 @@
+.overflow-y {
+  overflow-y: auto;
+}
+
+h4 {
+  margin: 0;
+}
+
+input[type="number"] {
+  width: 73px;
+}
+
+md-slider {
+  width: 240px;
+}
+
+md-toolbar [md-icon-button] {
+  margin-right: 16px;
+}
+
+.canvas-list {
+  padding: 8px 8px 0 8px;
+}
+
+.canvas-wrap {
+  margin: 8px;
+}
+
+.canvas-list:after {
+  content: "";
+  display: flex;
+  flex: 1;
+  height: 8px;
+}
+
+.canvas-wrap {
+  background-color: #fff;
+  border-radius: 2px;
+}
+
+.md-toolbar-mini, .md-toolbar-mini >>> md-toolbar-row {
+  height: 48px;
+  min-height: 48px;
+}
+
+* >>> .mat-input-wrapper {
+  margin: 0;
+}
+
+* >>> .mat-slider-horizontal {
+  padding: 0;
+  /*height: 24px;*/
+  margin-top: -26px;
+  position: relative;
+  top: 12px;
+  min-width: 48px;
+}

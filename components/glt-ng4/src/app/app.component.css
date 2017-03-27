@@ -1,0 +1,19 @@
+md-toolbar {
+  z-index: 1000;
+}
+
+md-toolbar [md-icon-button]:not(:first-child) {
+  margin-left: 16px;
+}
+
+md-toolbar [md-icon-button]:first-child {
+  margin-right: 16px;
+}
+
+:host >>> textarea {
+  padding: 16px;
+}
+
+.mat-fab.mat-primary {
+  background-color: #f5f5f5;
+}
