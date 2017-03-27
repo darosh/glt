@@ -71,8 +71,8 @@ export default new Router({
       meta: {tabs: true}
     },
     {
-      path: '/extractor',
-      name: 'Extractor',
+      path: '/glsl',
+      name: 'GLSL',
       component: Extractor,
       meta: {tabs: true}
     },

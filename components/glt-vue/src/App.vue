@@ -48,8 +48,8 @@
           <md-menu-item v-on:selected="go('/prototypes')">
             <span>Prototypes</span>
           </md-menu-item>
-          <md-menu-item v-on:selected="go('/extractor')">
-            <span>Extractor</span>
+          <md-menu-item v-on:selected="go('/glsl')">
+            <span>GLSL</span>
           </md-menu-item>
           <md-menu-item v-on:selected="go('/help')">
             <span>Help</span>
