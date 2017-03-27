@@ -8,6 +8,8 @@ __Early stage! Work in progress!__
 
 ## Demo
 
+_Desktop Chrome should work._
+
 ### [glt-vue](https://darosh.github.io/glt/components/glt-vue/dist/)
 
 Powered by:
