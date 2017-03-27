@@ -90,9 +90,8 @@
   export default {
     name: 'app',
     components: {
-      'options-list': OptionsList,
-      'options-edit': OptionsEdit
-//      MdlSlider: MdlSlider
+      OptionsList,
+      OptionsEdit
     },
     watch: {
       $route () {
