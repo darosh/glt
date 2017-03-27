@@ -38,6 +38,7 @@ _I am new to both ng2/ng4 and vue._
   - vue-mdl might be better choice?
   - cross-browser compatibility
   - future? perhaps [MDC](https://github.com/material-components/material-components-web/tree/master/framework-examples/vue)?
+- sometimes feels (in a good way) more like AngularJS than Angular 2
   
 #### ng4
 - switched from ng2/ts, and ng2/js before, js was purely documented
