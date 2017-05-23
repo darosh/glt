@@ -24,13 +24,13 @@ export class Renderer {
         this.mesh = new Mesh(new PlaneGeometry(2, 2));
         this.scene.add(this.mesh);
         this.canvas = canvas;
-        this.renderer = new WebGLRenderer({canvas: canvas});
+        this.renderer = new WebGLRenderer({canvas: canvas, context: canvas.getContext ? undefined : canvas});
         return this;
     }
 
     size(value) {
         this._size = isArray(value) ? value : [value, value];
-        this.renderer.setSize(this._size[0], this._size[1]);
+        this.renderer.setSize(this._size[0], this._size[1], false);
         return this;
     }
 
