@@ -67,7 +67,7 @@
 #pragma glslify: Abs = require(./modify/abs)
 #pragma glslify: Posterize = require(./modify/posterize)
 #pragma glslify: Bias = require(./modify/bias)
-#pragma glslify: Bias = require(./modify/gain)
+#pragma glslify: Gain = require(./modify/gain)
 #pragma glslify: Normalize = require(./modify/normalize)
 #pragma glslify: Denormalize = require(./modify/denormalize)
 #pragma glslify: Invert = require(./modify/invert)
